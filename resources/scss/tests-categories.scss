@@ -1,0 +1,107 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2023-12-16, 13:50:15
+    Author     : ryba4
+*/
+@import "variables.scss";
+
+.tests-categories-list{
+    max-width: 600px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    @media only screen and (min-width: $desktopDim) {
+        max-width: 500px;
+        margin-left: 0px;
+    }
+    
+    .category-main-item{
+        font-size: 16px; 
+        font-weight: 600; 
+        margin-top: 20px;
+        margin-bottom: 10px;
+        
+        .show-child-categories-icon{
+            position: relative;
+            top: 4px;
+            margin-right: 7px;
+        }
+        
+        .hide-child-categories-icon{
+            position: relative;
+            top: 4px;
+            margin-right: 7px;
+            display: none;
+        }
+        
+        .category-main-item-link{
+            display: inline-block;
+            width: calc( 100% - 80px );
+        }
+        
+        .category-main-item-slide{
+            display: inline-block;
+            padding: 5px 10px;
+            position: relative;
+            top: 4px;
+            cursor: pointer;
+            transition: transform 0.4s;
+        }
+        
+        .category-main-item-selected{
+            border-bottom: 2px solid $dark-beige;
+            display: inline-block;
+        }
+
+        .category-child-items-container{
+            overflow: hidden;
+            height: 0px;
+            opacity: 0;
+            transition: height 1s, opacity 1.5s;
+            
+            .category-child-item{
+                font-size: 16px; 
+                font-weight: 400; 
+                padding-left: 20px;
+                border-left: 1px solid #948F82;
+                margin-left: 9px;
+                padding-top: 12px;
+                padding-bottom: 12px;
+                
+                .tasks-count{
+                    font-size: 14px;
+                    color: #7b7b7b;
+                    position: relative;
+                    top: -3px;
+                }
+            }
+        }
+        
+        &.category-main-item-opened{
+            .category-child-items-container{
+                height: auto;
+                opacity: 1;
+                padding-top: 5px;
+                padding-bottom: 15px;
+            }
+            
+            .category-main-item-slide{
+                transform: rotate(90deg);
+            }
+            
+            .hide-child-categories-icon{
+                display: inline;
+            }
+            
+            .show-child-categories-icon{
+                display: none;
+            }
+        }
+        
+        
+    }
+}
+

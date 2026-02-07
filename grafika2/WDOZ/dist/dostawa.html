@@ -1,0 +1,347 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-wdoz-body-bg p-3">
+ 
+<div class="max-w-[1120px] flex flex-col mx-auto">
+<div class="w-full mx-auto">
+<div class="flex items-baseline justify-between text-sm max-w-[700px] mb-8 mx-auto">
+    <div class="flex items-center flex-col w-28">
+      <a href="#" class="flex items-center flex-col text-center hover:text-wdoz-primary">
+      <div class=" w-8 h-8 bg-wdoz-primary rounded-full flex items-center justify-center text-white text-lg step-done">
+        <svg width="14" height="15" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1.65625 11.1562L5.43625 16.0161C5.5638 16.1818 5.72724 16.3166 5.91429 16.4102C6.10134 16.5036 6.30715 16.5536 6.51625 16.5561C6.72199 16.5586 6.92568 16.515 7.11251 16.4289C7.29932 16.3426 7.46457 16.2158 7.59625 16.0576L19.6563 1.46387" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+      </div>
+      <span class="text-center pt-1">Koszyk</span>
+    </a>
+    </div>
+    <div class="h-[2px] w-32   bg-wdoz-step-line relative top-[-6px]"></div>
+    <div class="flex items-center w-28 flex-col  ">
+      <a href="#" class="flex items-center flex-col text-center hover:text-wdoz-primary">
+      <div class="w-8 h-8 rounded-full flex items-center justify-center text-white text-lg step-active">
+        2
+      </div>
+      <span class="text-center pt-1">Dane zamówienia</span>
+    </a>
+    </div>
+    <div class="h-[2px] w-32 bg-wdoz-step-line relative top-[-6px]"></div>
+    <div class="flex items-center w-28 flex-col">
+      <a href="#" class="flex items-center flex-col text-center hover:text-wdoz-primary">
+      <div class="w-8 h-8 bg-green-400 rounded-full flex items-center justify-center text-white text-lg step-unactive">
+        3
+      </div>
+      <span class="text-center pt-1">Podsumowanie</span>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="flex flex-col lg:flex-row w-full gap-5">
+  <div class="left" style="max-width: 700px; width: 100%; flex-grow: 10; align-self: center;">
+<!-- Twoje dane -->
+<div id="zmiana" class="border-t-4 border-wdoz-primary max-w-[714px] rounded-b-lg drop-shadow-lg p-5 mb-5 bg-white flex flex-wrap flex-row gap-5"> 
+   
+  <h3 class="w-full">Logowanie</h3>
+    <div class="relative w-full sm:w-[48%]">
+        <input type="text" id="email" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-wdoz-text-gray bg-transparent rounded border-1 border border-wdoz-input-border appearance-none focus:outline-none focus:ring-0 peer" placeholder=" " />
+        <span class="text-red-700 block text-xs pt-1">Błąd</span>
+        <label for="email" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-[515151]  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/4 peer-placeholder-shown:top-1/4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Imię</label>
+    </div>
+    <div class="relative w-full sm:w-[48%]" >
+        <input type="text" id="email" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-wdoz-text-gray bg-transparent rounded border-1 border border-wdoz-input-border appearance-none focus:outline-none focus:ring-0 peer" placeholder=" " />
+        <span class="text-red-700 block text-xs pt-1">Błąd</span>
+        <label for="email" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-[515151]  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/4 peer-placeholder-shown:top-1/4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Nazwisko</label>
+    </div>
+
+    <div class="relative w-full sm:w-[48%]" >
+        <input type="text" id="email" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-wdoz-text-gray bg-transparent rounded border-1 border border-wdoz-input-border appearance-none focus:outline-none focus:ring-0 peer" placeholder=" " />
+        <span class="text-red-700 block text-xs pt-1">Błąd</span>
+        <label for="email" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-[515151]  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/4 peer-placeholder-shown:top-1/4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Adres e-mail</label>
+    </div>
+    <div class="relative w-full sm:w-[48%]" >
+        <input type="text" id="email" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-wdoz-text-gray bg-transparent rounded border-1 border border-wdoz-input-border appearance-none focus:outline-none focus:ring-0 peer" placeholder=" " />
+        <span class="text-red-700 block text-xs pt-1">Błąd</span>
+        <label for="email" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-[515151]  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/4 peer-placeholder-shown:top-1/4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Telefon</label>
+    </div>
+
+ 
+
+    <div class="inline-flex items-center py-4 w-full">
+      <label class="flex items-center cursor-pointer relative" for="check-1">
+        <input type="checkbox"
+          checked
+          class="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-slate-300 checked:bg-wdoz-primary checked:border-wdoz-primary" id="check-1" />
+        <span class="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"
+            stroke="currentColor" stroke-width="1">
+            <path fill-rule="evenodd"
+            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+            clip-rule="evenodd"></path>
+          </svg>
+        </span>
+      </label>
+      <label class="cursor-pointer ml-2 text-slate-600 text-sm" for="check-1">
+        Akceptuję Regulamin Drogerii
+      </label>
+    </div>
+
+ 
+
+
+  <div class="relative w-full sm:w-[48%] " style="flex-shrink: 0;">
+    <select type="text" id="kraj" class="vat block px-2.5 pb-2.5 pt-4 w-full text-sm text-wdoz-text-gray bg-transparent rounded border-1 border border-wdoz-input-border appearance-none focus:outline-none focus:ring-0 z-10 śpeer" placeholder=" ">
+      <option value="FR">Faktura na firmę</option>
+      <option value="DE">Faktura inna opcja</option>
+    </select>
+    <span class="text-red-700 block text-xs pt-1">Błąd</span>
+    <label for="kraj" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-[515151]  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/4 peer-placeholder-shown:top-1/4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Typ faktury</label>
+    <img src="assets/down-arrow-svgrepo-com.svg" class="absolute  top-[18px] right-3 text-sm text-gray-500  duration-300 transform  w-4  z-1"/>
+</div>
+
+<div class="relative w-full sm:w-[48%]" >
+  <input type="text" id="nazwa-firmy" class="vat block px-2.5 pb-2.5 pt-4 w-full text-sm text-wdoz-text-gray bg-transparent rounded border-1 border border-wdoz-input-border appearance-none focus:outline-none focus:ring-0 peer" placeholder=" " />
+  <span class="text-red-700 block text-xs pt-1">Błąd</span>
+  <label for="nazwa-firmy" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-[515151]  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/4 peer-placeholder-shown:top-1/4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Nazwa firmy</label>
+</div>
+ 
+<div class="relative w-full sm:w-[48%]" >
+  <input type="text" id="nip" class="vat block px-2.5 pb-2.5 pt-4 w-full text-sm text-wdoz-text-gray bg-transparent rounded border-1 border border-wdoz-input-border appearance-none focus:outline-none focus:ring-0 peer" placeholder=" " />
+  <span class="text-red-700 block text-xs pt-1">Błąd</span>
+  <label for="nip" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-[515151]  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/4 peer-placeholder-shown:top-1/4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">NIP</label>
+</div>
+<div class="relative w-full sm:w-[48%]" >
+  <input type="text" id="ulica" class="vat block px-2.5 pb-2.5 pt-4 w-full text-sm text-wdoz-text-gray bg-transparent rounded border-1 border border-wdoz-input-border appearance-none focus:outline-none focus:ring-0 peer" placeholder=" " />
+  <span class="text-red-700 block text-xs pt-1">Błąd</span>
+  <label for="ulica" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-[515151]  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/4 peer-placeholder-shown:top-1/4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Ulica</label>
+</div>
+<div class="relative w-full sm:w-[48%]" >
+  <input type="text" id="nr-domu" class="vat block px-2.5 pb-2.5 pt-4 w-full text-sm text-wdoz-text-gray bg-transparent rounded border-1 border border-wdoz-input-border appearance-none focus:outline-none focus:ring-0 peer" placeholder=" " />
+  <span class="text-red-700 block text-xs pt-1">Błąd</span>
+  <label for="nr-domu" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-[515151]  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/4 peer-placeholder-shown:top-1/4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Nr domu / mieszkania</label>
+</div>
+<div class="relative w-full sm:w-[48%]" >
+  <input type="text" id="miejscowosc" class="vat block px-2.5 pb-2.5 pt-4 w-full text-sm text-wdoz-text-gray bg-transparent rounded border-1 border border-wdoz-input-border appearance-none focus:outline-none focus:ring-0 peer" placeholder=" " />
+  <span class="text-red-700 block text-xs pt-1">Błąd</span>
+  <label for="miejscowosc" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-[515151]  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/4 peer-placeholder-shown:top-1/4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Miejscowość</label>
+</div>
+<div class="relative w-full sm:w-[48%]" >
+  <input type="text" id="kod-pocztowy" class="vat block px-2.5 pb-2.5 pt-4 w-full text-sm text-wdoz-text-gray bg-transparent rounded border-1 border border-wdoz-input-border appearance-none focus:outline-none focus:ring-0 peer" placeholder=" " />
+  <span class="text-red-700 block text-xs pt-1">Błąd</span>
+  <label for="kod-pocztowy" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-[515151]  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/4 peer-placeholder-shown:top-1/4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Kod pocztowy</label>
+</div>
+
+</div>
+ <!-- *Twoje dane-->
+ 
+<!-- Sposob -->
+<div id="zmiana" class="border-t-4 border-wdoz-primary max-w-[714px] rounded-b-lg drop-shadow-lg p-5 mb-5 bg-white flex flex-wrap flex-row gap-5  "> 
+   
+  <h3 class="w-full">Sposób dostawy</h3>
+
+  
+  <ul class="flex flex-col w-full gap-4">
+    <li>
+      <input type="radio" id="orlen-paczka" name="kurier" value="orlen-paczka" class="hidden peer" checked=""/>
+      <label for="orlen-paczka" class="inline-flex gap-4 items-center justify-between w-full p-2 px-4 bg-white border border-1 border border-wdoz-input-border rounded cursor-pointer peer-checked:bg-wdoz-primary-10 peer-checked:border-wdoz-primary  hover:text-gray-900 hover:bg-wdoz-primary-10  ">                           
+       
+        
+        <div class="flex flex-col w-full">
+          <div class="w-full text-sm sm:text-base font-medium">Orlen paczka</div>
+          <div class="w-full text-sm hidden sm:inline-flex">Dostawa do punktu Orlen paczka</div>
+        </div>
+        <div class="text-right text-base sm:text-lg font-medium text-nowrap">19,50 zł</div>
+        <img src="assets/logo-orlen-paczka.svg" class=" right-3 text-sm text-gray-500 duration-300 transform w-11 z-10"/>
+      </label>
+    </li>
+    <li>
+      <input type="radio" id="dpd-kurier" name="kurier" value="dpd-kurier" class="hidden peer"/>
+      <label for="dpd-kurier" class="inline-flex gap-4 items-center justify-between w-full p-2 px-4 bg-white border border-1 border border-wdoz-input-border rounded cursor-pointer peer-checked:bg-wdoz-primary-10 peer-checked:border-wdoz-primary   hover:text-gray-900 hover:bg-wdoz-primary-10  dark:bg-wdoz-primary dark:hover:bg-wdoz-primary">                           
+        <div class="flex flex-col w-full">
+          <div class="w-full text-sm sm:text-base font-medium">DPD - kurier</div>
+          <div class="w-full text-sm hidden sm:inline-flex">Doręczenie nastąpi w ciągu 24h od dnia nadania</div>
+        </div>
+        <div class="text-right text-base sm:text-lg font-medium text-nowrap">19,50 zł</div>
+        <img src="assets/logo-dpd-kurier.svg" class="right-3 text-sm text-gray-500 duration-300 transform w-11 z-10"/>
+      </label>
+    </li>
+    <li>
+      <input type="radio" id="inpost-kurier" name="kurier" value="inpost-kurier" class="hidden peer"/>
+      <label for="inpost-kurier" class="inline-flex gap-4 items-center justify-between w-full p-2 px-4 bg-white border border-1 border border-wdoz-input-border rounded cursor-pointer peer-checked:bg-wdoz-primary-10 peer-checked:border-wdoz-primary   hover:text-gray-900 hover:bg-wdoz-primary-10  dark:bg-wdoz-primary dark:hover:bg-wdoz-primary">                           
+        <div class="flex flex-col w-full">
+          <div class="w-full text-sm sm:text-base font-medium">InPost - kurier</div>
+          <div class="w-full text-sm hidden sm:inline-flex">Doręczenie nastąpi w ciągu 48h od dnia nadania</div>
+        </div>
+        <div class="text-right text-base sm:text-lg font-medium text-nowrap">19,50 zł</div>
+        <img src="assets/logo-inpost-kurier.png" class="right-3 text-sm text-gray-500 duration-300 transform w-11 z-10"/>
+      </label>
+    </li>
+    <li>
+      <input type="radio" id="paczkomat" name="kurier" value="dpd-kurier" class="hidden peer"/>
+      <label for="paczkomat" class="inline-flex gap-4 items-center justify-between w-full p-2 px-4 bg-white border border-1 border border-wdoz-input-border rounded cursor-pointer peer-checked:bg-wdoz-primary-10 peer-checked:border-wdoz-primary   hover:text-gray-900 hover:bg-wdoz-primary-10  dark:bg-wdoz-primary dark:hover:bg-wdoz-primary">                           
+        <div class="flex flex-col w-full">
+          <div class="w-full text-sm sm:text-base font-medium">InPost - paczkomat</div>
+          
+        </div>
+        <div class="text-right text-base sm:text-lg font-medium text-nowrap">19,50 zł</div>
+        <img src="assets/logo-paczkomat.png" class="right-3 text-sm text-gray-500 duration-300 transform w-11 z-10"/>
+      </label>
+    </li>
+  </ul>
+  
+   
+ 
+
+ 
+
+ 
+</div>
+ <!-- *Sposob dostawy-->
+
+ <!-- Dane dostawy -->
+<div id="zmiana" class="border-t-4 border-wdoz-primary max-w-[714px] rounded-b-lg drop-shadow-lg p-5 mb-5 bg-white flex flex-wrap flex-row gap-5"> 
+   
+  <h3 class="w-full">Dane dostawy</h3>
+    <div class="relative w-full sm:w-[48%]">
+        <input type="text" id="email" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-wdoz-text-gray bg-transparent rounded border-1 border border-wdoz-input-border appearance-none focus:outline-none focus:ring-0 peer" placeholder=" " />
+        <span class="text-red-700 block text-xs pt-1">Błąd</span>
+        <label for="email" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-[515151]  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/4 peer-placeholder-shown:top-1/4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Ulica</label>
+    </div>
+    <div class="relative w-full sm:w-[48%]" >
+        <input type="text" id="email" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-wdoz-text-gray bg-transparent rounded border-1 border border-wdoz-input-border appearance-none focus:outline-none focus:ring-0 peer" placeholder=" " />
+        <span class="text-red-700 block text-xs pt-1">Błąd</span>
+        <label for="email" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-[515151]  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/4 peer-placeholder-shown:top-1/4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Numer domu / mieszkania</label>
+    </div>
+
+    <div class="relative w-full sm:w-[48%]" >
+        <input type="text" id="email" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-wdoz-text-gray bg-transparent rounded border-1 border border-wdoz-input-border appearance-none focus:outline-none focus:ring-0 peer" placeholder=" " />
+        <span class="text-red-700 block text-xs pt-1">Błąd</span>
+        <label for="email" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-[515151]  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/4 peer-placeholder-shown:top-1/4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Miejscowość</label>
+    </div>
+    <div class="relative w-full sm:w-[48%]" >
+        <input type="text" id="email" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-wdoz-text-gray bg-transparent rounded border-1 border border-wdoz-input-border appearance-none focus:outline-none focus:ring-0 peer" placeholder=" " />
+        <span class="text-red-700 block text-xs pt-1">Błąd</span>
+        <label for="email" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-[515151]  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/4 peer-placeholder-shown:top-1/4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Kod pocztowy</label>
+    </div>
+
+
+</div>
+ <!-- *Dane dostawy-->
+
+
+<!-- Sposob -->
+<div id="zmiana" class="border-t-4 border-wdoz-primary max-w-[714px] rounded-b-lg drop-shadow-lg p-5 mb-5 bg-white flex flex-wrap flex-row gap-5  "> 
+   
+  <h3 class="w-full">Sposób dostawy</h3>
+
+  
+  <ul class="flex flex-col w-full gap-4">
+    <li>
+      <input type="radio" id="platnosc-online" name="sposob-dostawy" value="platnosc-online" class="hidden peer"/>
+      <label for="platnosc-online" class="inline-flex gap-4 items-center justify-between w-full p-2 px-4 bg-white border border-1 border border-wdoz-input-border rounded cursor-pointer peer-checked:bg-wdoz-primary-10 peer-checked:border-wdoz-primary   hover:text-gray-900 hover:bg-wdoz-primary-10  dark:bg-wdoz-primary dark:hover:bg-wdoz-primary">                           
+        <div class="flex flex-col w-full">
+          <div class="w-full text-base font-medium">Płatność on-line</div>
+          <div class="w-full text-sm">przelew / karta / blik</div>
+        </div>
+         <img src="assets/platnosc-online.png" class=" right-3 text-sm text-gray-500 duration-300 transform h-6 z-10"/>
+      </label>
+    </li>
+    <li>
+      <input type="radio" id="platnosc-przelewem" name="sposob-dostawy" value="platnosc-przelewem" class="hidden peer"/>
+      <label for="platnosc-przelewem" class="h-[62px] inline-flex gap-4 items-center justify-between w-full p-2 px-4 bg-white border border-1 border border-wdoz-input-border rounded cursor-pointer peer-checked:bg-wdoz-primary-10 peer-checked:border-wdoz-primary   hover:text-gray-900 hover:bg-wdoz-primary-10  dark:bg-wdoz-primary dark:hover:bg-wdoz-primary">                           
+        <div class="flex flex-col w-full">
+          <div class="w-full text-base font-medium">Płatność przelewem tradycyjnym</div>
+ 
+        </div>
+        
+      </label>
+    </li>
+ 
+  </ul>
+   
+ 
+
+ 
+</div>
+ <!-- *Sposob dostawy-->
+
+
+
+</div>
+
+
+ <!-- podsumowanie-->
+ <div class="right   rounded-b-lg drop-shadow-lg p-5 bg-white max-w-[700px] w-full lg:w-[370px] gap-3 self-center  md:flex-1 lg:self-baseline"> 
+ 
+  <div class="flex flex-row pb-2 justify-between">  
+    <span class="text-md font-normal">Produkty apteczne</span><span class="text-md font-semibold">432 zł</span>
+  </div>
+  <div class="flex flex-row pb-2 justify-between">  
+    <span class="text-md font-normal">Produkty apteczne</span><span class="text-md font-semibold">432 zł</span>
+  </div>
+ 
+  <div class="flex flex-col bg-wdoz-body-bg border text-right justify-end p-2">
+    <span class="text-sm font-normal">Darmowa wysyłka od 249,00 zł</span>
+    <span class="text-sm font-normal">Do darmowej wysyłki brakuje: 209,01 zł</span>
+  </div>
+
+
+
+  <div class="flex flex-row  pt-3 justify-between border-t mt-3 flex-wrap">  
+    <span class="text-md font-bold  ">Podsumowanie</span><span class="text-md font-semibold">432.43 zł</span>
+
+    <div class="inline-flex items-center py-4 w-full">
+      <label class="flex items-center cursor-pointer relative" for="check-2">
+        <input type="checkbox"
+          checked
+          class="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-slate-300 checked:bg-wdoz-primary checked:border-wdoz-primary" id="check-2" />
+        <span class="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"
+            stroke="currentColor" stroke-width="1">
+            <path fill-rule="evenodd"
+            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+            clip-rule="evenodd"></path>
+          </svg>
+        </span>
+      </label>
+      <label class="cursor-pointer ml-2 text-slate-600 text-xs" for="check-2">
+        <span class="text-xl text-red-600">*</span>Akceptuję <a href="#">Regulamin Drogerii</a>
+      </label>
+    </div>
+
+    <div class="inline-flex items-start py-4 w-full">
+      <label class="flex items-center cursor-pointer relative" for="check-3">
+        <input type="checkbox"
+          checked
+          class="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-slate-300 checked:bg-wdoz-primary checked:border-wdoz-primary" id="check-3" />
+        <span class="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"
+            stroke="currentColor" stroke-width="1">
+            <path fill-rule="evenodd"
+            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+            clip-rule="evenodd"></path>
+          </svg>
+        </span>
+      </label>
+      <label class="cursor-pointer ml-2 text-slate-600 text-xs" for="check-3">Wyrażam zgodę na otrzymywanie newslettera i informacji handlowych od Apteki Internetowej Wracam do zdrowia, www.wdoz.pl. Jestem świadom przysługującego mi prawa do cofnięcia wyrażonej zgody w każdym czasie. Wówczas przekazane dane będą przetwarzane do momentu cofnięcia zgody. Administratorem danych osobowych jest „Wracam do zdrowia 8” sp. z o.o., adres: ul. Remusa 6, 81-574 Gdynia. Administrator przetwarza dane zgodnie z obowiązującym prawem oraz Regulaminem Newslettera.
+      </label>
+    </div> 
+
+    <p class="text-xs"><span class="text-xl text-red-600">*</span> pola oznaczone czerwoną gwiazdką są obowiązkowe</p>
+
+    <button class="bg-wdoz-primary text-white mt-4 rounded p-4 shadow text-sm font-semibold" style="flex-basis: 700px;">Dalej</button>
+  </div>
+ 
+ 
+  
+</div>
+<!-- *podsumowanie-->
+</div>
+</div>
+</body>
+</html>

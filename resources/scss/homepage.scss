@@ -1,0 +1,518 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2024-01-02, 15:31:34
+    Author     : ryba4
+*/
+@import "variables.scss";
+
+.front-home-page{
+    h1{
+        font-size: 40px; 
+        max-width: 412px;
+        margin: 0 auto;
+        margin-bottom: 20px;
+        margin-top: 40px;
+        
+        @media only screen and (min-width: $tabletDim) {
+            max-width: 100%;
+            font-size: 50px; 
+        }
+        
+        @media only screen and (min-width: $desktopDim) {
+            font-size: 50px; 
+        }
+        
+
+        span{
+            color: #5F5842; 
+        }
+    }
+
+    h2{
+        max-width: 412px;
+        margin: 0 auto;
+        line-height: 27px;
+        @media only screen and (min-width: $tabletDim) {
+            max-width: 600px;
+            font-size: 24px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        @media only screen and (min-width: $desktopDim) {
+            max-width: 100%;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+    }
+    
+    .home-pahe-head{
+        background-color: #f1ede5;
+        margin-left: -10px;
+        padding-top: 2px;
+        width: calc( 100% + 20px );
+        
+        .price-text-container{
+            text-align: center;
+        }
+        
+        .price-text{
+            text-align: center;
+            font-size: 14px;
+            border-radius: 8px;
+            border: 2px solid #dcb05e;
+            background-color: #efe4b0;
+            display: inline-block;
+            padding: 5px 17px;
+            
+            @media only screen and (min-width: $tabletDim) {
+                font-size: 16px;
+            }
+        }
+    }
+    
+    .login-section{
+        margin-top: 30px;
+        text-align: center; 
+        
+        @media only screen and (min-width: $tabletDim) {
+            display: flex;
+        }
+        
+        @media only screen and (min-width: $tabletDim) {
+            max-width: 650px;
+            margin: 0 auto;
+        }
+        
+        .login-button-container{
+            @media only screen and (min-width: $tabletDim) {
+                width: 50%;
+            }                                         
+        }
+
+        .standard-big-button{
+            margin: 0 auto;
+            min-width: 240px;
+            margin-top: 20px;
+        }
+
+        .free-count{
+            font-size: 14px;
+            font-weight: 100;
+            margin-top: 5px;
+        }
+    }
+    
+    .home-page-slider-section{
+        text-align: center;
+        
+        .home-page-slider-image{
+            max-width: 100%;
+            width: 100%;
+            margin-left: -10px;
+            margin-top: 20px;
+            @media only screen and (min-width: $bigPhoneDim) {
+                max-width: 500px;
+                
+            }
+            @media only screen and (min-width: $tabletDim) {
+                max-width: 600px;
+                margin-top: 5px;
+            }
+            @media only screen and (min-width: $desktopDim) {
+                max-width: 750px;
+            }
+            @media only screen and (min-width: $bigDesktopDim) {
+                max-width: 820px;
+            }
+            
+        } 
+    }
+    
+    .home-page-application-database{
+        text-align: center;
+        width: 100%;
+        margin-left: -10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        background-color: #E7E2D5;
+        padding-top: 35px;
+        padding-bottom: 35px;
+        margin-top: -5px;
+        
+        .database-info{
+            font-size: 35px; 
+            margin-top: 0px;
+            text-align: center;
+        }
+        
+        .databse-info-container{
+            padding: 20px;
+            border-radius: 24px; 
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); 
+            margin: 0 auto;
+            margin: 10px auto;
+            margin-bottom: 30px;
+            width: 260px;
+            max-width: calc( 100% - 50px );
+            
+            @media only screen and (min-width: $tabletDim) {
+                width: 310px;
+                margin-left: 10px;
+                margin-right: 10px;
+                display: inline-block;
+            }
+            @media only screen and (min-width: $desktopDim) {
+                width: 350px;
+            }
+            
+            
+            &.databse-info-green{
+                background-color: #DFF4E5; 
+                border: 1px solid #A7CDB2;   
+            }
+            &.databse-info-blue{
+                background-color: #DFE4F4;   
+                border: 1px solid #BAC5E5; 
+            }
+        }
+
+        .database-info-header{
+            font-size: 24px; 
+            margin-top: 15px;
+            
+            @media only screen and (min-width: $tabletDim) {
+                margin-bottom: 5px;
+            }
+            
+            span{
+                font-size: 60px;
+            }
+        }
+        
+        .databse-info-picture{
+            display: inline-block;
+            width: calc(100% - 10px);
+            border: 5px solid #fff;
+            border-radius: 8px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            
+            img{
+                width: 100%;
+                margin-bottom: -5px;
+            }
+        }
+        
+        .database-info-content{
+            font-size: 18px; 
+            text-align: center;
+            margin-bottom: 30px;
+            margin-top: 30px;
+            line-height: 27px;
+            
+            @media only screen and (min-width: $tabletDim) {
+                max-width: 730px;
+                margin: 0 auto;
+                margin-bottom: 30px;
+                margin-top: 30px;
+            }
+            @media only screen and (min-width: $desktopDim) {
+                max-width: 810px;
+            }
+            
+        }
+        
+        .databse-info-register{
+           text-align: center;
+           
+           .free-count{
+                font-size: 14px;
+                font-weight: 100;
+                margin-top: 5px;
+            }
+        }
+        
+        
+    }
+    
+    .home-page-application-content{
+        margin-top: 40px;
+        
+        @media only screen and (min-width: $tabletDim) {
+            margin-top: 60px;
+        }
+        
+        .application-content-info{
+            font-size: 35px;
+            margin-top: 0px;
+            text-align: center;
+        }
+        
+        .application-content-content{
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 30px;
+            margin-top: 30px;
+            font-weight: 300;
+            
+            @media only screen and (min-width: $tabletDim) {
+                max-width: 730px;
+            }
+            @media only screen and (min-width: $desktopDim) {
+                max-width: 810px;
+            }
+            
+        }
+        
+        .application-content-sections-container{
+            @media only screen and (min-width: $bigPhoneDim) {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+            @media only screen and (min-width: $desktopDim) {
+                max-width: $contentMaxWidth;
+                margin: 0 auto;
+            }
+        
+            .application-content-section{
+                box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
+                border: 1px solid #DBD9D4; 
+                padding: 20px;
+                border-radius: 16px;
+                margin-bottom: 20px;
+                
+                @media only screen and (min-width: $bigPhoneDim) {
+                    display: flex;
+                    flex-basis: calc( 50% - 50px );
+                    flex-direction: column;
+                }
+                
+                @media only screen and (min-width: $desktopDim) {
+                    flex-basis: calc( 25% - 50px );
+                }
+
+                &.application-content-section-blue{
+                    background: #DFEFF4; 
+                }
+
+                &.application-content-section-green{
+                    background: #EFF4DF; 
+                }
+
+                &.application-content-section-red{
+                    background: #F4E5DF; 
+                }
+
+                &.application-content-section-pink{
+                    background: #E5DFF4; 
+                }
+
+                .application-content-section-icon{
+                    border-radius: 20px;
+                    background: #F6C089; 
+                    display: flex;
+                    width: 70px;
+                    height: 70px;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                h3{
+                    font-size: 24px; 
+                    @media only screen and (min-width: $bigPhoneDim) {
+                        font-size: 20px; 
+                    }
+                    
+                    @media only screen and (min-width: $tabletDim) {
+                        font-size: 24px; 
+                    }
+                }
+            }
+        }
+    }
+    
+    .home-page-application-modern{
+        margin: 0 auto;
+        margin-top: 45px;
+        @media only screen and (min-width: $desktopDim) {
+            max-width: $contentMaxWidth;
+        }
+        
+        .home-page-application-modern-info{
+            font-size: 35px;
+            margin-top: 0px;
+            text-align: center;
+            line-height: 42px;
+            font-weight: 300;
+            
+        }
+        
+        .home-page-application-modern-content{
+            font-size: 18px;
+            text-align: center;
+            margin: 0 auto;
+            margin-bottom: 30px;
+            margin-top: 30px;
+            max-width: 810px;
+        }
+        
+        .home-page-application-modern-section{
+            border-radius: 38px;
+            border: 1px solid #DAD6CE;
+            background: #F0ECE5;
+            padding: 20px;
+            margin: 0 auto;
+            margin-bottom: 40px;
+            overflow: hidden;
+            @media only screen and (min-width: $tabletDim) {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            @media only screen and (min-width: $desktopDim) {
+                display: flex;
+                flex-wrap: wrap;
+                background: rgb(246,215,171);
+                background: radial-gradient(ellipse at bottom right, rgba(246,215,171,1) 10%, rgba(240,236,229,1) 60%, rgba(240,236,229,1) 100%);
+            }
+ 
+            
+            .application-modern-title{
+                font-size: 24px; 
+                @media only screen and (min-width: $tabletDim) {
+                    display: flex;
+                    //flex-basis: calc( 100% - 440px );
+                    flex-basis: calc(100% - 570px);
+                    padding-left: 15px;
+                }
+                @media only screen and (min-width: $desktopDim) {
+                    display: flex;
+                    //flex-basis: calc( 100% - 440px );
+                    flex-basis: calc(100% - 570px);
+                    padding-left: 15px;
+                }
+                @media only screen and (min-width: $bigDesktopDim) {
+                    //flex-basis: calc( 100% - 560px );
+                }
+            }
+
+            .application-modern-content{
+                @media only screen and (min-width: $tabletDim) {
+                    display: flex;
+                    flex-basis: calc(100% - 570px);
+                    padding-left: 15px;
+                    margin-top: 0px;
+                }
+                @media only screen and (min-width: $desktopDim) {
+                    display: flex;
+                    flex-basis: calc(100% - 570px);
+                    padding-left: 15px;
+                    margin-top: 0px;
+                }
+                @media only screen and (min-width: $bigDesktopDim) {
+                    //flex-basis: calc( 100% - 560px );
+                }
+            }
+            
+            .application-modern-text{
+                display: flex;
+                flex-direction: column;
+                @media only screen and (min-width: $tabletDim) {
+                    flex-basis: calc(100% - 270px);
+                    width: calc(100% - 270px);
+                }
+                @media only screen and (min-width: $desktopDim) {
+                    flex-basis: calc(100% - 570px);
+                }
+            }
+            
+            picture.application-modern-picture{
+                border: 5px solid white;
+                border-radius: 8px;
+                display: none;
+                width: calc( 100% - 10px);
+                
+                @media only screen and (min-width: $tabletDim) {
+                    width: 290px;
+                    margin-right: -100px;
+                    position: relative;
+                    right: -3px;
+                    margin-bottom: -70px;
+                    margin-top: 24px;
+                    display: flex;
+                }
+                
+                @media only screen and (min-width: $desktopDim) {
+                    width: 460px;
+                    margin-right: -100px;
+                    position: relative;
+                    right: -83px;
+                    margin-bottom: -70px;
+                    margin-top: 40px;
+                }
+                
+                &.application-modern-picture1{
+                    @media only screen and (min-width: $desktopDim) {
+                        margin-bottom: -103px;
+                    }
+                }
+                
+                &.application-modern-picture2{
+                    @media only screen and (min-width: $desktopDim) {
+                        margin-bottom: -20px;
+                    }
+                }
+                
+                &.application-modern-picture3{
+                    @media only screen and (min-width: $desktopDim) {
+                        margin-bottom: -128px;
+                    }
+                }
+                
+                &.application-modern-picture4{
+                    @media only screen and (min-width: $desktopDim) {
+                        margin-bottom: -146px;
+                    }
+                }
+                
+                &.application-modern-picture5{
+                    @media only screen and (min-width: $desktopDim) {
+                        margin-bottom: -47px;
+                    }
+                }
+                
+                &.application-modern-picture6{
+                    @media only screen and (min-width: $desktopDim) {
+                        margin-bottom: -76px;
+                    }
+                }
+            }
+            
+            .application-modern-image{
+                width: 100%;
+                //border: 5px solid white;
+                border-radius: 8px;
+            }
+            
+            .application-modern-icon{
+                border-radius: 20px;
+                background: #F6C089;
+                display: flex;
+                width: 70px;
+                height: 70px;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+
+}
+
+
+
+
+

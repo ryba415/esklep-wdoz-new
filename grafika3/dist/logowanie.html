@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-wdoz-body-bg p-3">
+ 
+<div class="max-w-[1120px] flex flex-col mx-auto">
+<div class="w-full mx-auto">
+<div class="flex items-baseline justify-between text-sm max-w-[700px] mb-8 mx-auto">
+    <div class="flex items-center flex-col w-28">
+      <a href="#" class="flex items-center flex-col text-center hover:text-wdoz-primary">
+      <div class=" w-8 h-8 bg-wdoz-primary rounded-full flex items-center justify-center text-white text-lg step-done">
+        <svg width="14" height="15" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1.65625 11.1562L5.43625 16.0161C5.5638 16.1818 5.72724 16.3166 5.91429 16.4102C6.10134 16.5036 6.30715 16.5536 6.51625 16.5561C6.72199 16.5586 6.92568 16.515 7.11251 16.4289C7.29932 16.3426 7.46457 16.2158 7.59625 16.0576L19.6563 1.46387" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+      </div>
+      <span class="text-center pt-1">Koszyk</span>
+    </a>
+    </div>
+    <div class="h-[2px] w-32   bg-wdoz-step-line relative top-[-6px]"></div>
+    <div class="flex items-center w-28 flex-col  ">
+      <a href="#" class="flex items-center flex-col text-center hover:text-wdoz-primary">
+      <div class="w-8 h-8 rounded-full flex items-center justify-center text-white text-lg step-active">
+        2
+      </div>
+      <span class="text-center pt-1">Dane zamówienia</span>
+    </a>
+    </div>
+    <div class="h-[2px] w-32 bg-wdoz-step-line relative top-[-6px]"></div>
+    <div class="flex items-center w-28 flex-col">
+      <a href="#" class="flex items-center flex-col text-center hover:text-wdoz-primary">
+      <div class="w-8 h-8 bg-green-400 rounded-full flex items-center justify-center text-white text-lg step-unactive">
+        3
+      </div>
+      <span class="text-center pt-1">Podsumowanie</span>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="flex flex-col md:flex-row w-full gap-5 items-center justify-center">
+  <div class="left flex flex-col  rounded-b-md drop-shadow-lg p-5 mb-5 bg-white gap-4" style="max-width: 426px; width: 100%;">
+<h3>Logowanie</h3>
+ 
+    <div class="relative">
+        <input type="text" id="email" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-wdoz-text-gray bg-transparent rounded-lg border-1 border-wdoz-input-border appearance-none  focus:outline-none focus:ring-0  peer" placeholder=" " style="border: solid 1px gray;"/>
+        <span class="text-red-700 block text-xs pt-1">Błąd</span>
+        <label for="email" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-[515151]  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/4 peer-placeholder-shown:top-1/4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Adres e-mail</label>
+    </div>
+    <div class="relative">
+        <input type="text" id="password" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-wdoz-text-gray bg-transparent rounded-lg border-1 border-wdoz-input-border appearance-none  focus:outline-none focus:ring-0  peer" placeholder=" " style="border: solid 1px gray;"/>
+        <span class="text-red-700 block text-xs pt-1">Błąd</span>
+        <label for="password" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-[515151] peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/4 peer-placeholder-shown:top-1/4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Adres e-mail</label>
+    </div>
+    <button class="bg-wdoz-primary hover:bg-wdoz-primary-900 text-white mt-4 rounded p-3 shadow text-base  ">Zaloguj</button>
+    <a href="#" class="underline text-sm font-light w-full text-center hover:text-wdoz-primary-900">Odzyskaj hasło</a>
+
+    <div class="flex items-center">
+        <div class="bg-wdoz-step-line h-[1px] w-full"></div>
+        <span class="p-4">lub</span>
+        <div class="bg-wdoz-step-line h-[1px] w-full"></div>
+    </div>
+      
+    <button class="group inline-flex h-12 w-full items-center justify-center gap-2 rounded border border-slate-300 hover:border-wdoz-primary bg-white p-2 text-sm font-medium text-black outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60">
+      <svg class="group-hover:text-wdoz-primary" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M21.8055 10.0415H21V10H12V14H17.6515C16.827 16.3285 14.6115 18 12 18C8.6865 18 6 15.3135 6 12C6 8.6865 8.6865 6 12 6C13.5295 6 14.921 6.577 15.9805 7.5195L18.809 4.691C17.023 3.0265 14.634 2 12 2C6.4775 2 2 6.4775 2 12C2 17.5225 6.4775 22 12 22C17.5225 22 22 17.5225 22 12C22 11.3295 21.931 10.675 21.8055 10.0415Z" fill="#FFC107"/>
+      <path d="M3.15234 7.3455L6.43784 9.755C7.32684 7.554 9.47984 6 11.9993 6C13.5288 6 14.9203 6.577 15.9798 7.5195L18.8083 4.691C17.0223 3.0265 14.6333 2 11.9993 2C8.15834 2 4.82734 4.1685 3.15234 7.3455Z" fill="#FF3D00"/>
+      <path d="M12.0002 22C14.5832 22 16.9302 21.0115 18.7047 19.404L15.6097 16.785C14.6057 17.5455 13.3577 18 12.0002 18C9.39916 18 7.19066 16.3415 6.35866 14.027L3.09766 16.5395C4.75266 19.778 8.11366 22 12.0002 22Z" fill="#4CAF50"/>
+      <path d="M21.8055 10.0415H21V10H12V14H17.6515C17.2555 15.1185 16.536 16.083 15.608 16.7855L15.6095 16.7845L18.7045 19.4035C18.4855 19.6025 22 17 22 12C22 11.3295 21.931 10.675 21.8055 10.0415Z" fill="#1976D2"/>
+      </svg>
+      <span class="group-hover:text-wdoz-primary">Kontynuuj przez Google</span>
+</button>
+<button class="group inline-flex h-12 w-full items-center justify-center gap-2 rounded border border-slate-300 hover:border-wdoz-primary bg-white p-2 text-sm font-medium text-black outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60">
+  <svg class="group-hover:text-wdoz-primary" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g clip-path="url(#clip0_30_2343)">
+  <path d="M24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 17.9894 4.3882 22.954 10.125 23.8542V15.4687H7.07812V12H10.125V9.35625C10.125 6.34875 11.9166 4.6875 14.6576 4.6875C15.9701 4.6875 17.3438 4.92187 17.3438 4.92187V7.875H15.8306C14.34 7.875 13.875 8.80008 13.875 9.75V12H17.2031L16.6711 15.4687H13.875V23.8542C19.6118 22.954 24 17.9894 24 12Z" fill="#1877F2"/>
+  <path d="M16.6711 15.4688L17.2031 12H13.875V9.75C13.875 8.80102 14.34 7.875 15.8306 7.875H17.3438V4.92188C17.3438 4.92188 15.9705 4.6875 14.6576 4.6875C11.9166 4.6875 10.125 6.34875 10.125 9.35625V12H7.07812V15.4688H10.125V23.8542C11.3674 24.0486 12.6326 24.0486 13.875 23.8542V15.4688H16.6711Z" fill="white"/>
+  </g>
+  <defs>
+  <clipPath id="clip0_30_2343">
+  <rect width="24" height="24" fill="white"/>
+  </clipPath>
+  </defs>
+  </svg>
+  <span class="group-hover:text-wdoz-primary">Kontynuuj przez Facebook</span>
+</button>
+
+<button class="group inline-flex h-12 w-full items-center justify-center gap-2 rounded border border-slate-300 hover:border-wdoz-primary bg-white p-2 text-sm font-medium text-black outline-none focus:ring-2 focus:ring-[#333] focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60">
+  <svg class="group-hover:text-wdoz-primary" width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g clip-path="url(#clip0_30_2349)">
+  <path d="M17.9845 2.34663e-05C16.6232 0.0918984 15.1663 0.901898 14.2645 1.99502C13.4751 2.9569 12.8132 4.36877 13.0645 5.83502C12.8395 5.76565 12.6351 5.75815 12.3895 5.67002C11.7201 5.4319 10.9551 5.17502 10.0045 5.17502C8.11633 5.17502 6.1832 6.29815 4.96445 8.17502C3.1907 10.9013 3.54695 15.6994 6.23945 19.8C6.71383 20.52 7.26695 21.3056 7.94945 21.93C8.63195 22.5544 9.45695 23.0306 10.4245 23.04C11.2513 23.0494 11.827 22.7738 12.3445 22.545C12.862 22.3163 13.3438 22.1138 14.2495 22.11C14.2551 22.11 14.2588 22.11 14.2645 22.11C15.1663 22.1025 15.6332 22.3013 16.1395 22.53C16.6457 22.7588 17.2157 23.0475 18.0445 23.04C19.0307 23.0325 19.8688 22.4925 20.5645 21.825C21.2601 21.1575 21.832 20.3382 22.3045 19.62C22.9813 18.5888 23.2532 18.0263 23.7745 16.875C23.8288 16.755 23.8307 16.6163 23.7782 16.4944C23.7276 16.3725 23.6282 16.2769 23.5045 16.23C21.7982 15.585 20.8251 14.0756 20.6845 12.48C20.5438 10.8844 21.2188 9.2419 22.9195 8.31002C23.0451 8.24252 23.1332 8.1244 23.1632 7.98565C23.1913 7.8469 23.1576 7.70065 23.0695 7.59002C21.8488 6.07315 20.1313 5.17502 18.4495 5.17502C17.377 5.17502 16.5895 5.42815 15.9445 5.67002C15.8376 5.71127 15.7588 5.70752 15.6595 5.74502C16.3138 5.40002 16.8913 4.9219 17.3245 4.36502C18.112 3.3544 18.7195 1.91627 18.4945 0.405023C18.457 0.157523 18.2338 -0.0187265 17.9845 2.34663e-05ZM17.4745 1.14002C17.4426 2.1094 17.1107 3.05815 16.5595 3.76502C15.982 4.50752 15.0107 5.02127 14.0695 5.17502C14.0863 4.24315 14.4538 3.27752 15.0145 2.59502C15.6032 1.88252 16.5782 1.36877 17.4745 1.14002ZM10.0045 6.13502C10.4245 6.13502 11.3995 6.33565 12.0595 6.57002C12.7195 6.8044 13.4151 7.08002 14.2345 7.08002C15.0351 7.08002 15.6688 6.80252 16.2895 6.57002C16.9101 6.33752 17.5288 6.13502 18.4495 6.13502C19.6513 6.13502 20.9507 6.7594 21.9745 7.84502C20.3357 9.0019 19.5688 10.8056 19.7245 12.555C19.8801 14.3231 20.9451 16.0013 22.6945 16.875C22.6919 16.8805 22.6894 16.8859 22.687 16.8914C22.3124 17.7073 22.0626 18.2513 21.5095 19.095C21.0501 19.7944 20.5045 20.5594 19.9045 21.135C19.3045 21.7106 18.6688 22.0744 18.0295 22.08C17.4126 22.0856 17.062 21.9019 16.5295 21.66C15.997 21.4181 15.3088 21.1406 14.2495 21.15C13.192 21.1556 12.4945 21.4219 11.9545 21.66C11.4145 21.8981 11.0601 22.0856 10.4395 22.08C9.7832 22.0744 9.17383 21.7556 8.59445 21.225C8.01508 20.6944 7.49195 19.9706 7.03445 19.275C4.51445 15.435 4.31195 10.9238 5.75945 8.70002C6.8207 7.0669 9.58445 6.13502 10.0045 6.13502Z" fill="black"/>
+  <path d="M10.0045 6.13502C10.4245 6.13502 11.3995 6.33565 12.0595 6.57002C12.7195 6.8044 13.4151 7.08002 14.2345 7.08002C15.0351 7.08002 15.6688 6.80252 16.2895 6.57002C16.9101 6.33752 17.5288 6.13502 18.4495 6.13502C19.6513 6.13502 20.9507 6.7594 21.9745 7.84502C20.3357 9.0019 19.5688 10.8056 19.7245 12.555C19.8801 14.3231 20.9451 16.0013 22.6945 16.875L22.687 16.8914C22.3124 17.7073 22.0626 18.2513 21.5095 19.095C21.0501 19.7944 20.5045 20.5594 19.9045 21.135C19.3045 21.7106 18.6688 22.0744 18.0295 22.08C17.4126 22.0856 17.062 21.9019 16.5295 21.66C15.997 21.4181 15.3088 21.1406 14.2495 21.15C13.192 21.1556 12.4945 21.4219 11.9545 21.66C11.4145 21.8981 11.0601 22.0856 10.4395 22.08C9.7832 22.0744 9.17383 21.7556 8.59445 21.225C8.01508 20.6944 7.49195 19.9706 7.03445 19.275C4.51445 15.435 4.31195 10.9238 5.75945 8.70002C6.8207 7.0669 9.58445 6.13502 10.0045 6.13502Z" fill="black"/>
+  <path d="M17.4745 1.14002C17.4426 2.1094 17.1107 3.05815 16.5595 3.76502C15.982 4.50752 15.0107 5.02127 14.0695 5.17502C14.0863 4.24315 14.4538 3.27752 15.0145 2.59502C15.6032 1.88252 16.5782 1.36877 17.4745 1.14002Z" fill="black"/>
+  </g>
+  <defs>
+  <clipPath id="clip0_30_2349">
+  <rect width="24" height="24" fill="white" transform="translate(0.5)"/>
+  </clipPath>
+  </defs>
+  </svg>
+  <span class="group-hover:text-wdoz-primary">Kontynuuj przez Apple</span>
+</button>
+  
+
+</div>
+<div class="right rounded-b-lg drop-shadow-lg flex  w-full gap-9 flex-col md:self-start " style="max-width: 426px; height: 100%;   ">
+<div class="rounded-b-lg drop-shadow-lg p-5 bg-white flex  w-full gap-3 flex-col">
+  <div class="flex flex-col gap-3"> 
+  <h3>Załóz konto</h3>
+  <button class="bg-wdoz-primary hover:bg-wdoz-primary-900 text-white mt-4 rounded p-3 shadow text-base  ">Załóz konto</button>
+  <a href="#" class="underline text-sm font-light w-full text-center hover:text-wdoz-primary-900">Odzyskaj hasło</a>
+</div>
+</div>
+
+<div class="rounded-b-lg drop-shadow-lg p-5 bg-white flex  w-full gap-3 flex-col">
+  <div class="flex flex-col gap-3"> 
+  <h3>Zakupy bez zakłądania konta</h3>
+  <button class="bg-wdoz-primary hover:bg-wdoz-primary-900 text-white mt-4 rounded p-3 shadow text-base  ">Kup jako gość</button>
+  <a href="#" class="underline text-sm font-light w-full text-center hover:text-wdoz-primary-900">Odzyskaj hasło</a>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+</body>
+</html>

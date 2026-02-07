@@ -1,0 +1,86 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2023-12-03, 14:30:02
+    Author     : ryba4
+*/
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2023-12-03, 14:51:50
+    Author     : ryba4
+*/
+body {
+  margin: 0px;
+  background-color: #F8F6F0; }
+
+a {
+  text-decoration: none; }
+
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2023-12-03, 15:20:41
+    Author     : ryba4
+*/
+.hidden {
+  display: none; }
+
+.admin-top-navbar {
+  background-color: #F4EFDF;
+  border-bottom: 1px solid #E8DDBB; }
+  .admin-top-navbar .container {
+    display: flex;
+    flex-direction: row;
+    padding: 5px 20px;
+    justify-content: space-between;
+    align-items: center; }
+    .admin-top-navbar .container .navbar-settings {
+      border: none;
+      padding: 5px;
+      padding-left: 0px;
+      background-color: transparent;
+      display: flex;
+      cursor: pointer; }
+    .admin-top-navbar .container .navbar-brand {
+      display: flex; }
+    .admin-top-navbar .container .show-admin-main-menu {
+      display: flex;
+      padding: 5px;
+      cursor: pointer;
+      padding-right: 0px; }
+
+.main-menu-container {
+  display: none;
+  background-color: #F4EFDF;
+  position: absolute;
+  width: 100%; }
+  .main-menu-container.main-menu-opened {
+    display: flex; }
+  .main-menu-container .user-left-menu {
+    width: 100%; }
+    .main-menu-container .user-left-menu .main-menu-list {
+      list-style-type: none;
+      padding: 0px;
+      margin: 0px; }
+      .main-menu-container .user-left-menu .main-menu-list li {
+        width: 100%;
+        border-bottom: 1px solid #E8DDBB;
+        text-align: right;
+        margin-top: 10px;
+        padding-bottom: 5px; }
+        .main-menu-container .user-left-menu .main-menu-list li a {
+          padding: 10px;
+          padding-right: 20px;
+          color: black; }
+
+/*# sourceMappingURL=admin-header.css.map */

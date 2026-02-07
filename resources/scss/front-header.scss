@@ -1,0 +1,129 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2024-01-02, 15:35:59
+    Author     : ryba4
+*/
+
+@import "variables.scss";
+
+.admin-top-navbar{
+    background-color: $background2;
+    border-bottom: 1px solid $border-color-beige;
+    position: fixed; 
+    width: 100%;
+    top: 0px;
+    z-index: 9;
+    
+   .container{
+        display: flex;
+        margin: 0 auto;
+        max-width: $contentMaxWidth;
+        flex-direction: row;
+        padding: 5px 10px;
+        justify-content: space-between;
+        align-items: center;
+        
+        @media only screen and (min-width: $desktopDim) {
+            justify-content: space-between;
+        }
+        
+        #navbarNavDropdown{
+            display: none;
+        }
+
+        .navbar-settings{
+            border: none;
+            padding: 5px;
+            padding-left: 0px;
+            background-color: transparent;
+            display: flex;
+            cursor: pointer;
+        }
+
+        .navbar-brand{
+            display: flex;
+        }
+
+        .show-admin-main-menu{
+            display: flex;
+            padding: 5px;
+            cursor: pointer;
+            padding-right: 0px;
+            
+            #show-admin-main-burger{
+                @media only screen and (min-width: $desktopDim) {
+                    display: none;
+                    cursor: auto;
+                }
+            }
+        }
+   }
+}
+
+.main-menu-container{
+    display: none;
+    background-color: $background2;
+    position: absolute;
+    width: 100%;
+    position: fixed;
+    top: 45px;
+    left: 0px;
+    
+    @media only screen and (min-width: $desktopDim) {
+        position: relative;
+        display: flex;
+        top: 0px;
+    }
+
+ 
+    &.main-menu-opened{
+        display: flex;
+    }
+    
+    .user-left-menu{
+        width: 100%;
+        
+        @media only screen and (min-width: $desktopDim) {
+            display: flex;
+        }
+        
+        .main-menu-list{
+            list-style-type: none;
+            padding: 0px;
+            margin: 0px;
+            
+            @media only screen and (min-width: $desktopDim) {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            li{
+                width: 100%;
+                border-bottom: 1px solid $border-color-beige;
+                text-align: right;
+                margin-top: 10px;
+                padding-bottom: 5px;
+                
+                @media only screen and (min-width: $desktopDim) {
+                    display: flex;
+                    border-bottom: none;
+                }
+
+                a{
+                    padding: 10px;
+                    padding-right: 20px;
+                    color: $font-color;
+                    
+                    @media only screen and (min-width: $desktopDim) {
+                        white-space: nowrap;
+                        padding: 2px 15px;
+                    }
+                }
+            }
+        }
+    }
+}

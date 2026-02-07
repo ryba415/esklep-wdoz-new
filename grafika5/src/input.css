@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700);
+
+* {
+    font-family: 'Open Sans', sans-serif;
+} 
+
+.step-done {
+    background-color: theme("colors.wdoz-primary");  
+    border: solid 1px theme("colors.wdoz-primary");    
+}
+.step-active {
+    background-color: #fff;  
+    color: theme("colors.wdoz-primary");
+    border: solid 1px theme("colors.wdoz-primary");   
+}
+.step-unactive {
+    background-color: #fff;     
+    color: theme("colors.wdoz-text-gray");
+    border: solid 1px theme("colors.wdoz-text-gray"); 
+}

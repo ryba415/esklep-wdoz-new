@@ -1,0 +1,8 @@
+                <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="transform transition-transform duration-200">
+                  <path d="M 4 7 L 10 13 L 16 7" 
+                        stroke="currentColor" 
+                        stroke-width="1.5" 
+                        stroke-linecap="round" 
+                        stroke-linejoin="round"
+                        fill="none" />
+                </svg>

@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body class="bg-wdoz-body-bg p-3">
+ 
+<div class="max-w-[1120px] flex flex-col mx-auto">
+<div class="w-full mx-auto">
+<div class="flex items-baseline justify-between text-sm max-w-[700px] mb-8 mx-auto">
+    <div class="flex items-center flex-col w-28">
+      <a href="#" class="flex items-center flex-col text-center hover:text-wdoz-primary">
+      <div class=" w-8 h-8 bg-wdoz-primary rounded-full flex items-center justify-center text-white text-lg step-done">
+        <svg width="14" height="15" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1.65625 11.1562L5.43625 16.0161C5.5638 16.1818 5.72724 16.3166 5.91429 16.4102C6.10134 16.5036 6.30715 16.5536 6.51625 16.5561C6.72199 16.5586 6.92568 16.515 7.11251 16.4289C7.29932 16.3426 7.46457 16.2158 7.59625 16.0576L19.6563 1.46387" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+      </div>
+      <span class="text-center pt-1">Koszyk</span>
+    </a>
+    </div>
+    <div class="h-[2px] w-32   bg-wdoz-step-line relative top-[-6px]"></div>
+    <div class="flex items-center w-28 flex-col  ">
+      <a href="#" class="flex items-center flex-col text-center hover:text-wdoz-primary">
+      <div class="w-8 h-8 rounded-full flex items-center justify-center text-white text-lg step-active">
+        2
+      </div>
+      <span class="text-center pt-1">Dane zamówienia</span>
+    </a>
+    </div>
+    <div class="h-[2px] w-32 bg-wdoz-step-line relative top-[-6px]"></div>
+    <div class="flex items-center w-28 flex-col">
+      <a href="#" class="flex items-center flex-col text-center hover:text-wdoz-primary">
+      <div class="w-8 h-8 bg-green-400 rounded-full flex items-center justify-center text-white text-lg step-unactive">
+        3
+      </div>
+      <span class="text-center pt-1">Podsumowanie</span>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="flex flex-col lg:flex-row w-full gap-5">
+  <div class="left" style="max-width: 700px; width: 100%; flex-grow: 10; align-self: center;">
+<!-- produkty apteczne-->
+<div id="zmiana" class="border-t-4 border-wdoz-primary max-w-[714px] rounded-b-lg drop-shadow-lg p-5 mb-5 bg-white "> 
+  <h3 class="text-lg font-medium pb-4">Produkty apteczne</h3> <!-- produkt 1--> 
+  <div class="flex flex-row border-doz-border border-b pb-5 mb-5">  
+    <div class=" w-24"><img class="w-24" src="https://esklep.wdoz.pl/uploads/images/product/diabetosan_fix_ziola_ekspresowe_2_g_1172-3230841.jpg"></div>
+    <div class="flex w-full flex-col ">
+    <div class="flex flex-row w-full justify-between pl-[10px] items-center">
+      <span class="text-xs leading-none	h-[28px] py-2 px-2 bg-wdoz-primary-10 rounded-lg">Produkt apteczny</span>
+      <button class="flex hover:bg-wdoz-border stroke-black text-black px-2 py-2 rounded-lg">
+        <img class="w-5" src="assets/ico-delete.svg"> 
+        </button>
+    </div>
+    <h3 class="text-md font-semibold pl-[18px] mt-1">ACC OPTIMA 3</h3>
+    <p class="text-sm text-wdoz-text-gray pl-[18px]">tabletki musujące, 600 mg, 10 tabl.</p>
+    <div class="flex flex-row w-full mt-2 align-bottom items-center">
+      <span class="w-full text-xl pl-[18px] text-wdoz-text-gray">33,54 zl</span>
+      <div class="border flex flex-row h-10 rounded-lg overflow-hidden grow-0 shrink-0 basis-auto" >
+        <button class="minus px-3 w-10 hover:bg-wdoz-border">
+          <svg width="14" height="2" viewBox="0 0 22 2" xmlns="http://www.w3.org/2000/svg" class="stroke-black"><path d="M1 .588h20"></path></svg>
+        </button>
+        <input placeholder="0" type="text" class="price w-8 text-center outline-transparent transition-all" value="1">
+        <button class="plus px-3 w-10 hover:bg-wdoz-border">
+          <svg width="14" height="14" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg" class="stroke-black"><path d="M1 11h20M11 1v20"></path></svg>
+        </button>
+      </div></div>  
+    </div>
+  </div>
+
+<!-- *1 produkt-->
+  <!-- produkt 1--> 
+  <div class="flex flex-row border-doz-border border-b pb-5">  
+    <div class=" w-24"><img class="w-24" src="https://esklep.wdoz.pl/uploads/images/product/diabetosan_fix_ziola_ekspresowe_2_g_1172-3230841.jpg"></div>
+    <div class="flex w-full flex-col ">
+    <div class="flex flex-row w-full justify-between pl-[10px]  items-center">
+      <span class="text-xs leading-none	h-[28px] py-2 px-2 bg-wdoz-primary-10 rounded-lg">Produkt apteczny</span>
+      <button class="flex hover:bg-wdoz-border stroke-black text-black px-2 py-2 rounded-lg">
+        <img class="w-5" src="assets/ico-delete.svg"> 
+        </button>
+    </div>
+    <h3 class="text-md font-semibold pl-[18px] mt-1">ACC OPTIMA 3</h3>
+    <p class="text-sm text-wdoz-text-gray pl-[18px]">tabletki musujące, 600 mg, 10 tabl.</p>
+    <div class="flex flex-row w-full mt-2 align-bottom items-center">
+      <span class="w-full text-xl pl-[18px] text-wdoz-text-gray">33,54 zl</span>
+      <div class="border flex flex-row h-10 rounded-lg overflow-hidden grow-0 shrink-0 basis-auto" >
+        <button class="minus px-3 w-10 hover:bg-wdoz-border">
+          <svg width="14" height="2" viewBox="0 0 22 2" xmlns="http://www.w3.org/2000/svg" class="stroke-black"><path d="M1 .588h20"></path></svg>
+        </button>
+        <input placeholder="0" type="text" class="price w-8 text-center outline-transparent transition-all" value="1">
+        <button class="plus px-3 w-10 hover:bg-wdoz-border">
+          <svg width="14" height="14" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg" class="stroke-black"><path d="M1 11h20M11 1v20"></path></svg>
+        </button>
+      </div>
+    </div>  
+    </div>
+  </div>
+
+<!-- *1 produkt-->
+</div>
+ <!-- *produkty apteczne-->
+  <!-- produkty drogeryjne-->
+<div class="border-t-4 border-wdoz-primary-drog max-w-[714px] rounded-b-lg drop-shadow-lg mb-5 p-5 bg-white "> 
+  <h3 class="text-lg font-medium pb-4">Produkty drogeryjne</h3> <!-- produkt 1--> 
+
+  <div class="flex flex-row border-doz-border border-b pb-5 ">  
+    <div class=" w-24"><img class="w-24" src="https://esklep.wdoz.pl/uploads/images/product/diabetosan_fix_ziola_ekspresowe_2_g_1172-3230841.jpg"></div>
+    <div class="flex w-full flex-col ">
+    <div class="flex flex-row w-full justify-between pl-[10px] items-center">
+      <span class="text-xs leading-none	h-[28px] py-2 px-2 bg-wdoz-primaty-drog-10 rounded-lg">Produkt drogeryjny</span>
+      <button class="flex hover:bg-wdoz-border stroke-black text-black px-2 py-2 rounded-lg">
+        <img class="w-5" src="assets/ico-delete.svg"> 
+        </button>
+    </div>
+    <h3 class="text-md font-semibold pl-[18px] mt-1">ACC OPTIMA 3</h3>
+    <p class="text-sm text-wdoz-text-gray pl-[18px]">tabletki musujące, 600 mg, 10 tabl.</p>
+    <div class="flex flex-row w-full mt-2 align-bottom items-center">
+      <span class="w-full text-xl pl-[18px] text-wdoz-text-gray">33,54 zl</span>
+      <div class="border flex flex-row h-10 rounded-lg overflow-hidden grow-0 shrink-0 basis-auto" >
+        <button class="minus px-3 w-10 hover:bg-wdoz-border">
+          <svg width="14" height="2" viewBox="0 0 22 2" xmlns="http://www.w3.org/2000/svg" class="stroke-black"><path d="M1 .588h20"></path></svg>
+        </button>
+        <input placeholder="0" type="text" class="price w-8 text-center outline-transparent transition-all" value="1">
+        <button class="plus px-3 w-10 hover:bg-wdoz-border">
+          <svg width="14" height="14" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg" class="stroke-black"><path d="M1 11h20M11 1v20"></path></svg>
+        </button>
+      </div>
+    </div>  
+    </div>
+  </div>
+  <script>
+
+</script>
+
+</div>
+ <!-- *produkty drogeryjne-->
+</div>
+
+
+ <!-- podsumowanie-->
+ <div class="right   rounded-b-lg drop-shadow-lg p-5 bg-white max-w-[700px] w-full lg:w-[370px] gap-3 self-center  md:flex-1 lg:self-baseline"> 
+  <div class="flex flex-row pb-2 justify-between">  
+    <span class="text-md font-normal">Produkty apteczne</span><span class="text-md font-semibold">432 zł</span>
+  </div>
+  <div class="flex flex-row pb-2 justify-between">  
+    <span class="text-md font-normal">Produkty apteczne</span><span class="text-md font-semibold">432 zł</span>
+  </div>
+
+  <div class="flex flex-col bg-wdoz-body-bg border text-right justify-end p-2">
+    <span class="text-sm font-normal">Darmowa wysyłka od 249,00 zł</span>
+    <span class="text-sm font-normal">Do darmowej wysyłki brakuje: 209,01 zł</span>
+  </div>
+
+  <div class="flex flex-row  pt-3 justify-between border-t mt-3 flex-wrap">  
+    <span class="text-md font-bold  ">Podsumowanie</span><span class="text-md font-semibold">432.43 zł</span>
+    <button class="bg-wdoz-primary hover:bg-wdoz-primary-900 text-white mt-4 rounded p-3 shadow text-base basis-[700px]">Dalej</button>
+
+</div>
+<!-- *podsumowanie-->
+</div>
+</div>
+<script src="skrypty.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2023-12-03, 16:00:14
+    Author     : ryba4
+*/
+
+@import "variables.scss";
+
+.bottom-bar{
+    position: fixed;
+    bottom: 0px;
+    display: flex;
+    width: 100%;
+    background-color: $background2;
+    border-top: 1px solid $border-color-beige;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0px;
+    @media only screen and (min-width: $desktopDim) {
+        display: none;
+    }
+    
+    .bottom-bar-item{
+        height: 63px;
+        width: 68px;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        align-content: space-around;
+        padding-bottom: 8px;
+        padding-top: 8px;
+        border-top: 3px solid $background2; 
+        
+        &.bottom-bar-item-selected{
+            border-top: 3px solid $dark-beige; 
+            .item-title{
+               font-weight: 800;
+            }
+            
+            svg g{
+                opacity: 1;
+            }
+            
+            
+        }
+        
+        svg{
+            height: 36px;
+        }
+        
+        .item-title{
+            width: 100%;
+            display: flex;
+            color: black;
+            align-content: center;
+            justify-content: center;
+            padding-top: 7px;
+        }
+    }
+}

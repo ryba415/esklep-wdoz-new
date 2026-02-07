@@ -1,0 +1,185 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2023-12-16, 13:27:25
+    Author     : ryba4
+*/
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2023-12-03, 14:51:50
+    Author     : ryba4
+*/
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2023-12-16, 13:50:15
+    Author     : ryba4
+*/
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2023-12-03, 14:51:50
+    Author     : ryba4
+*/
+.tests-categories-list {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-bottom: 40px; }
+  @media only screen and (min-width: 1024px) {
+    .tests-categories-list {
+      max-width: 500px;
+      margin-left: 0px; } }
+  .tests-categories-list .category-main-item {
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 10px; }
+    .tests-categories-list .category-main-item .show-child-categories-icon {
+      position: relative;
+      top: 4px;
+      margin-right: 7px; }
+    .tests-categories-list .category-main-item .hide-child-categories-icon {
+      position: relative;
+      top: 4px;
+      margin-right: 7px;
+      display: none; }
+    .tests-categories-list .category-main-item .category-main-item-link {
+      display: inline-block;
+      width: calc( 100% - 80px); }
+    .tests-categories-list .category-main-item .category-main-item-slide {
+      display: inline-block;
+      padding: 5px 10px;
+      position: relative;
+      top: 4px;
+      cursor: pointer;
+      transition: transform 0.4s; }
+    .tests-categories-list .category-main-item .category-main-item-selected {
+      border-bottom: 2px solid #B7AD8E;
+      display: inline-block; }
+    .tests-categories-list .category-main-item .category-child-items-container {
+      overflow: hidden;
+      height: 0px;
+      opacity: 0;
+      transition: height 1s, opacity 1.5s; }
+      .tests-categories-list .category-main-item .category-child-items-container .category-child-item {
+        font-size: 16px;
+        font-weight: 400;
+        padding-left: 20px;
+        border-left: 1px solid #948F82;
+        margin-left: 9px;
+        padding-top: 12px;
+        padding-bottom: 12px; }
+        .tests-categories-list .category-main-item .category-child-items-container .category-child-item .tasks-count {
+          font-size: 14px;
+          color: #7b7b7b;
+          position: relative;
+          top: -3px; }
+    .tests-categories-list .category-main-item.category-main-item-opened .category-child-items-container {
+      height: auto;
+      opacity: 1;
+      padding-top: 5px;
+      padding-bottom: 15px; }
+    .tests-categories-list .category-main-item.category-main-item-opened .category-main-item-slide {
+      transform: rotate(90deg); }
+    .tests-categories-list .category-main-item.category-main-item-opened .hide-child-categories-icon {
+      display: inline; }
+    .tests-categories-list .category-main-item.category-main-item-opened .show-child-categories-icon {
+      display: none; }
+
+h1 {
+  text-align: center;
+  margin-bottom: 8px; }
+  @media only screen and (min-width: 1024px) {
+    h1 {
+      text-align: left; } }
+  h1 span {
+    font-size: 18px;
+    font-weight: 100;
+    position: relative;
+    top: -4px;
+    color: #7b7b7b; }
+
+.tests-categories-description {
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 35px;
+  margin-top: 0px; }
+  @media only screen and (min-width: 1024px) {
+    .tests-categories-description {
+      text-align: left; } }
+
+.all-content-big {
+  max-width: 1000px;
+  margin: 0 auto; }
+
+.all-test-list-container {
+  max-width: 1000px;
+  margin: 0 auto; }
+  @media only screen and (min-width: 1024px) {
+    .all-test-list-container {
+      max-width: 100%; } }
+
+.test-on-list-link .test-on-list-container {
+  background-color: #FFFFFD;
+  padding: 5px 10px;
+  border: 1px solid #D2D2D2;
+  border-radius: 12px;
+  margin-top: 12px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap; }
+  .test-on-list-link .test-on-list-container.test-unavariable .test-name {
+    filter: blur(4px); }
+  .test-on-list-link .test-on-list-container .task-number {
+    width: 28px;
+    height: 28px;
+    background-color: #F4EFDF;
+    font-size: 14px;
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #B7AD8E;
+    margin-right: 10px; }
+  .test-on-list-link .test-on-list-container .test-content {
+    flex-basis: calc( 100% - 52px); }
+    .test-on-list-link .test-on-list-container .test-content .test-name {
+      padding-right: 5px;
+      margin-top: 2px; }
+    .test-on-list-link .test-on-list-container .test-content .test-category {
+      font-size: 14px;
+      margin: 0px;
+      margin-top: 10px;
+      color: #7b7b7b; }
+
+.start-tests {
+  margin-bottom: 35px;
+  text-align: center; }
+  @media only screen and (min-width: 1024px) {
+    .start-tests {
+      display: inline-block;
+      width: calc( 50% - 3px); } }
+  .start-tests .standard-big-button {
+    display: inline-block;
+    width: calc( 100% - 40px);
+    border-radius: 25px;
+    max-width: 300px;
+    margin: 0 auto; }
+
+/*# sourceMappingURL=tests-list.css.map */

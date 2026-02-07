@@ -1,0 +1,68 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2024-01-07, 09:49:18
+    Author     : ryba4
+*/
+
+@import "variables.scss";
+
+.static-page-content{
+    margin: 0 auto;
+    margin-top: 0px;
+    margin-bottom: 80px;
+    width: $contentMaxWidth;
+    max-width: 100%;
+    padding: 0px;
+
+} 
+
+.kontakt-section{
+    line-height: 26px;
+    margin-top: 30px;
+}
+
+.static-page-regulamin-content{
+    font-size: 16px;
+    margin-top: 40px;
+    
+    h1{
+        //color: #8E8460;
+    }
+    
+    h2{
+        text-align: left;
+        margin-top: 45px;
+        color: #8E8460;
+    }
+    
+    ul{
+        line-height: 23px;
+        list-style-type: none;
+        padding-left: 22px;
+        
+        li{
+            margin-bottom: 10px;
+            
+            ul{
+                padding-top: 10px;
+            }
+        }
+    }
+    
+    .list-type{
+        font-size: 18px;
+        font-weight: 700;
+        color: $dark-beige;
+        color: #8E8460;
+        padding-right: 4px;
+    }
+    
+    .important-data{
+        text-decoration: underline;
+    }
+}
+

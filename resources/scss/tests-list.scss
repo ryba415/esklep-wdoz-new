@@ -1,0 +1,125 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2023-12-16, 13:27:25
+    Author     : ryba4
+*/
+@import "variables.scss";
+@import "tests-categories.scss";
+
+h1{
+    text-align: center;
+    margin-bottom: 8px;
+    @media only screen and (min-width: $desktopDim) {
+        text-align: left;  
+    }
+    
+    span{
+        font-size: 18px;
+        font-weight: 100;
+        position: relative;
+        top: -4px;
+        color: $font-gray;
+    }
+}
+
+.tests-categories-description{
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 35px;
+    margin-top: 0px;
+    @media only screen and (min-width: $desktopDim) {
+        text-align: left;  
+    }
+}
+
+.all-content-big{
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.all-test-list-container{
+    max-width: 1000px;
+    margin: 0 auto;
+    
+    @media only screen and (min-width: $desktopDim) {
+        max-width: 100%;
+    }
+}
+.test-on-list-link{
+    .test-on-list-container{
+        background-color: $background-light;
+        padding: 5px 10px;
+        border: 1px solid #D2D2D2;
+        border-radius: 12px; 
+        margin-top: 12px;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        
+        &.test-unavariable{
+            .test-name{
+                filter: blur(4px);
+            }
+        }
+        
+        .task-number{
+            width: 28px;
+            height: 28px; 
+            background-color: $background2;
+            font-size: 14px; 
+            border-radius: 50%;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid $dark-beige;
+            margin-right: 10px;
+        }
+        
+        .test-content{
+            flex-basis: calc( 100% - 52px);
+           .test-name{
+                
+                padding-right: 5px;  
+                margin-top: 2px;
+            }
+
+            .test-category{
+                font-size: 14px; 
+                margin: 0px;
+                margin-top: 10px;
+                color: $font-gray;
+            } 
+        }
+        
+        
+        
+        
+    }
+}
+
+.start-tests{
+    margin-bottom: 35px;
+    text-align: center;
+    
+    @media only screen and (min-width: $desktopDim) {
+        display: inline-block;
+        width: calc( 50% - 3px );
+    }
+    
+    .standard-big-button{
+        display: inline-block;
+        width: calc( 100% - 40px );
+        border-radius: 25px;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+
+
