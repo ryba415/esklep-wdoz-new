@@ -19,135 +19,174 @@ and open the template in the editor.
 .admin-top-navbar {
   background-color: #F4EFDF;
   border-bottom: 1px solid #E8DDBB;
-  z-index: 9; }
-  @media only screen and (min-width: 1024px) {
-    .admin-top-navbar {
-      position: fixed;
-      top: 0px;
-      width: 100%; } }
-  .admin-top-navbar .container {
-    display: flex;
-    flex-direction: row;
-    padding: 5px 10px;
-    justify-content: space-between;
-    align-items: center; }
-    .admin-top-navbar .container .navbar-settings {
-      border: none;
-      padding: 5px;
-      padding-left: 0px;
-      background-color: transparent;
-      display: flex;
-      cursor: pointer; }
-      @media only screen and (min-width: 1024px) {
-        .admin-top-navbar .container .navbar-settings {
-          order: 2; } }
-    .admin-top-navbar .container .navbar-brand {
-      display: flex; }
-      @media only screen and (min-width: 1024px) {
-        .admin-top-navbar .container .navbar-brand {
-          padding-left: 13px;
-          padding-top: 9px;
-          padding-bottom: 9px; } }
-    .admin-top-navbar .container .show-admin-main-menu {
-      display: flex;
-      padding: 5px;
-      cursor: pointer;
-      padding-right: 0px; }
-      @media only screen and (min-width: 1024px) {
-        .admin-top-navbar .container .show-admin-main-menu {
-          opacity: 0; } }
+  z-index: 9;
+}
+@media only screen and (min-width: 1024px) {
+  .admin-top-navbar {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+  }
+}
+.admin-top-navbar .container {
+  display: flex;
+  flex-direction: row;
+  padding: 5px 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+.admin-top-navbar .container .navbar-settings {
+  border: none;
+  padding: 5px;
+  padding-left: 0px;
+  background-color: transparent;
+  display: flex;
+  cursor: pointer;
+}
+@media only screen and (min-width: 1024px) {
+  .admin-top-navbar .container .navbar-settings {
+    order: 2;
+  }
+}
+.admin-top-navbar .container .navbar-brand {
+  display: flex;
+}
+@media only screen and (min-width: 1024px) {
+  .admin-top-navbar .container .navbar-brand {
+    padding-left: 13px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+  }
+}
+.admin-top-navbar .container .show-admin-main-menu {
+  display: flex;
+  padding: 5px;
+  cursor: pointer;
+  padding-right: 0px;
+}
+@media only screen and (min-width: 1024px) {
+  .admin-top-navbar .container .show-admin-main-menu {
+    opacity: 0;
+  }
+}
 
 .main-menu-container {
   display: none;
   background-color: #F4EFDF;
   position: absolute;
-  width: 100%; }
-  @media only screen and (min-width: 1024px) {
-    .main-menu-container {
-      display: flex; } }
-  .main-menu-container.main-menu-opened {
-    display: flex; }
+  width: 100%;
+}
+@media only screen and (min-width: 1024px) {
+  .main-menu-container {
+    display: flex;
+  }
+}
+.main-menu-container.main-menu-opened {
+  display: flex;
+}
+.main-menu-container .user-left-menu {
+  width: 100%;
+  background-color: #f4efdf;
+  z-index: 8;
+}
+@media only screen and (min-width: 1024px) {
   .main-menu-container .user-left-menu {
-    width: 100%;
+    position: fixed;
+    left: 0px;
+    top: 55px;
+    width: 100px;
     background-color: #f4efdf;
-    z-index: 8; }
-    @media only screen and (min-width: 1024px) {
-      .main-menu-container .user-left-menu {
-        position: fixed;
-        left: 0px;
-        top: 55px;
-        width: 100px;
-        background-color: #f4efdf;
-        max-height: 100%;
-        height: 100%; } }
-    .main-menu-container .user-left-menu .main-menu-list {
-      list-style-type: none;
-      padding: 0px;
-      margin: 0px; }
-      .main-menu-container .user-left-menu .main-menu-list li {
-        width: 100%;
-        border-bottom: 1px solid #E8DDBB;
-        text-align: right;
-        margin-top: 10px;
-        padding-bottom: 5px; }
-        .main-menu-container .user-left-menu .main-menu-list li a {
-          padding: 10px;
-          padding-right: 20px;
-          color: black; }
-          @media only screen and (min-width: 1024px) {
-            .main-menu-container .user-left-menu .main-menu-list li a {
-              padding: 0px;
-              min-height: 60px;
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              align-items: center; } }
-          .main-menu-container .user-left-menu .main-menu-list li a .menu-icon {
-            width: 20px;
-            height: 20px;
-            position: relative;
-            margin-right: 10px;
-            float: right;
-            margin-left: -10px;
-            margin-top: -2px; }
-            @media only screen and (min-width: 1024px) {
-              .main-menu-container .user-left-menu .main-menu-list li a .menu-icon {
-                float: none;
-                width: 41px;
-                height: 36px;
-                margin: 0 auto; } }
-          @media only screen and (min-width: 1024px) {
-            .main-menu-container .user-left-menu .main-menu-list li a span {
-              text-align: center;
-              font-size: 14px;
-              padding-top: 6px;
-              padding-bottom: 6px; } }
+    max-height: 100%;
+    height: 100%;
+  }
+}
+.main-menu-container .user-left-menu .main-menu-list {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+}
+.main-menu-container .user-left-menu .main-menu-list li {
+  width: 100%;
+  border-bottom: 1px solid #E8DDBB;
+  text-align: right;
+  margin-top: 10px;
+  padding-bottom: 5px;
+}
+.main-menu-container .user-left-menu .main-menu-list li a {
+  padding: 10px;
+  padding-right: 20px;
+  color: black;
+}
+@media only screen and (min-width: 1024px) {
+  .main-menu-container .user-left-menu .main-menu-list li a {
+    padding: 0px;
+    min-height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.main-menu-container .user-left-menu .main-menu-list li a .menu-icon {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  margin-right: 10px;
+  float: right;
+  margin-left: -10px;
+  margin-top: -2px;
+}
+@media only screen and (min-width: 1024px) {
+  .main-menu-container .user-left-menu .main-menu-list li a .menu-icon {
+    float: none;
+    width: 41px;
+    height: 36px;
+    margin: 0 auto;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .main-menu-container .user-left-menu .main-menu-list li a span {
+    text-align: center;
+    font-size: 14px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+}
 
 .user-content-container {
-  min-height: calc( 100vh - 455px);
+  min-height: calc(100vh - 455px);
   padding-left: 10px;
-  padding-right: 10px; }
-  @media only screen and (min-width: 1024px) {
-    .user-content-container {
-      background-color: #FFFEF9;
-      border-radius: 20px;
-      box-shadow: 0px 0px 25px 2px #F2EFE3;
-      width: calc( 100% - 100px);
-      margin: 0 auto;
-      position: relative;
-      left: -15px;
-      margin-bottom: 70px;
-      padding: 20px;
-      max-width: 1100px; } }
-  @media only screen and (min-width: 1200px) {
-    .user-content-container {
-      width: calc( 100% - 150px); } }
-  @media only screen and (min-width: 1300px) {
-    .user-content-container {
-      width: calc( 100% - 200px); } }
-  @media only screen and (min-width: 1500px) {
-    .user-content-container {
-      max-width: 1200px; } }
+  padding-right: 10px;
+}
+@media only screen and (min-width: 1024px) {
+  .user-content-container {
+    background-color: #FFFEF9;
+    border-radius: 20px;
+    box-shadow: 0px 0px 25px 2px #F2EFE3;
+    width: calc(100% - 100px);
+    margin: 0 auto;
+    position: relative;
+    left: -15px;
+    margin-bottom: 70px;
+    padding: 20px;
+    max-width: 1100px;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .user-content-container {
+    width: calc(100% - 150px);
+  }
+}
+@media only screen and (min-width: 1300px) {
+  .user-content-container {
+    width: calc(100% - 200px);
+  }
+}
+@media only screen and (min-width: 1500px) {
+  .user-content-container {
+    max-width: 1200px;
+  }
+}
 
 #settings-menu {
   position: absolute;
@@ -155,20 +194,24 @@ and open the template in the editor.
   background-color: #F4EFDF;
   left: 0px;
   padding: 0px;
-  width: 100%; }
-  @media only screen and (min-width: 1024px) {
-    #settings-menu {
-      right: 0px;
-      left: auto;
-      width: 164px;
-      border-left: 1px solid #E8DDBB;
-      top: 56px; } }
-  #settings-menu a, #settings-menu p {
-    width: 100%;
-    display: inline-block;
-    font-size: 14px;
-    border-bottom: 1px solid #E8DDBB;
-    padding: 10px;
-    margin: 0px; }
+  width: 100%;
+}
+@media only screen and (min-width: 1024px) {
+  #settings-menu {
+    right: 0px;
+    left: auto;
+    width: 164px;
+    border-left: 1px solid #E8DDBB;
+    top: 56px;
+  }
+}
+#settings-menu a, #settings-menu p {
+  width: 100%;
+  display: inline-block;
+  font-size: 14px;
+  border-bottom: 1px solid #E8DDBB;
+  padding: 10px;
+  margin: 0px;
+}
 
 /*# sourceMappingURL=admin-header.css.map */

@@ -22,62 +22,103 @@ class BasketApiController extends Controller
             "errors" => [],
             "hash" => ""
         ];
-        
+
         $changeQuantity = false;
-        if (isset($requestData['changeQuantity']) && $requestData['changeQuantity'] == true){
+        if (isset($requestData['changeQuantity']) && $requestData['changeQuantity'] == true) {
             $changeQuantity = true;
         }
-        
-        if (isset($requestData['hash']) && $requestData['hash'] != null && $requestData['hash'] != ''){
+
+        if (isset($requestData['hash']) && $requestData['hash'] != null && $requestData['hash'] != '') {
             $basket = new Basket($requestData['hash']);
         } else {
             $basket = new Basket(null);
         }
-            $returnData['hash'] = $basket->getHash();
-            $request['hash'] = $basket->getHash();
-            if (isset($requestData['id']) && isset($requestData['quantity'])){
-                $addItemResponse = $basket->addItemById($requestData['id'],$requestData['quantity'],$changeQuantity);
-                $returnData['status'] = $addItemResponse['status'];
-                $returnData['errors'] = array_merge($returnData['errors'], $addItemResponse['errors']);
-            } else {
-                $returnData['status'] = false;
-                $returnData['errors'][] = 'Id and Quantity are requiere';
+
+        $returnData['hash'] = $basket->getHash();
+
+        $request->merge(['hash' => $basket->getHash()]);
+
+        if (isset($requestData['id']) && isset($requestData['quantity'])) {
+
+            $expirationDate = null;
+            if (array_key_exists('expiration_date', $requestData)) {
+                $expirationDate = $requestData['expiration_date'];
+                if ($expirationDate !== null) {
+                    $expirationDate = trim((string)$expirationDate);
+                    if ($expirationDate === '') $expirationDate = null;
+                }
             }
 
-        $returnData['basketData'] = $this->getBasketData($request,false);
-        
-        
+            $addItemResponse = $basket->addItemById(
+                $requestData['id'],
+                $requestData['quantity'],
+                $changeQuantity,
+                $expirationDate
+            );
+
+            $returnData['status'] = $addItemResponse['status'];
+            $returnData['errors'] = array_merge($returnData['errors'], $addItemResponse['errors']);
+        } else {
+            $returnData['status'] = false;
+            $returnData['errors'][] = 'Id and Quantity are requiere';
+        }
+
+        $returnData['basketData'] = $this->getBasketData($request, false);
+
         return \Response::json($returnData, 200);
     }
     
     public function removeFromBasket(Request $request)
     {
-        $request = $request->all();
+        $requestData = $request->all();
+
         $returnData = [
             "status" => true,
             "errors" => [],
             "hash" => ""
         ];
-        
-        if (isset($request['hash'])){
-            $basket = new Basket($request['hash']);
-            $returnData['hash'] = $basket->getHash();
-            if (isset($request['id'])){
-                $removeStatus = $basket->removeItemById($request['id']);
-                if (!$removeStatus['status']){
-                    $returnData['status'] = false;
-                    $returnData['errors'] = arra_merge($returnData['errors'],$removeStatus['errors']);
-                }
-            } else {
-                $returnData['status'] = false;
-                $returnData['errors'][] = 'Id is requiere';
-            }
-        } else {
+
+        if (!isset($requestData['hash']) || !$requestData['hash']) {
             $returnData['status'] = false;
             $returnData['errors'][] = 'Hash is require';
+            return \Response::json($returnData, 200);
         }
-        
-        
+
+        $basket = new Basket($requestData['hash']);
+        $returnData['hash'] = $basket->getHash();
+
+        if (isset($requestData['id']) && $requestData['id']) {
+            $removeStatus = $basket->removeItemById($requestData['id']);
+            if (!$removeStatus['status']) {
+                $returnData['status'] = false;
+                $returnData['errors'] = array_merge($returnData['errors'], $removeStatus['errors']);
+            }
+
+            $returnData['basketData'] = $this->getBasketData(new Request(['hash' => $basket->getHash()]), false);
+            return \Response::json($returnData, 200);
+        }
+
+        if (isset($requestData['product_id']) && $requestData['product_id']) {
+            $expirationDate = null;
+            if (array_key_exists('expiration_date', $requestData) && $requestData['expiration_date'] !== null) {
+                $expirationDate = trim((string)$requestData['expiration_date']);
+                if ($expirationDate === '') $expirationDate = null;
+            }
+
+            $removeStatus = $basket->removeItemByProductVariant($requestData['product_id'], $expirationDate);
+
+            if (!$removeStatus['status']) {
+                $returnData['status'] = false;
+                $returnData['errors'] = array_merge($returnData['errors'], $removeStatus['errors']);
+            }
+
+            $returnData['basketData'] = $this->getBasketData(new Request(['hash' => $basket->getHash()]), false);
+            return \Response::json($returnData, 200);
+        }
+
+        $returnData['status'] = false;
+        $returnData['errors'][] = 'Id or product_id is require';
+
         return \Response::json($returnData, 200);
     }
     
@@ -685,26 +726,49 @@ class BasketApiController extends Controller
             $returnData['status'] = false;
         }
         
-        foreach ($basket->basketItems as $item){
-            $changeAvariabilityString = '';
-            $product = DB::connection('mysql-esklep')->select('SELECT * FROM ecommerce_products WHERE id = ?', [$item->productId]);
-            if ($product){
-                if ($product[0]->availability < $item->quantity ){
-                    $changeAvariabilityString = $changeAvariabilityString . 'Produkt ' . $product[0]->name . ' ' .  $product[0]->brand . ' ' . $product[0]->content . ' ma dostępnych: ' . $product[0]->availability . ' sztuk w magazynie. Ilość produktów w koszyku została automatycznie zmieniona.<br>';
-                    $basket->addItemById($item->productId, $product[0]->availability, true);
-                }
-                if ($product[0]->one_purchase_availability > 0 && $product[0]->one_purchase_availability < $item->quantity ){
-                    $changeAvariabilityString = $changeAvariabilityString . 'Produkt ' . $product[0]->name . ' ' .  $product[0]->brand . ' ' . $product[0]->content . ' ma ustalony limit ilości sztuk podczas jednorazowego zakupu na: ' . $product[0]->one_purchase_availability . ' sztuk. Ilość produktów w koszyku została automatycznie zmieniona.<br>';
-                    $basket->addItemById($item->productId, $product[0]->one_purchase_availability, true);
-                }
-            } else {
+        $changeAvariabilityString = '';
+
+        foreach ($basket->basketItems as $item) {
+
+            $product = DB::connection('mysql-esklep')->select(
+                'SELECT id, name, brand, content, availability, one_purchase_availability, short_expiration_stock, short_expiration_date
+                FROM ecommerce_products
+                WHERE id = ?',
+                [$item->productId]
+            );
+
+            if (!$product || count($product) === 0) {
                 $basket->removeItemById($item->id);
-                $changeAvariabilityString = $changeAvariabilityString . 'Produkt o id: ' . $item->productId . ' został wycofany z oferty i został usunięty z koszyka.<br>';
+                $changeAvariabilityString .= 'Produkt o id: ' . $item->productId . ' został wycofany z oferty i został usunięty z koszyka.<br>';
+                continue;
             }
-            
+
+            $p = $product[0];
+
+            $isShort = !empty($item->expiration_date);
+
+            // wybór właściwego stanu magazynowego
+            $availableStock = $isShort ? intval($p->short_expiration_stock) : intval($p->availability);
+
+            if ($availableStock < intval($item->quantity)) {
+                $changeAvariabilityString .= 'Produkt ' . $p->name . ' ' . $p->brand . ' ' . $p->content
+                    . ' ma dostępnych: ' . $availableStock . ' sztuk w magazynie. Ilość produktów w koszyku została automatycznie zmieniona.<br>';
+
+                $basket->addItemById($item->productId, $availableStock, true, $item->expiration_date);
+            }
+
+            if (intval($p->one_purchase_availability) > 0 && intval($p->one_purchase_availability) < intval($item->quantity)) {
+                $changeAvariabilityString .= 'Produkt ' . $p->name . ' ' . $p->brand . ' ' . $p->content
+                    . ' ma ustalony limit ilości sztuk podczas jednorazowego zakupu na: ' . $p->one_purchase_availability
+                    . ' sztuk. Ilość produktów w koszyku została automatycznie zmieniona.<br>';
+
+                $basket->addItemById($item->productId, intval($p->one_purchase_availability), true, $item->expiration_date);
+            }
         }
-        if ($changeAvariabilityString != ''){
-            $returnData['errors'][] = 'Wystąpiły limity w ilościach sztuk kupowanych produktów. Sprawdź czy pomimo poniżej wymienionych zmian nadal chcesz dokonać zakupu?<br>'.$changeAvariabilityString;
+
+        if ($changeAvariabilityString != '') {
+            $returnData['errors'][] = 'Wystąpiły limity w ilościach sztuk kupowanych produktów. Sprawdź czy pomimo poniżej wymienionych zmian nadal chcesz dokonać zakupu?<br>'
+                . $changeAvariabilityString;
             $returnData['errorsAreas'][] = '';
             $returnData['status'] = false;
         }
@@ -792,9 +856,44 @@ class BasketApiController extends Controller
                         $orderId = $orderId[count($orderId)-1]->id;
                         foreach ($basket->basketItems as $item){
                             DB::connection('mysql-esklep')->insert('INSERT INTO ecommerce_order_position '
-                                . '(product_id, order_id, price_net, price_gross, vat_rate, quantity, value_net, value_gross, weight)'
-                                . ' VALUES (?,?,?,?,?,?,?,?,?)', 
-                                [$item->productId,$orderId,$item->priceNet,$item->priceGross, $item->vat_rate, $item->quantity, $item->valueNet, $item->valueGross, 0]);
+                                . '(product_id, order_id, price_net, price_gross, vat_rate, quantity, value_net, value_gross, weight, expiration_date)'
+                                . ' VALUES (?,?,?,?,?,?,?,?,?,?)',
+                                [
+                                    $item->productId,
+                                    $orderId,
+                                    $item->priceNet,
+                                    $item->priceGross,
+                                    $item->vatRate,
+                                    $item->quantity,
+                                    $item->valueNet,
+                                    $item->valueGross,
+                                    0,
+                                    $item->expiration_date
+                                ]
+                            );
+                        }
+
+                        foreach ($basket->basketItems as $item) {
+                            if (!empty($item->expiration_date)) {
+                                $affected = DB::connection('mysql-esklep')->update(
+                                    'UPDATE ecommerce_products
+                                    SET short_expiration_stock = short_expiration_stock - ?
+                                    WHERE id = ? AND short_expiration_stock >= ?',
+                                    [intval($item->quantity), intval($item->productId), intval($item->quantity)]
+                                );
+                            } else {
+                                $affected = DB::connection('mysql-esklep')->update(
+                                    'UPDATE ecommerce_products
+                                    SET availability = availability - ?
+                                    WHERE id = ? AND availability >= ?',
+                                    [intval($item->quantity), intval($item->productId), intval($item->quantity)]
+                                );
+                            }
+
+                            if ($affected === 0) {
+                                // ktoś Ci “zabrał” stock równolegle -> przerwij i wywal błąd
+                                throw new \Exception('Brak wystarczającego stanu magazynowego dla produktu ID: ' . $item->productId);
+                            }
                         }
                         
                         $order = DB::connection('mysql-esklep')->select('SELECT * FROM ecommerce_orders WHERE id = ?', [$orderId]);

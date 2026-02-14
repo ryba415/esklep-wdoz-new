@@ -25,7 +25,7 @@ class Basket
     public $medicamentsCount = 0;
     public $medicamentsValueGross = 0.00;
     public $drugsCount = 0;
-    
+
     public $freeDeliveryFromValue = null;
     public $promoDeliveryFromValue = null;
     public $promoNewsletterDeliveryFromValue = null;
@@ -91,6 +91,68 @@ class Basket
         }
 
     }
+
+
+    public function removeItemByProductVariant($productId, $expirationDate = null)
+    {
+        $response = [
+            'status' => true,
+            'errors' => [],
+            'errorCode' => ''
+        ];
+
+        $productId = intval($productId);
+        $expirationDate = $this->normalizeExpirationDate($expirationDate);
+
+        $found = false;
+
+        foreach ($this->basketItems as $i => $item) {
+            $itemExp = $this->normalizeExpirationDate($item->expiration_date ?? null);
+
+            $sameVariant = (intval($item->productId) === $productId) && ($itemExp === $expirationDate);
+
+            if ($sameVariant) {
+                $found = true;
+
+                DB::connection('mysql-esklep')->delete(
+                    'DELETE FROM ecommerce_basket_position WHERE id = ?;',
+                    [$item->id]
+                );
+
+                unset($this->basketItems[$i]);
+                break;
+            }
+        }
+
+        if (!$found) {
+            $response['status'] = false;
+            $response['errors'][] = 'Nie istnieje taka pozycja koszyka (wariant produktu).';
+            return $response;
+        }
+
+        $this->recalculateBasket();
+        return $response;
+    }
+
+
+    private function normalizeExpirationDate($value)
+    {
+        if ($value === null) return null;
+
+        $v = trim((string)$value);
+        if ($v === '') return null;
+
+        $lv = strtolower($v);
+        if ($lv === 'null' || $lv === 'undefined' || $lv === 'none') return null;
+
+        if ($v === '0000-00-00') return null;
+
+        if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $v)) {
+            return null;
+        }
+
+        return $v;
+    }
     
     private function generateHash(){
         do {
@@ -134,102 +196,209 @@ class Basket
         return $response;
     }
     
-    public function addItemById($productId, $quantity, $changeQuantity = false){
+    
+    public function addItemById($productId, $quantity, $changeQuantity = false, $expirationDate = null)
+    {
         $response = [
             'status' => true,
             'errors' => [],
             'errorCode' => ''
         ];
-        
-        $quantity = intVal($quantity);
-        
-        $product = DB::connection('mysql-esklep')->select('SELECT id, price, availability, one_purchase_availability, price_gross, vat_rate FROM ecommerce_products WHERE id = ?', [$productId]);
-        if (count($product) > 0){
-            //var_dump($product[0]->availability);
-            if ($product[0]->availability > 0){
-                if ($quantity <= $product[0]->availability){
-                    if ($quantity <= $product[0]->one_purchase_availability || $product[0]->one_purchase_availability < 0){
-                        $productAlreadyExistInBasket = false;
-                        foreach ($this->basketItems as $item){ //update existing item
-                            if ($item->productId == $productId){
-                                $productAlreadyExistInBasket = true;
-                                if ((!$changeQuantity && intVal($item->quantity) + $quantity > 0) || ($changeQuantity && $quantity > 0)){
-                                    if (intVal($item->quantity) + $quantity <= $product[0]->availability || ($changeQuantity && $quantity <= $product[0]->availability)){
-                                        if ($product[0]->one_purchase_availability < 0 || intVal($item->quantity) + $quantity <= $product[0]->one_purchase_availability || ($changeQuantity && $quantity <= $product[0]->one_purchase_availability)){
-                                            if ($changeQuantity){
-                                                $item->quantity = $quantity;
-                                            } else {
-                                                $item->quantity = intVal($item->quantity) + $quantity;
-                                            }
 
-                                            $item->valueNet = $item->quantity*$item->priceNet;
-                                            $item->valueGross = $item->quantity*$item->priceGross;
+        $productId = intval($productId);
+        $quantity  = intval($quantity);
 
-                                            $updateItemDb = DB::connection('mysql-esklep')->update('UPDATE ecommerce_basket_position SET quantity=?, valueNet=?, valueGross=? WHERE id=?', 
-                                                        [$item->quantity, $item->valueNet, $item->valueGross, $item->id]);
-                                        } else { // przekroczony limit jednorazowego zakupu
-                                           if ($item->quantity < $product[0]->one_purchase_availability){ // 
-                                                $response['status'] = false;
-                                                $response['errors'][] = 'Nie można dodać: ' . $quantity  . ' sztuk produktu do koszyka. Ustalono limit zakupu: <strong>' . $product[0]->one_purchase_availability . ' sztuk podczas jednorazowego zakupu</strong>. Zmień ilość na maksymalnie: ' . $product[0]->one_purchase_availability - $item->quantity . ', żeby dodać produkt do kowszyka.';
-                                            } else {
-                                                $response['status'] = false;
-                                                $response['errors'][] = 'Nie można dodać produktu do koszyka. Ustalono limit zakupu: <strong>' . $product[0]->one_purchase_availability . ' sztuk podczas jednorazowego zakupu</strong>. W koszyku masz już: ' . $item->quantity . ' sztuk.';
-                                            } 
-                                        }
-                                    } else { // przekroczona dostepnosc na magazynie
-                                        if ($item->quantity < $product[0]->availability){ // 
-                                            $response['status'] = false;
-                                            $response['errors'][] = 'Nie można dodać: ' . $quantity  . ' sztuk produktu do koszyka. W tym momencie dostępnych jest: <strong>' . $product[0]->availability . ' sztuk</strong>. Zmień ilość na maksymalnie: ' . $product[0]->availability - $item->quantity . ', żeby dodać produkt do kowszyka.';
-                                        } else {
-                                            $response['status'] = false;
-                                            $response['errors'][] = 'Nie można dodać produktu do koszyka. W tym momencie dostępnych jest: <strong>' . $product[0]->availability . ' sztuk</strong>. W koszyku masz już: ' . $item->quantity . ' sztuk.';
-                                        }
-                                    }
-                                } else {
-                                    $this->removeItemById($item->id);
-                                }
-
-
-                                break;
-                            }
-                        }
-
-                        if (!$productAlreadyExistInBasket){ //add new item
-                            $newItem = new BasketItem();
-                            $newItem->productId = $productId;
-                            $newItem->quantity = $quantity;
-                            $newItem->priceNet = $product[0]->price;
-                            $newItem->priceGross = $product[0]->price_gross;
-                            $newItem->vatRate = $product[0]->vat_rate;
-                            $newItem->valueNet = $quantity * $product[0]->price;
-                            $newItem->valueGross = $quantity * $product[0]->price_gross;
-
-                            $this->basketItems[] = $newItem;
-
-                            DB::connection('mysql-esklep')->insert('INSERT INTO ecommerce_basket_position (basket_id, product_id, quantity, priceNet, priceGross, vatRate, valueNet, valueGross)'
-                                        . ' VALUES (?,?,?,?,?,?,?,?)', [$this->id,$productId,$quantity,$newItem->priceNet,$newItem->priceGross,$newItem->vatRate,$newItem->valueNet,$newItem->valueGross]);
-
-                        }
-
-                        $this->recalculateBasket();
-                        } else {
-                            $response['status'] = false;
-                            $response['errors'][] = 'Nie można dodać: ' . $quantity  . ' sztuk produktu do koszyka. Ustalono limit zakupu: <strong>' . $product[0]->one_purchase_availability . ' sztuk podczas jednorazowego zakupu</strong>. Zmień ilość na maksymalnie: ' . $product[0]->one_purchase_availability . ', żeby dodać produkt do kowszyka.';
-                        }
-                } else {
-                    $response['status'] = false;
-                    $response['errors'][] = 'Nie można dodać: ' . $quantity  . ' sztuk produktu do koszyka. W tym momencie dostępnych jest: <strong>' . $product[0]->availability . ' sztuk</strong>. Zmień ilość na maksymalnie: ' . $product[0]->availability . ', żeby dodać produkt do kowszyka.';
-                }
-            } else {
-                $response['status'] = false;
-                $response['errors'][] = 'Produkt wyprzedany, w tym momencie nie ma ani jednej dostępnej sztuki w magazynie'; 
+        if ($expirationDate !== null) {
+            $expirationDate = trim((string)$expirationDate);
+            if ($expirationDate === '' || strtolower($expirationDate) === 'null' || strtolower($expirationDate) === 'undefined') {
+                $expirationDate = null;
             }
-        } else {
+            if ($expirationDate === '0000-00-00') {
+                $expirationDate = null;
+            }
+        }
+
+        $isShort = ($expirationDate !== null);
+
+        $product = DB::connection('mysql-esklep')->select(
+            'SELECT id,
+                    price, price_gross, vat_rate,
+                    availability, one_purchase_availability,
+                    short_expiration_stock, short_expiration_date,
+                    short_price_net, short_price_gross
+            FROM ecommerce_products
+            WHERE id = ?',
+            [$productId]
+        );
+
+        if (count($product) <= 0) {
             $response['status'] = false;
             $response['errors'][] = 'Produkt nie jest już dostępny w ofercie';
+            return $response;
         }
+
+        $p = $product[0];
+
+        if ($isShort) {
+            $shortDate = $p->short_expiration_date;
+            if ($shortDate !== null) {
+                $shortDate = trim((string)$shortDate);
+                if ($shortDate === '' || $shortDate === '0000-00-00') $shortDate = null;
+            }
+
+            if ($shortDate === null || $shortDate !== $expirationDate) {
+                $response['status'] = false;
+                $response['errors'][] = 'Nieprawidłowa data ważności dla produktu z krótką datą.';
+                return $response;
+            }
+
+            $availableStock = intval($p->short_expiration_stock);
+            $priceNet       = floatval($p->short_price_net);
+            $priceGross     = floatval($p->short_price_gross);
+        } else {
+            $availableStock = intval($p->availability);
+            $priceNet       = floatval($p->price);
+            $priceGross     = floatval($p->price_gross);
+        }
+
+        if ($availableStock <= 0) {
+            $response['status'] = false;
+            $response['errors'][] = $isShort
+                ? 'Produkt z krótką datą jest wyprzedany.'
+                : 'Produkt wyprzedany, w tym momencie nie ma ani jednej dostępnej sztuki w magazynie';
+            return $response;
+        }
+
+        if ($quantity <= 0) {
+            $response['status'] = false;
+            $response['errors'][] = 'Nieprawidłowa ilość produktu.';
+            return $response;
+        }
+
+        if ($quantity > $availableStock) {
+            $response['status'] = false;
+            $response['errors'][] =
+                'Nie można dodać: ' . $quantity . ' sztuk produktu do koszyka. W tym momencie dostępnych jest: <strong>'
+                . $availableStock . ' sztuk</strong>. Zmień ilość na maksymalnie: ' . $availableStock . ', żeby dodać produkt do koszyka.';
+            return $response;
+        }
+
+        $onePurchase = intval($p->one_purchase_availability);
+        if (!($quantity <= $onePurchase || $onePurchase < 0)) {
+            $response['status'] = false;
+            $response['errors'][] =
+                'Nie można dodać: ' . $quantity . ' sztuk produktu do koszyka. Ustalono limit zakupu: <strong>'
+                . $onePurchase . ' sztuk podczas jednorazowego zakupu</strong>. Zmień ilość na maksymalnie: '
+                . $onePurchase . ', żeby dodać produkt do koszyka.';
+            return $response;
+        }
+
+        $existing = DB::connection('mysql-esklep')->select(
+            'SELECT id, quantity
+            FROM ecommerce_basket_position
+            WHERE basket_id = ?
+            AND product_id = ?
+            AND (expiration_date <=> ?)
+            LIMIT 1',
+            [$this->id, $productId, $expirationDate]
+        );
+
+        if (count($existing) > 0) {
+            $posId      = intval($existing[0]->id);
+            $currentQty = intval($existing[0]->quantity);
+            $newQty     = $changeQuantity ? $quantity : ($currentQty + $quantity);
+
+            if ($newQty <= 0) {
+                DB::connection('mysql-esklep')->delete('DELETE FROM ecommerce_basket_position WHERE id = ?', [$posId]);
+
+                foreach ($this->basketItems as $i => $it) {
+                    if (intval($it->id) === $posId) {
+                        unset($this->basketItems[$i]);
+                        break;
+                    }
+                }
+
+                $this->recalculateBasket();
+                return $response;
+            }
+
+            if ($newQty > $availableStock) {
+                $response['status'] = false;
+                $response['errors'][] =
+                    'Nie można dodać produktu do koszyka. W tym momencie dostępnych jest: <strong>'
+                    . $availableStock . ' sztuk</strong>. W koszyku masz już: ' . $currentQty . ' sztuk.';
+                return $response;
+            }
+
+            if (!($onePurchase < 0 || $newQty <= $onePurchase)) {
+                $response['status'] = false;
+                $response['errors'][] =
+                    'Nie można dodać produktu do koszyka. Ustalono limit zakupu: <strong>'
+                    . $onePurchase . ' sztuk podczas jednorazowego zakupu</strong>. W koszyku masz już: '
+                    . $currentQty . ' sztuk.';
+                return $response;
+            }
+
+            $valueNet   = $newQty * $priceNet;
+            $valueGross = $newQty * $priceGross;
+
+            DB::connection('mysql-esklep')->update(
+                'UPDATE ecommerce_basket_position
+                SET quantity=?, priceNet=?, priceGross=?, valueNet=?, valueGross=?
+                WHERE id=?',
+                [$newQty, $priceNet, $priceGross, $valueNet, $valueGross, $posId]
+            );
+
+            foreach ($this->basketItems as $it) {
+                if (intval($it->id) === $posId) {
+                    $it->quantity   = $newQty;
+                    $it->priceNet   = $priceNet;
+                    $it->priceGross = $priceGross;
+                    $it->valueNet   = $valueNet;
+                    $it->valueGross = $valueGross;
+                    $it->expiration_date = $expirationDate;
+                    break;
+                }
+            }
+        } else {
+            $valueNet   = $quantity * $priceNet;
+            $valueGross = $quantity * $priceGross;
+
+            DB::connection('mysql-esklep')->insert(
+                'INSERT INTO ecommerce_basket_position
+                (basket_id, product_id, quantity, priceNet, priceGross, vatRate, valueNet, valueGross, expiration_date)
+                VALUES (?,?,?,?,?,?,?,?,
+                    CASE
+                    WHEN ? IS NULL THEN NULL
+                    ELSE STR_TO_DATE(?, "%Y-%m-%d")
+                    END
+                )',
+                [$this->id, $productId, $quantity, $priceNet, $priceGross, $p->vat_rate, $valueNet, $valueGross, $expirationDate, $expirationDate]
+            );
+
+            $newId = DB::connection('mysql-esklep')->getPdo()->lastInsertId();
+
+            $newItem = new BasketItem();
+            $newItem->id = $newId;
+            $newItem->productId = $productId;
+            $newItem->quantity = $quantity;
+            $newItem->priceNet = $priceNet;
+            $newItem->priceGross = $priceGross;
+            $newItem->vatRate = $p->vat_rate;
+            $newItem->valueNet = $valueNet;
+            $newItem->valueGross = $valueGross;
+            $newItem->expiration_date = $expirationDate;
+
+            $this->basketItems[] = $newItem;
+        }
+
+        $this->recalculateBasket();
         return $response;
     }
+
+
+
+
     
     public function recalculateBasket(){
         $valueNet = 0;
@@ -242,7 +411,7 @@ class Basket
             $itemsCount++;
         }
         
-        $this->$valueNet = $valueNet;
+        $this->valueNet = $valueNet;
         $this->valueGross = $valueGross;
         $this->itemsCount = $itemsCount;
         

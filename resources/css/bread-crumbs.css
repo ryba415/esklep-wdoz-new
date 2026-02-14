@@ -19,8 +19,9 @@ and open the template in the editor.
 @media only screen and (min-width: 1024px) {
   .bread-crumb-container {
     padding-left: 120px;
-    padding-top: 60px; } }
-
+    padding-top: 60px;
+  }
+}
 .bread-crumb-container .breadcrumb {
   padding: 15px;
   padding-top: 5px;
@@ -31,47 +32,64 @@ and open the template in the editor.
   padding-left: 5px;
   padding-right: 5px;
   justify-content: flex-start;
-  flex-wrap: wrap; }
-  @media only screen and (min-width: 1024px) {
-    .bread-crumb-container .breadcrumb {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding-left: 10px; } }
-  @media only screen and (min-width: 1200px) {
-    .bread-crumb-container .breadcrumb {
-      padding-left: 35px; } }
-  @media only screen and (min-width: 1300px) {
-    .bread-crumb-container .breadcrumb {
-      padding-left: 60px; } }
-  @media only screen and (min-width: 1400px) {
-    .bread-crumb-container .breadcrumb {
-      padding-left: 25px; } }
-  @media only screen and (min-width: 1500px) {
-    .bread-crumb-container .breadcrumb {
-      max-width: 1270px;
-      padding-left: 0px;
-      padding-right: 0px; } }
+  flex-wrap: wrap;
+}
+@media only screen and (min-width: 1024px) {
+  .bread-crumb-container .breadcrumb {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 10px;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .bread-crumb-container .breadcrumb {
+    padding-left: 35px;
+  }
+}
+@media only screen and (min-width: 1300px) {
+  .bread-crumb-container .breadcrumb {
+    padding-left: 60px;
+  }
+}
+@media only screen and (min-width: 1400px) {
+  .bread-crumb-container .breadcrumb {
+    padding-left: 25px;
+  }
+}
+@media only screen and (min-width: 1500px) {
+  .bread-crumb-container .breadcrumb {
+    max-width: 1270px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+.bread-crumb-container .breadcrumb .breadcrumb-item {
+  padding: 2px 5px;
+  padding-top: 8px;
+  display: flex;
+  font-size: 13px;
+  max-width: 165px;
+}
+@media only screen and (min-width: 1024px) {
   .bread-crumb-container .breadcrumb .breadcrumb-item {
-    padding: 2px 5px;
-    padding-top: 8px;
-    display: flex;
-    font-size: 13px;
-    max-width: 165px; }
-    @media only screen and (min-width: 1024px) {
-      .bread-crumb-container .breadcrumb .breadcrumb-item {
-        max-width: 265px; } }
-    .bread-crumb-container .breadcrumb .breadcrumb-item a {
-      color: black;
-      font-size: 12px; }
-    .bread-crumb-container .breadcrumb .breadcrumb-item:after {
-      content: '>';
-      display: flex;
-      margin-top: -1px;
-      padding-left: 7px;
-      text-shadow: 2px 1px 3px #ceab3a;
-      align-content: center;
-      align-items: center; }
-    .bread-crumb-container .breadcrumb .breadcrumb-item:last-child:after {
-      content: ''; }
+    max-width: 265px;
+  }
+}
+.bread-crumb-container .breadcrumb .breadcrumb-item a {
+  color: black;
+  font-size: 12px;
+}
+.bread-crumb-container .breadcrumb .breadcrumb-item:after {
+  content: ">";
+  display: flex;
+  margin-top: -1px;
+  padding-left: 7px;
+  text-shadow: 2px 1px 3px #ceab3a;
+  align-content: center;
+  align-items: center;
+}
+.bread-crumb-container .breadcrumb .breadcrumb-item:last-child:after {
+  content: "";
+}
 
 /*# sourceMappingURL=bread-crumbs.css.map */

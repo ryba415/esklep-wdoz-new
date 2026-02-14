@@ -187,14 +187,18 @@
                         <div class="max-h-80 overflow-y-auto py-2 px-4">
                             <ul class="hidden">
                                 <!-- Product 1 -->
-                                <li class="basket-item-container product-item py-4 flex gap-3 hidden" data-product-id="1" id="minicart-product-template">
+                                <li class="basket-item-container product-item py-4 flex gap-3 hidden"
+                                  data-item-id=""
+                                  data-product-id=""
+                                  data-expiration-date=""
+                                  id="minicart-product-template">
                                     <div class="h-16 w-16 flex-shrink-0 rounded-md overflow-hidden">
                                         <img src="" alt="" class="h-full w-full object-cover minicart-product-image">
                                     </div>
                                     <div class="flex-1 flex flex-col justify-between">
                                         <div class="flex justify-between">
                                             <h4 class="text-sm font-medium text-gray-900 line-clamp-2 minicart-product-name"></h4>
-                                            <button class="remove-product text-gray-400 hover:text-gray-500 p-1" data-product-id="1">
+                                            <button class="remove-product text-gray-400 hover:text-gray-500 p-1">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                     <path d="M18 6 6 18"></path>
                                                     <path d="m6 6 12 12"></path>
@@ -204,20 +208,20 @@
                                         <div class="flex mt-2 justify-between items-center">
                                             <!-- Quantity Controls -->
                                             <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden">
-                                                <button onclick="executedecrementQuantityAndUpdate(this)" class="quantity-decrease w-8 h-8 flex items-center justify-center hover:bg-gray-100" aria-label="Zmniejsz ilość" data-product-id="1">
+                                                <button onclick="executedecrementQuantityAndUpdate(this)" class="quantity-decrease w-8 h-8 flex items-center justify-center hover:bg-gray-100" aria-label="Zmniejsz ilość" >
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                                         <path d="M5 12h14"></path>
                                                     </svg>
                                                 </button>
-                                                <input onchange="executeUpdateQuantity(this)" class="minicart-product-quantity set-quantity-input quantity-display w-8 text-center text-sm font-medium" data-product-id="1" value="1"></input>
-                                                <button onclick="executeIncrementQuantityAndUpdate(this)" class="quantity-increase w-8 h-8 flex items-center justify-center hover:bg-gray-100" aria-label="Zwiększ ilość" data-product-id="1">
+                                                <input onchange="executeUpdateQuantity(this)" class="minicart-product-quantity set-quantity-input quantity-display w-8 text-center text-sm font-medium"  value="1"></input>
+                                                <button onclick="executeIncrementQuantityAndUpdate(this)" class="quantity-increase w-8 h-8 flex items-center justify-center hover:bg-gray-100" aria-label="Zwiększ ilość" >
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                                         <path d="M5 12h14"></path>
                                                         <path d="M12 5v14"></path>
                                                     </svg>
                                                 </button>
                                             </div>
-                                            <div class="product-price text-sm font-semibold minicart-product-price" data-product-id="1" data-unit-price="24.99"></div>
+                                            <div class="product-price text-sm font-semibold minicart-product-price"  data-unit-price="24.99"></div>
                                         </div>
                                     </div>
                                 </li>
@@ -284,7 +288,7 @@
 
 <script>
 (() => {
-  const SEARCH_URL = "https://test.wracamdozdrowia.pl/search";
+  const SEARCH_URL = @json(url('/search'));
   const MIN_CHARS = 2;
   const DEBOUNCE_MS = 100;
   const MAX_ITEMS = 6;
@@ -358,7 +362,7 @@ function normalizeProducts(json) {
 
     const items = products.slice(0, MAX_ITEMS).map(p => {
       const name = escapeHtml(p?.name);
-      const category = escapeHtml(p?.category_name || "Apteczny"); // dopasuj jak masz kategorię
+      const category = escapeHtml(p?.brand);
       const url = getProductUrl(p);
       const img = getImageUrl(p);
 
@@ -485,43 +489,3 @@ function attachAutocomplete(inputEl, dropdownEl) {
   );
 })();
 </script>
-
-
-<style>
-    .header-search-autocomplete{position:relative;flex:1 1 auto}
-    .header-search-autocomplete .search-dropdown{position:absolute;top:calc(100% + 10px);left:0;width:calc(100% + 100px);z-index:60;background:#fff;border:1px solid rgba(238,238,238,1);border-radius:18px;box-shadow:0 14px 30px rgba(0,0,0,.1);overflow:hidden}
-    .header-search-autocomplete .search-dropdown__inner{padding:16px}
-    .header-search-autocomplete .search-dropdown__list{display:flex;flex-direction:column;gap:12px}
-    .header-search-autocomplete .search-dropdown__item{display:flex;gap:14px;padding:14px 16px;border-radius:14px;text-decoration:none;color:inherit;background:rgba(245,247,250,1);transition:background .15s ease}
-    .header-search-autocomplete .search-dropdown__item:hover{background:rgba(235,235,235,1)}
-    .header-search-autocomplete .search-dropdown__img{width:48px;height:48px;flex:0 0 48px;border-radius:12px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden}
-    .header-search-autocomplete .search-dropdown__img img{width:100%;height:100%;object-fit:contain}
-    .header-search-autocomplete .search-dropdown__img--ph{width:100%;height:100%;background:rgba(235,235,235,1)}
-    .header-search-autocomplete .search-dropdown__txt{min-width:0;display:flex;flex-direction:column;justify-content:center;gap:6px}
-    .header-search-autocomplete .search-dropdown__meta{font-size:12px;color:rgba(81,81,81,1)}
-    .header-search-autocomplete .search-dropdown__name{font-size:15px;font-weight:600;color:rgba(52,52,52,1);line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .header-search-autocomplete .search-dropdown__all{display:block;padding:14px 16px 6px;margin-top:4px;color:#D25C5C;font-weight:600;text-decoration:none}
-    .header-search-autocomplete .search-dropdown__all:hover{text-decoration:underline}
-    .header-search-autocomplete .search-dropdown__empty,.header-search-autocomplete .search-dropdown__loading{padding:18px 16px;color:rgba(81,81,81,1);font-size:14px}
-    .header-search-autocomplete--mobile{width:100%}
-    .header-search-autocomplete--mobile .search-dropdown{width:100%}
-
-    @media (max-width: 767px){
-    .header-top-icons-search-container-mobile{
-        display:flex;
-        flex-direction:row;
-        align-items:stretch;
-        gap:0;
-    }
-    .header-top-icons-search-container-mobile .header-search-autocomplete{
-        flex:1 1 auto;
-    }
-    .header-top-icons-search-container-mobile button{
-        flex:0 0 100px;
-        border-radius:0 24px 24px 0;
-    }
-    .header-top-icons-search-container-mobile input{
-        border-radius:24px 0 0 24px;
-    }
-    }
-</style>

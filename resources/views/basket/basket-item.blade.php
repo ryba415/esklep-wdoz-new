@@ -1,4 +1,10 @@
-<div class="flex flex-row border-doz-border border-b pb-5 mb-5 basket-item-container product-container" data-item-id="{{$item->id}}" data-product-id="{{$item->productId}}">  
+<div
+  class="flex flex-row border-doz-border border-b pb-5 mb-5 basket-item-container product-container"
+  data-item-id="{{$item->id}}"
+  data-product-id="{{$item->productId}}"
+  data-expiration-date="{{ $item->expiration_date ?? '' }}"
+  data-variant-key="{{ $item->productId }}|{{ $item->expiration_date ?? 'NULL' }}"
+>
     <div class="w-[96px] h-[96px] inline-block">
         @if (isset($item->images[0]) && $item->images[0]->image_name != null && $item->images[0]->image_name != '')
         <picture class="w-[96px] h-[96px] inline-block">
@@ -24,6 +30,11 @@
         <h3 class="text-md font-semibold pl-[18px] mt-1">{{$item->name}}</h3>
         
         <p class="text-sm text-wdoz-text-gray pl-[18px]">{{$item->brand}}, {{$item->content}}</p>
+        @if(!empty($item->expiration_date))
+            <p class="text-xs text-[#d71921] pl-[18px] mt-1">
+                Krótka data ważności: <strong>{{ \Carbon\Carbon::parse($item->expiration_date)->format('d.m.Y') }}</strong>
+            </p>
+        @endif
         <div class="flex flex-row w-full mt-2 align-bottom items-center">
             <div class="w-full text-xl pl-[18px] text-wdoz-text-gray">
                 <span class="basket-item-price-gross">{{$item->diplayPrice($item->valueGross )}}</span> zł<br>

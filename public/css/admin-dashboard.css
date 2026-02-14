@@ -17,42 +17,56 @@ and open the template in the editor.
     Author     : ryba4
 */
 .user-dashboard {
-  text-align: center; }
-  .user-dashboard h1, .user-dashboard h2 {
-    text-align: center; }
-  .user-dashboard p.start-text {
-    text-align: center; }
+  text-align: center;
+}
+.user-dashboard h1,
+.user-dashboard h2 {
+  text-align: center;
+}
+.user-dashboard p.start-text {
+  text-align: center;
+}
+.user-dashboard .standard-big-button {
+  width: calc(100% - 70px);
+  margin: 0 auto;
+  max-width: 600px;
+  margin-top: 15px;
+  margin-bottom: 25px;
+}
+@media only screen and (min-width: 1024px) {
   .user-dashboard .standard-big-button {
-    width: calc( 100% - 70px);
-    margin: 0 auto;
-    max-width: 600px;
-    margin-top: 15px;
-    margin-bottom: 25px; }
-    @media only screen and (min-width: 1024px) {
-      .user-dashboard .standard-big-button {
-        max-width: 300px;
-        margin-left: 20px;
-        margin-right: 20px; } }
-  .user-dashboard .statistics-section {
-    flex-wrap: wrap;
-    display: flex;
-    margin-bottom: 30px; }
-    .user-dashboard .statistics-section h2 {
-      width: 100%; }
-    .user-dashboard .statistics-section h3 {
-      margin-bottom: 0px; }
-    .user-dashboard .statistics-section .subtitle-description {
-      font-size: 14px;
-      font-weight: 100;
-      margin-bottom: 15px;
-      margin-top: 0px;
-      color: gray; }
-    .user-dashboard .statistics-section .statistics-one-section {
-      margin-top: 20px;
-      margin-bottom: 20px;
-      width: 100%; }
-      @media only screen and (min-width: 641px) {
-        .user-dashboard .statistics-section .statistics-one-section {
-          width: 50%; } }
+    max-width: 300px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+.user-dashboard .statistics-section {
+  flex-wrap: wrap;
+  display: flex;
+  margin-bottom: 30px;
+}
+.user-dashboard .statistics-section h2 {
+  width: 100%;
+}
+.user-dashboard .statistics-section h3 {
+  margin-bottom: 0px;
+}
+.user-dashboard .statistics-section .subtitle-description {
+  font-size: 14px;
+  font-weight: 100;
+  margin-bottom: 15px;
+  margin-top: 0px;
+  color: gray;
+}
+.user-dashboard .statistics-section .statistics-one-section {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+@media only screen and (min-width: 641px) {
+  .user-dashboard .statistics-section .statistics-one-section {
+    width: 50%;
+  }
+}
 
 /*# sourceMappingURL=admin-dashboard.css.map */

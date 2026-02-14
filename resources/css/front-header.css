@@ -22,38 +22,48 @@ and open the template in the editor.
   position: fixed;
   width: 100%;
   top: 0px;
-  z-index: 9; }
+  z-index: 9;
+}
+.admin-top-navbar .container {
+  display: flex;
+  margin: 0 auto;
+  max-width: 1250px;
+  flex-direction: row;
+  padding: 5px 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+@media only screen and (min-width: 1024px) {
   .admin-top-navbar .container {
-    display: flex;
-    margin: 0 auto;
-    max-width: 1250px;
-    flex-direction: row;
-    padding: 5px 10px;
     justify-content: space-between;
-    align-items: center; }
-    @media only screen and (min-width: 1024px) {
-      .admin-top-navbar .container {
-        justify-content: space-between; } }
-    .admin-top-navbar .container #navbarNavDropdown {
-      display: none; }
-    .admin-top-navbar .container .navbar-settings {
-      border: none;
-      padding: 5px;
-      padding-left: 0px;
-      background-color: transparent;
-      display: flex;
-      cursor: pointer; }
-    .admin-top-navbar .container .navbar-brand {
-      display: flex; }
-    .admin-top-navbar .container .show-admin-main-menu {
-      display: flex;
-      padding: 5px;
-      cursor: pointer;
-      padding-right: 0px; }
-      @media only screen and (min-width: 1024px) {
-        .admin-top-navbar .container .show-admin-main-menu #show-admin-main-burger {
-          display: none;
-          cursor: auto; } }
+  }
+}
+.admin-top-navbar .container #navbarNavDropdown {
+  display: none;
+}
+.admin-top-navbar .container .navbar-settings {
+  border: none;
+  padding: 5px;
+  padding-left: 0px;
+  background-color: transparent;
+  display: flex;
+  cursor: pointer;
+}
+.admin-top-navbar .container .navbar-brand {
+  display: flex;
+}
+.admin-top-navbar .container .show-admin-main-menu {
+  display: flex;
+  padding: 5px;
+  cursor: pointer;
+  padding-right: 0px;
+}
+@media only screen and (min-width: 1024px) {
+  .admin-top-navbar .container .show-admin-main-menu #show-admin-main-burger {
+    display: none;
+    cursor: auto;
+  }
+}
 
 .main-menu-container {
   display: none;
@@ -62,44 +72,60 @@ and open the template in the editor.
   width: 100%;
   position: fixed;
   top: 45px;
-  left: 0px; }
-  @media only screen and (min-width: 1024px) {
-    .main-menu-container {
-      position: relative;
-      display: flex;
-      top: 0px; } }
-  .main-menu-container.main-menu-opened {
-    display: flex; }
+  left: 0px;
+}
+@media only screen and (min-width: 1024px) {
+  .main-menu-container {
+    position: relative;
+    display: flex;
+    top: 0px;
+  }
+}
+.main-menu-container.main-menu-opened {
+  display: flex;
+}
+.main-menu-container .user-left-menu {
+  width: 100%;
+}
+@media only screen and (min-width: 1024px) {
   .main-menu-container .user-left-menu {
-    width: 100%; }
-    @media only screen and (min-width: 1024px) {
-      .main-menu-container .user-left-menu {
-        display: flex; } }
-    .main-menu-container .user-left-menu .main-menu-list {
-      list-style-type: none;
-      padding: 0px;
-      margin: 0px; }
-      @media only screen and (min-width: 1024px) {
-        .main-menu-container .user-left-menu .main-menu-list {
-          display: flex;
-          justify-content: space-between; } }
-      .main-menu-container .user-left-menu .main-menu-list li {
-        width: 100%;
-        border-bottom: 1px solid #E8DDBB;
-        text-align: right;
-        margin-top: 10px;
-        padding-bottom: 5px; }
-        @media only screen and (min-width: 1024px) {
-          .main-menu-container .user-left-menu .main-menu-list li {
-            display: flex;
-            border-bottom: none; } }
-        .main-menu-container .user-left-menu .main-menu-list li a {
-          padding: 10px;
-          padding-right: 20px;
-          color: black; }
-          @media only screen and (min-width: 1024px) {
-            .main-menu-container .user-left-menu .main-menu-list li a {
-              white-space: nowrap;
-              padding: 2px 15px; } }
+    display: flex;
+  }
+}
+.main-menu-container .user-left-menu .main-menu-list {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+}
+@media only screen and (min-width: 1024px) {
+  .main-menu-container .user-left-menu .main-menu-list {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+.main-menu-container .user-left-menu .main-menu-list li {
+  width: 100%;
+  border-bottom: 1px solid #E8DDBB;
+  text-align: right;
+  margin-top: 10px;
+  padding-bottom: 5px;
+}
+@media only screen and (min-width: 1024px) {
+  .main-menu-container .user-left-menu .main-menu-list li {
+    display: flex;
+    border-bottom: none;
+  }
+}
+.main-menu-container .user-left-menu .main-menu-list li a {
+  padding: 10px;
+  padding-right: 20px;
+  color: black;
+}
+@media only screen and (min-width: 1024px) {
+  .main-menu-container .user-left-menu .main-menu-list li a {
+    white-space: nowrap;
+    padding: 2px 15px;
+  }
+}
 
 /*# sourceMappingURL=front-header.css.map */

@@ -22,64 +22,106 @@ class BasketApiController extends Controller
             "errors" => [],
             "hash" => ""
         ];
-        
+
         $changeQuantity = false;
-        if (isset($requestData['changeQuantity']) && $requestData['changeQuantity'] == true){
+        if (isset($requestData['changeQuantity']) && $requestData['changeQuantity'] == true) {
             $changeQuantity = true;
         }
-        
-        if (isset($requestData['hash']) && $requestData['hash'] != null && $requestData['hash'] != ''){
+
+        if (isset($requestData['hash']) && $requestData['hash'] != null && $requestData['hash'] != '') {
             $basket = new Basket($requestData['hash']);
         } else {
             $basket = new Basket(null);
         }
-            $returnData['hash'] = $basket->getHash();
-            $request['hash'] = $basket->getHash();
-            if (isset($requestData['id']) && isset($requestData['quantity'])){
-                $addItemResponse = $basket->addItemById($requestData['id'],$requestData['quantity'],$changeQuantity);
-                $returnData['status'] = $addItemResponse['status'];
-                $returnData['errors'] = array_merge($returnData['errors'], $addItemResponse['errors']);
-            } else {
-                $returnData['status'] = false;
-                $returnData['errors'][] = 'Id and Quantity are requiere';
+
+        $returnData['hash'] = $basket->getHash();
+
+        $request->merge(['hash' => $basket->getHash()]);
+
+        if (isset($requestData['id']) && isset($requestData['quantity'])) {
+
+            $expirationDate = null;
+            if (array_key_exists('expiration_date', $requestData)) {
+                $expirationDate = $requestData['expiration_date'];
+                if ($expirationDate !== null) {
+                    $expirationDate = trim((string)$expirationDate);
+                    if ($expirationDate === '') $expirationDate = null;
+                }
             }
 
-        $returnData['basketData'] = $this->getBasketData($request,false);
-        
-        
+            $addItemResponse = $basket->addItemById(
+                $requestData['id'],
+                $requestData['quantity'],
+                $changeQuantity,
+                $expirationDate
+            );
+
+            $returnData['status'] = $addItemResponse['status'];
+            $returnData['errors'] = array_merge($returnData['errors'], $addItemResponse['errors']);
+        } else {
+            $returnData['status'] = false;
+            $returnData['errors'][] = 'Id and Quantity are requiere';
+        }
+
+        $returnData['basketData'] = $this->getBasketData($request, false);
+
         return \Response::json($returnData, 200);
     }
     
     public function removeFromBasket(Request $request)
     {
-        $request = $request->all();
+        $requestData = $request->all();
+
         $returnData = [
             "status" => true,
             "errors" => [],
             "hash" => ""
         ];
-        
-        if (isset($request['hash'])){
-            $basket = new Basket($request['hash']);
-            $returnData['hash'] = $basket->getHash();
-            if (isset($request['id'])){
-                $removeStatus = $basket->removeItemById($request['id']);
-                if (!$removeStatus['status']){
-                    $returnData['status'] = false;
-                    $returnData['errors'] = arra_merge($returnData['errors'],$removeStatus['errors']);
-                }
-            } else {
-                $returnData['status'] = false;
-                $returnData['errors'][] = 'Id is requiere';
-            }
-        } else {
+
+        if (!isset($requestData['hash']) || !$requestData['hash']) {
             $returnData['status'] = false;
             $returnData['errors'][] = 'Hash is require';
+            return \Response::json($returnData, 200);
         }
-        
-        
+
+        $basket = new Basket($requestData['hash']);
+        $returnData['hash'] = $basket->getHash();
+
+        if (isset($requestData['id']) && $requestData['id']) {
+            $removeStatus = $basket->removeItemById($requestData['id']);
+            if (!$removeStatus['status']) {
+                $returnData['status'] = false;
+                $returnData['errors'] = array_merge($returnData['errors'], $removeStatus['errors']);
+            }
+
+            $returnData['basketData'] = $this->getBasketData(new Request(['hash' => $basket->getHash()]), false);
+            return \Response::json($returnData, 200);
+        }
+
+        if (isset($requestData['product_id']) && $requestData['product_id']) {
+            $expirationDate = null;
+            if (array_key_exists('expiration_date', $requestData) && $requestData['expiration_date'] !== null) {
+                $expirationDate = trim((string)$requestData['expiration_date']);
+                if ($expirationDate === '') $expirationDate = null;
+            }
+
+            $removeStatus = $basket->removeItemByProductVariant($requestData['product_id'], $expirationDate);
+
+            if (!$removeStatus['status']) {
+                $returnData['status'] = false;
+                $returnData['errors'] = array_merge($returnData['errors'], $removeStatus['errors']);
+            }
+
+            $returnData['basketData'] = $this->getBasketData(new Request(['hash' => $basket->getHash()]), false);
+            return \Response::json($returnData, 200);
+        }
+
+        $returnData['status'] = false;
+        $returnData['errors'][] = 'Id or product_id is require';
+
         return \Response::json($returnData, 200);
     }
+
     
     public function getBasketData(Request $request, $returnJson = true)
     {

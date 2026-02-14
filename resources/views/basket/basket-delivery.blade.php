@@ -350,6 +350,30 @@
     
     function validateBuyForm(buyNow = false){
         showGlobalLoader();
+
+        if(buyNow == true){
+            const rulesEl = document.getElementById('check-2');
+            const rulesErr = document.getElementById('check-2-error');
+            if (rulesEl) {
+                rulesEl.classList.remove('area-validation-error');
+                if (rulesErr) {
+                    rulesErr.classList.add('hidden');
+                    rulesErr.innerHTML = '';
+                }
+
+                if (!rulesEl.checked) {
+                    rulesEl.classList.add('area-validation-error');
+                    if (rulesErr) {
+                    rulesErr.innerHTML = 'Akceptacja regulaminu jest polem obowiązkowym';
+                    rulesErr.classList.remove('hidden');
+                    }
+                    hideGlobalLoader();
+                    rulesEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    return;
+                }
+            }
+        }
+
         let formdata = {};
         
         formdata['buyNow'] = buyNow;

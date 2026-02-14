@@ -22,34 +22,43 @@ and open the template in the editor.
   margin-bottom: 80px;
   width: 1250px;
   max-width: 100%;
-  padding: 0px; }
+  padding: 0px;
+}
 
 .kontakt-section {
   line-height: 26px;
-  margin-top: 30px; }
+  margin-top: 30px;
+}
 
 .static-page-regulamin-content {
   font-size: 16px;
-  margin-top: 40px; }
-  .static-page-regulamin-content h2 {
-    text-align: left;
-    margin-top: 45px;
-    color: #8E8460; }
-  .static-page-regulamin-content ul {
-    line-height: 23px;
-    list-style-type: none;
-    padding-left: 22px; }
-    .static-page-regulamin-content ul li {
-      margin-bottom: 10px; }
-      .static-page-regulamin-content ul li ul {
-        padding-top: 10px; }
-  .static-page-regulamin-content .list-type {
-    font-size: 18px;
-    font-weight: 700;
-    color: #B7AD8E;
-    color: #8E8460;
-    padding-right: 4px; }
-  .static-page-regulamin-content .important-data {
-    text-decoration: underline; }
+  margin-top: 40px;
+}
+.static-page-regulamin-content h2 {
+  text-align: left;
+  margin-top: 45px;
+  color: #8E8460;
+}
+.static-page-regulamin-content ul {
+  line-height: 23px;
+  list-style-type: none;
+  padding-left: 22px;
+}
+.static-page-regulamin-content ul li {
+  margin-bottom: 10px;
+}
+.static-page-regulamin-content ul li ul {
+  padding-top: 10px;
+}
+.static-page-regulamin-content .list-type {
+  font-size: 18px;
+  font-weight: 700;
+  color: #B7AD8E;
+  color: #8E8460;
+  padding-right: 4px;
+}
+.static-page-regulamin-content .important-data {
+  text-decoration: underline;
+}
 
 /*# sourceMappingURL=static-pages.css.map */

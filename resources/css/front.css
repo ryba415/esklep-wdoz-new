@@ -17,36 +17,44 @@ and open the template in the editor.
     Author     : ryba4
 */
 @font-face {
-  font-family: 'Inter';
+  font-family: "Inter";
   font-weight: 400;
   font-style: normal;
-  src: url(/fonts/page-font.woff2) format("woff2"); }
-
+  src: url(/fonts/page-font.woff2) format("woff2");
+}
 body {
   margin: 0px;
   font-family: "Inter";
   background-color: #F8F6F0;
-  color: #2C2C2C; }
+  color: #2C2C2C;
+}
 
 h1, h2 {
   text-align: center;
   font-size: 20px;
-  font-weight: 700; }
+  font-weight: 700;
+}
 
 a {
   text-decoration: none;
-  color: black; }
+  color: black;
+}
 
 .front-content-container {
   padding-left: 10px;
   padding-right: 10px;
-  padding-top: 45px; }
-  @media only screen and (min-width: 641px) {
-    .front-content-container {
-      min-height: calc( 100vh - 272px); } }
-  @media only screen and (min-width: 1024px) {
-    .front-content-container {
-      padding-top: 60px; } }
+  padding-top: 45px;
+}
+@media only screen and (min-width: 641px) {
+  .front-content-container {
+    min-height: calc(100vh - 272px);
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .front-content-container {
+    padding-top: 60px;
+  }
+}
 
 .standard-big-button {
   padding: 10px 20px;
@@ -56,44 +64,53 @@ a {
   display: inline-block;
   text-align: center;
   border: none;
-  cursor: pointer; }
-  .standard-big-button span {
-    font-size: 12px; }
+  cursor: pointer;
+}
+.standard-big-button span {
+  font-size: 12px;
+}
 
 .standard-big-button-white {
   box-shadow: 0px 2px 2px 0px #E3DCC5;
-  background-color: white; }
+  background-color: white;
+}
 
 .standard-big-button-green {
   color: white;
-  background-color: #01A03D; }
+  background-color: #01A03D;
+}
 
 .standard-big-button-red {
   color: white;
-  background-color: #D25C5C; }
+  background-color: #D25C5C;
+}
 
 .standard-big-button-blue {
   color: white;
   background-color: #3C8A97;
   border: 1px solid #045664;
-  text-shadow: -1px -1px 0 #045664,1px -1px 0 #045664,-1px 1px 0 #045664,1px 1px 0 #045664; }
+  text-shadow: -1px -1px 0 #045664, 1px -1px 0 #045664, -1px 1px 0 #045664, 1px 1px 0 #045664;
+}
 
 .standard-big-button-orange {
   color: white;
   background-color: #EFA055;
   border: 1px solid #664d34;
-  text-shadow: -1px -1px 0 #664d34,1px -1px 0 #664d34,-1px 1px 0 #664d34,1px 1px 0 #664d34; }
+  text-shadow: -1px -1px 0 #664d34, 1px -1px 0 #664d34, -1px 1px 0 #664d34, 1px 1px 0 #664d34;
+}
 
 .standard-button {
   font-size: 14px;
   padding: 8px 16px;
   cursor: pointer;
   border-radius: 8px;
-  text-align: center; }
+  text-align: center;
+}
 
 .standard-button-beige {
   background-color: #D0C7A8;
-  color: black; }
+  color: black;
+}
 
 .unactive-application-info {
   text-align: center;
@@ -103,7 +120,8 @@ a {
   padding-top: 10px;
   padding-bottom: 40px;
   margin-bottom: -40px;
-  width: 100%; }
+  width: 100%;
+}
 
 .page-footer {
   background: #F0ECE5;
@@ -112,31 +130,38 @@ a {
   font-size: 16px;
   line-height: 30px;
   border-top: 1px solid #E8DDBB;
-  display: flex; }
+  display: flex;
+}
+.page-footer .page-footer-container {
+  display: flex;
+  flex-direction: column;
+  width: 1250px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+@media only screen and (min-width: 641px) {
   .page-footer .page-footer-container {
-    display: flex;
-    flex-direction: column;
-    width: 1250px;
-    max-width: 100%;
-    margin: 0 auto; }
-    @media only screen and (min-width: 641px) {
-      .page-footer .page-footer-container {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center; } }
-    .page-footer .page-footer-container .footer-link-sections {
-      margin-top: 40px;
-      margin-bottom: 40px; }
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+.page-footer .page-footer-container .footer-link-sections {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
 
-input[type="text"], input[type="email"], input[type="password"] {
+input[type=text], input[type=email], input[type=password] {
   border: 1px solid #7D7158;
   font-size: 14px;
   padding: 6px 10px;
   border-radius: 4px;
   box-shadow: 0px 2px 2px 0px #E3DCC5;
-  background-color: #FFFFFD; }
+  background-color: #FFFFFD;
+}
 
 label {
-  font-size: 14px; }
+  font-size: 14px;
+}
 
 /*# sourceMappingURL=front.css.map */

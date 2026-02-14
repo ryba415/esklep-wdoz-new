@@ -25,35 +25,44 @@ and open the template in the editor.
   border-top: 1px solid #E8DDBB;
   justify-content: space-around;
   position: fixed;
-  bottom: 0px; }
-  @media only screen and (min-width: 1024px) {
-    .bottom-bar {
-      display: none; } }
-  .bottom-bar .bottom-bar-item {
-    height: 63px;
-    width: 68px;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-    align-content: space-around;
-    padding-bottom: 8px;
-    padding-top: 8px;
-    border-top: 3px solid #F4EFDF; }
-    .bottom-bar .bottom-bar-item.bottom-bar-item-selected {
-      border-top: 3px solid #B7AD8E; }
-      .bottom-bar .bottom-bar-item.bottom-bar-item-selected .item-title {
-        font-weight: 800; }
-      .bottom-bar .bottom-bar-item.bottom-bar-item-selected svg g {
-        opacity: 1; }
-    .bottom-bar .bottom-bar-item svg {
-      height: 36px; }
-    .bottom-bar .bottom-bar-item .item-title {
-      width: 100%;
-      display: flex;
-      color: black;
-      align-content: center;
-      justify-content: center;
-      padding-top: 7px; }
+  bottom: 0px;
+}
+@media only screen and (min-width: 1024px) {
+  .bottom-bar {
+    display: none;
+  }
+}
+.bottom-bar .bottom-bar-item {
+  height: 63px;
+  width: 68px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  align-content: space-around;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  border-top: 3px solid #F4EFDF;
+}
+.bottom-bar .bottom-bar-item.bottom-bar-item-selected {
+  border-top: 3px solid #B7AD8E;
+}
+.bottom-bar .bottom-bar-item.bottom-bar-item-selected .item-title {
+  font-weight: 800;
+}
+.bottom-bar .bottom-bar-item.bottom-bar-item-selected svg g {
+  opacity: 1;
+}
+.bottom-bar .bottom-bar-item svg {
+  height: 36px;
+}
+.bottom-bar .bottom-bar-item .item-title {
+  width: 100%;
+  display: flex;
+  color: black;
+  align-content: center;
+  justify-content: center;
+  padding-top: 7px;
+}
 
 /*# sourceMappingURL=admin-bottom-bar.css.map */

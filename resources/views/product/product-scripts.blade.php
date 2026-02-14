@@ -41,86 +41,78 @@
         
     };
     
-    window.addToBasket = function addToBasket(e,id){
-        showGlobalLoader();
-        
-        let quantity = 1;
-        let productContainer = e.closest('.product-container');
-        if (productContainer != null){
-            let quantityInput = productContainer.querySelector('.product-quantity-input');
-            if (quantityInput != null){
-                quantity = quantityInput.value;
-            }
-        }
-        let basketId = getCookie('basket-identifier'); //
-        if (typeof basketId == 'undefined' || basketId == ''){
-            basketId = null;
-        }
-        
-        let formdata = {
-            'hash': basketId,
-            'id': id,
-            'quantity': quantity
-        };
-        fetch('/add-to-basket', { 
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                    'hash': basketId,
-                    'id': id,
-                    'quantity': quantity
-            })
-        }).then(response => {
-            if(response.ok){
-                return response.json();  
-            }
-            throw new Error('Request failed!');
-            hideGlobalLoader();
-        }, networkError => {
-            hideGlobalLoader();
-        }).then(jsonResponse => {
-            setCookie('basket-identifier',jsonResponse.hash);
-            
-            if (jsonResponse.status == false){
-                let productContainer = e.closest('.product-container');
-                console.log(jsonResponse);
-                if (productContainer != null){
-                    let errorInfo = productContainer.querySelector('.add-to-basker-error-info');
-                    console.log(errorInfo);
-                    if (errorInfo != null){
-                        errorInfo.innerHTML = '';
-                        errorInfo.classList.remove('hidden');
-                        let errorsString = '';
-                        for (let e=0;e<jsonResponse.errors.length;e++){
-                            errorsString = errorsString + jsonResponse.errors[e] + '<br>';
-                        }
-                        console.log(errorsString);
-                        errorInfo.innerHTML = errorsString;
-                    }
-                }
-            } else {
-               let productContainer = e.closest('.product-container');
-                if (productContainer != null){
-                    let errorInfo = productContainer.querySelector('.add-to-basker-error-info');
-                    if (errorInfo != null){
-                        errorInfo.classList.add('hidden');
-                        errorInfo.innerHTML = '';
-                    }
-                } 
-            }
-            console.log(jsonResponse);
-            setBasketInHeader(jsonResponse.basketData);
-            
-            setTimeout(() => {
-                hideGlobalLoader();
-            }, "350");
-            //
-        });
-        
+    window.addToBasket = function addToBasket(btn, id) {
+    showGlobalLoader();
+
+    const shortBox = btn.closest('.short-box');
+    const productContainer = btn.closest('.product-container');
+
+    const isShort = !!shortBox;
+
+    let quantity = 1;
+    let expirationDate = null;
+
+    if (isShort) {
+        const input = shortBox.querySelector('.short-quantity-input');
+        if (input) quantity = parseInt(input.value || '1', 10) || 1;
+
+        const max = parseInt(shortBox.dataset.max || '0', 10);
+        if (max > 0 && quantity > max) quantity = max;
+        if (quantity < 1) quantity = 1;
+
+        expirationDate = shortBox.dataset.expirationDate || null;
+    } else if (productContainer) {
+        const input = productContainer.querySelector(':scope .product-quantity-input');
+        if (input) quantity = parseInt(input.value || '1', 10) || 1;
+        if (quantity < 1) quantity = 1;
+    }
+
+    let basketId = getBasketHash();
+    if (basketId === '') basketId = null;
+
+    const payload = {
+        hash: basketId,
+        id: id,
+        quantity: quantity,
+        expiration_date: expirationDate,
     };
+
+    fetch('/add-to-basket', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
+        .then(r => { if (r.ok) return r.json(); throw new Error('Request failed!'); })
+        .then(jsonResponse => {
+        setCookie('basket-identifier', jsonResponse.hash);
+
+        const errorScope = isShort ? shortBox : productContainer;
+        const errorInfo = errorScope ? errorScope.querySelector('.add-to-basker-error-info') : null;
+
+        if (jsonResponse.status === false) {
+            if (errorInfo) {
+            errorInfo.classList.remove('hidden');
+            errorInfo.innerHTML = (jsonResponse.errors || []).map(e => `${e}<br>`).join('') || 'Wystąpił błąd.';
+            }
+        } else {
+            if (errorInfo) {
+            errorInfo.classList.add('hidden');
+            errorInfo.innerHTML = '';
+            }
+        }
+
+        setBasketInHeader(jsonResponse.basketData);
+        setTimeout(() => hideGlobalLoader(), 350);
+        })
+        .catch(() => hideGlobalLoader());
+    };
+
+
+    function getBasketHash() {
+        const el = document.getElementById('basket-identity');
+        if (el && el.value) return el.value;
+        return getCookie('basket-identifier') || '';
+    }
     
     function closeMinicart(e){
         document.getElementById('minicart').classList.remove('minicart-active');
@@ -147,10 +139,17 @@
             for (let i=0;i<basketObject.basket.basketItems.length;i++){
                 let newItem = minicartItemTemplate.cloneNode(true);
                 newItem.removeAttribute('id');
-                newItem.setAttribute('data-product-id',basketObject.basket.basketItems[i].productId);
-                let itemsIdAttrs = newItem.querySelectorAll('[data-product-id]');
-                for (let z=0;z<itemsIdAttrs.length;z++){
-                    itemsIdAttrs[z].setAttribute('data-product-id',basketObject.basket.basketItems[i].productId);
+
+                const bi = basketObject.basket.basketItems[i];
+
+                newItem.setAttribute('data-item-id', bi.id);
+                newItem.setAttribute('data-product-id', bi.productId);
+                newItem.setAttribute('data-expiration-date', bi.expiration_date || '');
+                let nodes = newItem.querySelectorAll('[data-product-id], [data-item-id], [data-expiration-date]');
+                for (let z=0; z<nodes.length; z++){
+                    if (nodes[z].hasAttribute('data-product-id')) nodes[z].setAttribute('data-product-id', bi.productId);
+                    if (nodes[z].hasAttribute('data-item-id')) nodes[z].setAttribute('data-item-id', bi.id);
+                    if (nodes[z].hasAttribute('data-expiration-date')) nodes[z].setAttribute('data-expiration-date', bi.expiration_date || '');
                 }
                 newItem.classList.remove('hidden');
                 newItem.querySelector('.minicart-product-name').innerHTML = basketObject.basket.basketItems[i].name;
@@ -171,7 +170,56 @@
             }
         }
     }    
-        
+    
+    function updateBasketPageFromBasketData(basketData) {
+        const basket = basketData?.basket;
+        if (!basket) return;
+
+
+        const map = new Map();
+        for (const bi of (basket.basketItems || [])) {
+            const key = `${bi.productId}|${bi.expiration_date ? bi.expiration_date : 'NULL'}`;
+            map.set(key, bi);
+        }
+
+        const rows = document.querySelectorAll('.basket-item-container[data-variant-key]');
+        rows.forEach(row => {
+            const key = row.getAttribute('data-variant-key');
+            const bi = map.get(key);
+
+            if (!bi) {
+            row.remove();
+            return;
+            }
+
+            const qtyInput = row.querySelector('.set-quantity-input');
+            if (qtyInput) qtyInput.value = bi.quantity;
+
+            const qtyText = row.querySelector('.basket-item-price-quantity');
+            if (qtyText) qtyText.textContent = `${bi.quantity} szt.`;
+
+            const priceGross = row.querySelector('.basket-item-price-gross');
+            if (priceGross) priceGross.textContent = priceFormat(bi.valueGross);
+
+            const unitWrap = row.querySelector('.basket-item-unit-price-gross-container');
+            const unitVal = row.querySelector('.basket-item-unit-price-gross');
+            if (bi.quantity > 1) {
+            if (unitWrap) unitWrap.classList.remove('hidden');
+            if (unitVal) unitVal.textContent = priceFormat(bi.valueGross / bi.quantity);
+            } else {
+            if (unitWrap) unitWrap.classList.add('hidden');
+            }
+
+            row.setAttribute('data-item-id', bi.id);
+            row.setAttribute('data-product-id', bi.productId);
+            row.setAttribute('data-expiration-date', bi.expiration_date || '');
+        });
+
+        const anyLeft = document.querySelectorAll('.basket-item-container[data-variant-key]').length;
+        if (anyLeft === 0) location.reload();
+        }
+
+
     function setCookie(name,value,days) {
         var expires = "";
         if (days) {
@@ -199,6 +247,17 @@
     
     
     document.addEventListener("DOMContentLoaded", function() {
+
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.remove-product');
+        if (!btn) return;
+
+        const itemContainer = btn.closest('.basket-item-container');
+        if (!itemContainer) return;
+
+        deleteBasketItem(itemContainer);
+    });
+
         let favorites = localStorage.getItem("favorites-items");
         if (favorites != null && favorites != ''){
             favorites = JSON.parse(favorites);
@@ -270,6 +329,69 @@
         }
     };
     
+    window.shortIncrementQuantity = function shortIncrementQuantity(btn) {
+    const container = btn.closest('.short-product-container');
+    if (!container) return;
+
+    const max = parseInt(container.dataset.max || '0', 10);
+    const input = container.querySelector('.short-quantity-input');
+    if (!input) return;
+
+    let current = parseInt(input.value || '0', 10);
+    if (isNaN(current) || current < 1) current = 1;
+
+    if (max > 0 && current >= max) {
+        input.value = max;
+
+        const err = container.querySelector('.short-stock-info');
+        if (err) {
+        err.textContent = `Maksymalnie ${max} szt. w krótkiej dacie.`;
+        err.classList.remove('hidden');
+        }
+        return;
+    }
+
+    input.value = current + 1;
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+    };
+
+    window.shortDecrementQuantity = function shortDecrementQuantity(btn) {
+    const container = btn.closest('.short-product-container');
+    if (!container) return;
+
+    const input = container.querySelector('.short-quantity-input');
+    if (!input) return;
+
+    let current = parseInt(input.value || '0', 10);
+    if (isNaN(current) || current < 1) current = 1;
+
+    const next = current - 1;
+
+    if (next >= 1) {
+        input.value = next;
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+    } else {
+        input.value = 1;
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+    };
+
+    document.addEventListener('input', (e) => {
+    if (!e.target.classList.contains('short-quantity-input')) return;
+
+    const input = e.target;
+    const container = input.closest('.short-product-container');
+    const max = parseInt(container?.dataset.max || '0', 10);
+
+    let val = parseInt(input.value || '0', 10);
+    if (isNaN(val) || val < 1) val = 1;
+    if (max > 0 && val > max) val = max;
+
+    input.value = val;
+    });
+
+
+
     window.executeIncrementQuantityAndUpdate = function executeIncrementQuantityAndUpdate(event){
         let itemContainer = event.closest('.basket-item-container');
         let quantityInput = itemContainer.querySelector('.minicart-product-quantity');
@@ -287,7 +409,7 @@
             var event = new Event('change');
             quantityInput.dispatchEvent(event);
         } else {
-            deleteBasketItem(event);
+            deleteBasketItem(itemContainer);
         }
     };
     
@@ -300,138 +422,143 @@
         }
     };
     
-    async function changeQuantity(button, quantity, replace = false){
+    async function changeQuantity(buttonOrContainer, quantity, replace = false){
         showGlobalLoader();
-        let itemContainer = button.closest('.basket-item-container');
-        //let itemId = itemContainer.getAttribute('data-item-id');
-        let productId = itemContainer.getAttribute('data-product-id');
-        let quantityInput = itemContainer.querySelector('.set-quantity-input');
-        let newQuantity = 0;
-        if (replace){
-            newQuantity = parseInt(quantity);
-        } else {
-            newQuantity = parseInt(quantityInput.value) + quantity;
-        }
-        
-        let identity = '';
-        if (document.getElementById('basket-identity') != null){
-            identity = document.getElementById('basket-identity').value;
-        } else {
-            identity = getCookie('basket-identifier');
+
+        const itemContainer = buttonOrContainer.classList?.contains('basket-item-container')
+            ? buttonOrContainer
+            : buttonOrContainer.closest('.basket-item-container');
+
+        if (!itemContainer) {
+            hideGlobalLoader();
+            return;
         }
 
-        fetch('/add-to-basket', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                id: productId,
-                quantity: quantity,
-                changeQuantity: true,
-                hash: identity
-            })
-        }).then(response => {
-            if(response.ok){
-                return response.json();  
+        const itemId = itemContainer.getAttribute('data-item-id');
+        const productId = itemContainer.getAttribute('data-product-id');
+
+
+        const expirationDateAttr = itemContainer.getAttribute('data-expiration-date');
+        const expirationDate = (expirationDateAttr && expirationDateAttr.trim() !== '') ? expirationDateAttr : null;
+
+        const quantityInput = itemContainer.querySelector('.set-quantity-input');
+        const currentVal = parseInt(quantityInput?.value || '0');
+
+
+        const newQuantity = replace ? parseInt(quantity) : (currentVal + parseInt(quantity));
+
+
+        let identity = getBasketHash();
+
+
+        if (newQuantity <= 0) {
+            await deleteBasketItem(itemContainer);
+            hideGlobalLoader();
+            return;
+        }
+
+        try {
+            const res = await fetch('/add-to-basket', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    id: parseInt(productId),
+                    quantity: parseInt(newQuantity), 
+                    changeQuantity: true,
+                    expiration_date: expirationDate,   
+                    hash: identity
+                })
+            });
+
+            const jsonResponse = await res.json();
+            if (jsonResponse?.basketData) {
+                setBasketInHeader(jsonResponse.basketData);
+                updateBasketPageFromBasketData(jsonResponse.basketData);
             }
-            throw new Error('Request failed!');
-            hideGlobalLoader();
-        }, networkError => {
-            console.log(networkError.message);
-            hideGlobalLoader();
-        }).then(jsonResponse => {
-            if (typeof rebuildBasket != 'undefined'){
+
+
+            if (typeof rebuildBasket !== 'undefined'){
                 rebuildBasket();
             }
-            if (newQuantity > 0){
-                quantityInput.value = newQuantity;
-                
-                if (jsonResponse.status == false){
-                    let product = document.querySelector('.product-container[data-product-id="'+productId+'"]');
-                    console.log(product);
-                    if (product != null){
-                        //let productContainer = product.closest('.product-container');
-                       // console.log(productContainer);
-                        //if (productContainer != null){
-                            let errorInfo = product.querySelector('.add-to-basker-error-info');
-                            console.log(errorInfo);
-                            if (errorInfo != null){
-                                errorInfo.innerHTML = '';
-                                errorInfo.classList.remove('hidden');
-                                let errorsString = '';
-                                for (let e=0;e<jsonResponse.errors.length;e++){
-                                    errorsString = errorsString + jsonResponse.errors[e] + '<br>';
-                                }
-                                console.log(errorsString);
-                                errorInfo.innerHTML = errorsString;
-                            }
-                        //}
+
+            const errorInfo = itemContainer.querySelector('.add-to-basker-error-info');
+
+            if (!res.ok || jsonResponse.status === false){
+                if (errorInfo != null){
+                    errorInfo.innerHTML = '';
+                    errorInfo.classList.remove('hidden');
+
+                    let errorsString = '';
+                    if (jsonResponse.errors && jsonResponse.errors.length){
+                        for (let e=0;e<jsonResponse.errors.length;e++){
+                            errorsString += jsonResponse.errors[e] + '<br>';
+                        }
+                    } else {
+                        errorsString = 'Wystąpił błąd.';
                     }
-                } else {
-                    let product = document.querySelector('.product-container[data-product-id="'+productId+'"]');
-                    //console.log(product);
-                    if (product != null){
-                        //let productContainer = product.closest('.product-container');
-                         //if (productContainer != null){
-                             let errorInfo = product.querySelector('.add-to-basker-error-info');
-                             if (errorInfo != null){
-                                 errorInfo.classList.add('hidden');
-                                 errorInfo.innerHTML = '';
-                             }
-                         //} 
-                     }
+
+                    errorInfo.innerHTML = errorsString;
                 }
-                
+
+
             } else {
-                itemContainer.remove();
+                if (errorInfo != null){
+                    errorInfo.classList.add('hidden');
+                    errorInfo.innerHTML = '';
+                }
+                if (quantityInput) quantityInput.value = newQuantity;
             }
+
+        } catch (e) {
+            console.log(e);
+        } finally {
             setTimeout(() => {
                 hideGlobalLoader();
-            }, "450");    
-        });
+            }, 450);
+        }
     }
-
-    async function deleteBasketItem(deleteButton){
+    async function deleteBasketItem(deleteButtonOrContainer){
         showGlobalLoader();
-        let itemContainer = deleteButton.closest('.basket-item-container');
-        let itemId = itemContainer.getAttribute('data-item-id');
 
-        fetch('/remove-from-basket', {
+        const itemContainer = deleteButtonOrContainer.classList?.contains('basket-item-container')
+            ? deleteButtonOrContainer
+            : deleteButtonOrContainer.closest('.basket-item-container');
+
+        if (!itemContainer) { hideGlobalLoader(); return; }
+
+        const itemId = itemContainer.getAttribute('data-item-id');
+        const identity = getBasketHash();
+
+        try {
+            const res = await fetch('/remove-from-basket', {
             method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
+            headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                id: itemId,
-                hash: document.getElementById('basket-identity').value
+                id: parseInt(itemId, 10),
+                hash: identity
             })
-        }).then(response => {
-            if(response.ok){
-                return response.json();  
-            }
-            throw new Error('Request failed!');
-            hideGlobalLoader();
-        }, networkError => {
-            console.log(networkError.message);
-            hideGlobalLoader();
-        }).then(jsonResponse => {
-            rebuildBasket();
-            itemContainer.remove();
-            setTimeout(() => {
-                hideGlobalLoader();
-            }, "450");  
-            let itemsToRemove = document.querySelectorAll('.basket-item-container[data-item-id="'+itemId+'"]');
-            for(let i=0;i<itemsToRemove.length;i++){
-                itemsToRemove[i].remove();
-            }
-            
-            if (document.querySelectorAll('.basket-item-container[data-item-id]').length == 0){
-                location.reload();
-            }
-        });
+            });
 
+            const jsonResponse = await res.json();
+
+            if (jsonResponse?.basketData) {
+                setBasketInHeader(jsonResponse.basketData);
+                updateBasketPageFromBasketData(jsonResponse.basketData);
+            }
+            if (typeof rebuildBasket !== 'undefined') rebuildBasket();
+
+
+            if (typeof rebuildBasket !== 'undefined') rebuildBasket();
+
+        } catch (e) {
+            console.log(e);
+        } finally {
+            setTimeout(() => hideGlobalLoader(), 450);
+        }
     }
+
+
 </script>

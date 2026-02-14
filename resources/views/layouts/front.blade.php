@@ -9,7 +9,8 @@
     
     <link rel="preload" as="style" href="/build/assets/app-ffe8a325.css" />
     <link rel="stylesheet" href="/build/assets/app-ffe8a325.css" />
-    
+    <link rel="stylesheet" href="/css/front-layout.css" />  
+    <link rel="stylesheet" href="/css/tailwind.css" /> 
     <script type="text/javascript" src="/js/scripts.js?v=1"></script>
     
     

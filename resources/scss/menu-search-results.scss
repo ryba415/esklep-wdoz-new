@@ -1,4 +1,5 @@
 $search-button-width: 100px;
+@use "variables" as *;
 
 .header-search-autocomplete {
     position: relative;

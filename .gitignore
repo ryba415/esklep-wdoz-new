@@ -4,11 +4,13 @@
 .env.production
 php_errors.log
 docker-compose.override.yml
+package-lock.json
 
 # --- Katalogi systemowe Laravela ---
 /node_modules
 /public/hot
 /public/storage
+/public/uploads
 /storage/*.key
 /vendor
 

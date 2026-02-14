@@ -1,1 +1,149 @@
-const sass = require('node-sass');module.exports = function (grunt) {        grunt.loadNpmTasks('grunt-contrib-watch');    grunt.loadNpmTasks('grunt-contrib-concat');    grunt.loadNpmTasks('grunt-contrib-cssmin');    require('load-grunt-tasks')(grunt);        grunt.initConfig({        sass: {            options: {                implementation: sass,                sourceMap: true            },            dist: {                files: {                    'resources/css/admin-header.css': 'resources/scss/admin-header.scss',                    'resources/css/admin-bottom-bar.css': 'resources/scss/admin-bottom-bar.scss',                    'resources/css/admin.css': 'resources/scss/admin.scss',                    'resources/css/admin-dashboard.css': 'resources/scss/admin-dashboard.scss',                    'resources/css/bread-crumbs.css': 'resources/scss/bread-crumbs.scss',                    'resources/css/tests-list.css': 'resources/scss/tests-list.scss',                    'resources/css/tests-categories.css': 'resources/scss/tests-categories.scss',                    'resources/css/one-test.css': 'resources/scss/one-test.scss',                    'resources/css/admin-buy-now.css': 'resources/scss/admin-buy-now.scss',                    'resources/css/front.css': 'resources/scss/front.scss',                    'resources/css/front-header.css': 'resources/scss/front-header.scss',                    'resources/css/homepage.css': 'resources/scss/homepage.scss',                    'resources/css/login.css': 'resources/scss/login.scss',                    'resources/css/static-pages.css': 'resources/scss/static-pages.scss',                    'resources/css/admin-settings.css': 'resources/scss/admin-settings.scss',                                    }            }        },        concat: {            options: {                separator: ' ',            },            dist2: {                src: [                        'resources/css/admin.css',                        'resources/css/admin-header.css',                        'resources/css/admin-bottom-bar.css',                        'resources/css/bread-crumbs.css',                    ],                dest: 'public/css/admin-layout.css',            },            dist3: {                src: [                        'resources/css/admin-dashboard.css'                                          ],                dest: 'public/css/admin-dashboard.css',            },            dist4: {                src: [                        'resources/css/tests-list.css'                                          ],                dest: 'public/css/tests-list.css',            },            dist5: {                src: [                        'resources/css/one-test.css'                                          ],                dest: 'public/css/one-test.css',            },            dist6: {                src: [                        'resources/css/admin-buy-now.css'                                          ],                dest: 'public/css/admin-buy-now.css',            },            dist7: {                src: [                        'resources/css/homepage.css'                                          ],                dest: 'public/css/homepage.css',            },            dist8: {                src: [                        'resources/css/front.css',                        'resources/css/front-header.css',                    ],                dest: 'public/css/front-layout.css',            },            dist9: {                src: [                        'resources/css/login.css'                                          ],                dest: 'public/css/login.css',            },            dist10: {                src: [                        'resources/css/static-pages.css'                                          ],                dest: 'public/css/static-pages.css',            },            dist11: {                src: [                        'resources/css/admin-settings.css'                                          ],                dest: 'public/css/admin-settings.css',            },                                },        cssmin: {            target: {              files: [{                expand: true,                cwd: 'public/css',                src: ['*.css', '!*.min.css'],                dest: 'public/css',                ext: '.min.css'              }]            }        },        watch: {            css: {                files: 'resources/scss/*.scss',                tasks: [],                options: {                    interrupt: true,                },                tasks: ['sass','concat','cssmin']            },            grunt: {                files: ['Gruntfile.js'],                tasks: ['default'],            },        },    });        grunt.registerTask('default', ['sass','concat','cssmin']);}
+// const sass = require('node-sass');
+const sass = require('sass');
+
+
+module.exports = function (grunt) {
+
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+    require('load-grunt-tasks')(grunt);
+
+    grunt.initConfig({
+        sass: {
+            options: {
+                implementation: sass,
+                sourceMap: true
+            },
+            dist: {
+                files: {
+                    'resources/css/admin-header.css': 'resources/scss/admin-header.scss',
+                    'resources/css/admin-bottom-bar.css': 'resources/scss/admin-bottom-bar.scss',
+                    'resources/css/admin.css': 'resources/scss/admin.scss',
+                    'resources/css/admin-dashboard.css': 'resources/scss/admin-dashboard.scss',
+                    'resources/css/bread-crumbs.css': 'resources/scss/bread-crumbs.scss',
+                    'resources/css/tests-list.css': 'resources/scss/tests-list.scss',
+                    'resources/css/tests-categories.css': 'resources/scss/tests-categories.scss',
+                    'resources/css/one-test.css': 'resources/scss/one-test.scss',
+                    'resources/css/admin-buy-now.css': 'resources/scss/admin-buy-now.scss',
+                    'resources/css/front.css': 'resources/scss/front.scss',
+                    'resources/css/front-header.css': 'resources/scss/front-header.scss',
+                    'resources/css/homepage.css': 'resources/scss/homepage.scss',
+                    'resources/css/login.css': 'resources/scss/login.scss',
+                    'resources/css/static-pages.css': 'resources/scss/static-pages.scss',
+                    'resources/css/admin-settings.css': 'resources/scss/admin-settings.scss',
+                    'resources/css/menu-search-results.css': 'resources/scss/menu-search-results.scss',
+                }
+            }
+        },
+        concat: {
+            options: {
+                separator: ' ',
+            },
+            dist2: {
+                src: [
+                    'resources/css/admin.css',
+                    'resources/css/admin-header.css',
+                    'resources/css/admin-bottom-bar.css',
+                    'resources/css/bread-crumbs.css',
+                ],
+                dest: 'public/css/admin-layout.css',
+            },
+            dist3: {
+                src: [
+                    'resources/css/admin-dashboard.css'
+
+                ],
+                dest: 'public/css/admin-dashboard.css',
+            },
+            dist4: {
+                src: [
+                    'resources/css/tests-list.css'
+
+                ],
+                dest: 'public/css/tests-list.css',
+            },
+            dist5: {
+                src: [
+                    'resources/css/one-test.css'
+
+                ],
+                dest: 'public/css/one-test.css',
+            },
+            dist6: {
+                src: [
+                    'resources/css/admin-buy-now.css'
+
+                ],
+                dest: 'public/css/admin-buy-now.css',
+            },
+            dist7: {
+                src: [
+                    'resources/css/homepage.css'
+
+                ],
+                dest: 'public/css/homepage.css',
+            },
+            dist8: {
+                src: [
+                    'resources/css/front.css',
+                    'resources/css/front-header.css',
+                    'resources/css/menu-search-results.css',
+                ],
+                dest: 'public/css/front-layout.css',
+            },
+            dist9: {
+                src: [
+                    'resources/css/login.css'
+
+                ],
+                dest: 'public/css/login.css',
+            },
+            dist10: {
+                src: [
+                    'resources/css/static-pages.css'
+
+                ],
+                dest: 'public/css/static-pages.css',
+            },
+            dist11: {
+                src: [
+                    'resources/css/admin-settings.css'
+
+                ],
+                dest: 'public/css/admin-settings.css',
+            },
+
+        },
+        cssmin: {
+            target: {
+                files: [{
+                    expand: true,
+                    cwd: 'public/css',
+                    src: ['*.css', '!*.min.css'],
+                    dest: 'public/css',
+                    ext: '.min.css'
+                }]
+            }
+        },
+        watch: {
+            css: {
+                files: 'resources/scss/*.scss',
+                tasks: [],
+                options: {
+                    interrupt: true,
+                },
+                tasks: ['sass', 'concat', 'cssmin']
+            },
+            grunt: {
+                files: ['Gruntfile.js'],
+                tasks: ['default'],
+            },
+        },
+    });
+
+    grunt.registerTask('default', ['sass', 'concat', 'cssmin']);
+}
+
+
+

@@ -97,7 +97,20 @@
             <tbody>
                 @foreach ($basket->basketItems as $position)
                 <tr style="border-bottom: 1px solid #dfdfdf;">
-                    <td style="padding: 5px; text-align: left; border-bottom: 1px solid #38900D;">{{$position->name}}<br><span style="font-size: 12px; color: gray">{{$position->brand}}, {{$position->content}}</span></td>
+                    <td style="padding: 5px; text-align: left; border-bottom: 1px solid #38900D;">
+                        {{$position->name}}<br>
+
+                        <span style="font-size: 12px; color: gray;">
+                            {{$position->brand}}, {{$position->content}}
+                        </span>
+
+                        @if(!empty($position->expiration_date))
+                            <div style="margin-top:6px; font-size:12px; color:#d71921; line-height:16px;">
+                                Krótka data ważności:
+                                <strong>{{ \Carbon\Carbon::parse($position->expiration_date)->format('d.m.Y') }}</strong>
+                            </div>
+                        @endif
+                    </td>
                     <td style="padding: 5px; border-bottom: 1px solid #38900D;">{{number_format(floatval($position->priceNet), 2,',',' ')}} zł</td>
                     <td style="padding: 5px; border-bottom: 1px solid #38900D;">{{$position->vat_rate}}%</td>
                     <td style="padding: 5px; border-bottom: 1px solid #38900D;">{{number_format(floatval($position->valueGross), 2,',',' ')}} zł</td>

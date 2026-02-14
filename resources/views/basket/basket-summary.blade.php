@@ -80,7 +80,8 @@ let deleteButtons = document.querySelectorAll('.delete-basket-item');
 
 for (let i=0;i<deleteButtons.length;i++){
     deleteButtons[i].addEventListener("click", (event) => {
-        deleteBasketItem(event.target);
+        const itemContainer = event.currentTarget.closest('.basket-item-container');
+        deleteBasketItem(itemContainer); // << ważne
     });
 }
 
@@ -88,11 +89,10 @@ let incrementQuantityButtons = document.querySelectorAll('.set-quantity-more');
 
 for (let i=0;i<incrementQuantityButtons.length;i++){
     incrementQuantityButtons[i].addEventListener("click", (event) => {
-        let itemContainer = event.target.closest('.basket-item-container');
-        let quantityInput = itemContainer.querySelector('.set-quantity-input');
-        quantityInput.value = parseInt(quantityInput.value) + 1;
-        var event = new Event('change');
-        quantityInput.dispatchEvent(event);
+        const itemContainer = event.currentTarget.closest('.basket-item-container');
+        const quantityInput = itemContainer.querySelector('.set-quantity-input');
+        quantityInput.value = parseInt(quantityInput.value || '0') + 1;
+        quantityInput.dispatchEvent(new Event('change'));
     });
 }
 
@@ -121,15 +121,15 @@ let decrementQuantityButtons = document.querySelectorAll('.set-quantity-less');
 
 for (let i=0;i<decrementQuantityButtons.length;i++){
     decrementQuantityButtons[i].addEventListener("click", (event) => {
-        let itemContainer = event.target.closest('.basket-item-container');
-        let quantityInput = itemContainer.querySelector('.set-quantity-input');
-        let newVal = parseInt(quantityInput.value) - 1;
+        const itemContainer = event.currentTarget.closest('.basket-item-container');
+        const quantityInput = itemContainer.querySelector('.set-quantity-input');
+        const newVal = parseInt(quantityInput.value || '0') - 1;
+
         if (newVal > 0){
             quantityInput.value = newVal;
-            var event = new Event('change');
-            quantityInput.dispatchEvent(event);
+            quantityInput.dispatchEvent(new Event('change'));
         } else {
-            deleteBasketItem(event.target);
+            deleteBasketItem(itemContainer); // << ważne, przekaż kontener
         }
     });
 }
@@ -210,24 +210,34 @@ async function rebuildBasket(){
             document.getElementById('missing-for-free-delivery2').innerHTML = priceFormat(missingFreeDelivery);
         }
         //let productsListContainer = document.getElementById('basket-products-list');
-        for (let i=0;i<jsonResponse.basket.basketItems.length;i++){
-            let item = jsonResponse.basket.basketItems[i];
-            let itemsContainer = document.querySelectorAll('.basket-item-container[data-product-id="'+item.productId+'"]');
-            console.log(itemsContainer);
-            for (let it=0;it<itemsContainer.length;it++){
-                let itemContainer = itemsContainer[it];
-                if (itemContainer.querySelector('.basket-item-price-gross') != null){
-                    itemContainer.querySelector('.basket-item-price-gross').innerHTML = priceFormat(item.valueGross);
-                    itemContainer.querySelector('.basket-item-price-quantity').innerHTML = item.quantity + ' szt.';
-                    itemContainer.querySelector('.basket-item-unit-price-gross').innerHTML = priceFormat(item.priceGross);
-                    if (item.quantity > 1){
-                        itemContainer.querySelector('.basket-item-unit-price-gross-container').classList.remove("hidden");
-                    } else {
-                        itemContainer.querySelector('.basket-item-unit-price-gross-container').classList.add("hidden");
-                    }
-                }
+        for (let i = 0; i < jsonResponse.basket.basketItems.length; i++) {
+            const item = jsonResponse.basket.basketItems[i];
+
+            const itemContainer = document.querySelector('.basket-item-container[data-item-id="' + item.id + '"]');
+            if (!itemContainer) continue;
+
+            const priceGrossEl = itemContainer.querySelector('.basket-item-price-gross');
+            const qtyTextEl = itemContainer.querySelector('.basket-item-price-quantity');
+            const unitPriceEl = itemContainer.querySelector('.basket-item-unit-price-gross');
+            const unitPriceBox = itemContainer.querySelector('.basket-item-unit-price-gross-container');
+
+            if (priceGrossEl) priceGrossEl.innerHTML = priceFormat(item.valueGross);
+            if (qtyTextEl) qtyTextEl.innerHTML = item.quantity + ' szt.';
+
+            const unit = (item.quantity > 0) ? (item.valueGross / item.quantity) : 0;
+
+            if (unitPriceEl) unitPriceEl.innerHTML = priceFormat(unit);
+
+            if (unitPriceBox) {
+                if (item.quantity > 1) unitPriceBox.classList.remove("hidden");
+                else unitPriceBox.classList.add("hidden");
             }
+
+            const qtyInput = itemContainer.querySelector('.set-quantity-input');
+            if (qtyInput) qtyInput.value = item.quantity;
+
         }
+
 
         if (jsonResponse.basket.drugsCount == 0){
             let deliverymethods = document.querySelectorAll('.delivery-method-in-basket');

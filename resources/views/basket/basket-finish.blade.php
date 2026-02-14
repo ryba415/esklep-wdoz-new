@@ -146,6 +146,7 @@
             Akceptuję <a href="#">Regulamin Apteki</a> <span class="redStar ml-1 text-lg text-red-600">* </span></span>
           </label>
         </div>
+        <span id="check-2-error" class="field-error-info hidden font-['Open_Sans'] text-sm text-[#d71921] mt-2 block"></span>
         @endif
 
         <div class="inline-flex items-start py-4 w-full">

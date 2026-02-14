@@ -10,61 +10,61 @@ and open the template in the editor.
 
 @import "variables.scss";
 
-.user-dashboard{
-    text-align:center;
-    
-    h1, h2{
+.user-dashboard {
+    text-align: center;
+
+    h1,
+    h2 {
         text-align: center;
     }
 
-    p.start-text{
+    p.start-text {
         text-align: center;
     }
-    
-    .standard-big-button{
-        width: calc( 100% - 70px );
+
+    .standard-big-button {
+        width: calc(100% - 70px);
         margin: 0 auto;
         max-width: 600px;
         margin-top: 15px;
         margin-bottom: 25px;
-        
+
         @media only screen and (min-width: $desktopDim) {
             max-width: 300px;
             margin-left: 20px;
             margin-right: 20px;
         }
     }
-    
-    .statistics-section{
+
+    .statistics-section {
         flex-wrap: wrap;
         display: flex;
         margin-bottom: 30px;
-        
-        h2{
+
+        h2 {
             width: 100%;
         }
-        
-        h3{
+
+        h3 {
             margin-bottom: 0px;
         }
-        
-        .subtitle-description{
+
+        .subtitle-description {
             font-size: 14px;
             font-weight: 100;
             margin-bottom: 15px;
             margin-top: 0px;
             color: gray;
         }
-        
-        .statistics-one-section{
+
+        .statistics-one-section {
             margin-top: 20px;
             margin-bottom: 20px;
             width: 100%;
-            
-            @media only screen and (min-width: $tabletDim) { 
+
+            @media only screen and (min-width: $tabletDim) {
                 width: 50%;
             }
         }
     }
 }
-
