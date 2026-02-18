@@ -86,8 +86,8 @@ module.exports = function (grunt) {
             },
             dist8: {
                 src: [
-                    'resources/css/front.css',
-                    'resources/css/front-header.css',
+                    //'resources/css/front.css',
+                    //'resources/css/front-header.css',
                     'resources/css/menu-search-results.css',
                 ],
                 dest: 'public/css/front-layout.css',

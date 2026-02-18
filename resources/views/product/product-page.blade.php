@@ -42,7 +42,7 @@
                         <div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 gap-2.5">
                             <div class="flex flex-col justify-center items-start flex-grow h-11 relative gap-1">
                                 <p class="flex-grow-0 flex-shrink-0 text-[24px] lg:text-[32px] font-semibold text-left text-[#eb442d]">
-                                    {{$product->price_gross}} zł
+                                    {{ \App\Models\GlobalHelper::diplayPrice($product->price_gross)}} zł
                                 </p>
                             </div>
                             <div class="border flex flex-row h-10 rounded-lg overflow-hidden grow-0 shrink-0 basis-auto" >
@@ -114,7 +114,7 @@
                             class="short-product-container flex w-full items-center justify-between gap-4 xl:w-auto xl:gap-24">
                             {{-- Price --}}
                             <p class="shrink-0 text-[28px] font-semibold leading-none text-[#eb442d] xl:text-[32px]">
-                            {{ $product->short_price_gross }} zł
+                            {{ \App\Models\GlobalHelper::diplayPrice($product->short_price_gross) }} zł
                             </p>
 
                             {{-- Quantity --}}

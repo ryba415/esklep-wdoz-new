@@ -8,9 +8,9 @@
     <div class="w-[96px] h-[96px] inline-block">
         @if (isset($item->images[0]) && $item->images[0]->image_name != null && $item->images[0]->image_name != '')
         <picture class="w-[96px] h-[96px] inline-block">
-            <source srcset="https://esklep.wdoz.pl/uploads/images/product/{{str_replace('.jpg','.webp',$item->images[0]->image_name)}}" type="image/webp">
-            <source srcset="https://esklep.wdoz.pl/uploads/images/product/{{$item->images[0]->image_name}}" type="image/jpeg"> 
-            <img width="96" height="96" class="w-24 text-xs w-[96px] h-[96px] inline-block" src="{{Config::get('constants.admin-panel-url')}}uploads/images/product/{{$item->images[0]->image_name}}" alt="{{$item->name}} - {{$item->brand}}, {{$item->content}}">
+            <source srcset="/uploads/images/product/{{str_replace('.jpg','.webp',$item->images[0]->image_name)}}" type="image/webp">
+            <source srcset="/uploads/images/product/{{$item->images[0]->image_name}}" type="image/jpeg"> 
+            <img width="96" height="96" class="w-24 text-xs w-[96px] h-[96px] inline-block" src="/uploads/images/product/{{$item->images[0]->image_name}}" alt="{{$item->name}} - {{$item->brand}}, {{$item->content}}">
         </picture>
         @endif    
     </div>

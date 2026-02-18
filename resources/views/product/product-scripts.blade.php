@@ -162,7 +162,7 @@
                 //newItem.querySelector('.minicart-product-quantity').innerHTML = basketObject.basket.basketItems[i].quantity;
                 newItem.querySelector('.minicart-product-quantity').value = basketObject.basket.basketItems[i].quantity;
                 if (typeof basketObject.basket.basketItems[i].images[0] != 'undefined'){
-                    newItem.querySelector('.minicart-product-image').setAttribute('src','https://esklep.wdoz.pl/uploads/images/product/' + basketObject.basket.basketItems[i].images[0].image_name);
+                    newItem.querySelector('.minicart-product-image').setAttribute('src','/uploads/images/product/' + basketObject.basket.basketItems[i].images[0].image_name);
                     newItem.querySelector('.minicart-product-image').setAttribute('alt',basketObject.basket.basketItems[i].name);
                 }
                 

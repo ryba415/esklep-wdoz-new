@@ -17,7 +17,7 @@
             <div class="flex flex-col justify-center items-start flex-grow h-11 relative gap-1">
                 <p class="flex-grow-0 flex-shrink-0  text-[32px] font-semibold text-left text-[#eb442d] whitespace-nowrap">
                     @if ($product->short_expiration_stock > 0)
-                        {{ \App\Models\GlobalHelper::diplayPrice($product->short_price_gross) }}
+                        od {{ \App\Models\GlobalHelper::diplayPrice($product->short_price_gross) }}
                     @else
                         {{ \App\Models\GlobalHelper::diplayPrice($product->price_gross) }}
                     @endif
@@ -44,7 +44,7 @@
             </div>
         </div>
         @if ($product->short_expiration_stock > 0)
-            <a href="/{{ $product->slug }}" class="flex justify-center items-center w-full h-12 gap-2 px-2.5 rounded-xl bg-[#eb442d] hover:bg-[#d03e26] transition-colors text-white">
+            <a href="/{{ $product->slug }}" class="flex justify-center items-center font-bold w-full h-12 gap-2 px-2.5 rounded-xl bg-[#eb442d] hover:bg-[#d03e26] transition-colors text-white">
                     Zobacz cenę
             </a>
         @else

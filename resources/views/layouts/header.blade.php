@@ -362,6 +362,8 @@ function normalizeProducts(json) {
 
     const items = products.slice(0, MAX_ITEMS).map(p => {
       const name = escapeHtml(p?.name);
+      //const content = escapeHtml(p?.content);
+      const content = p?.content ? `, ${escapeHtml(p.content)}` : escapeHtml(p?.content);
       const category = escapeHtml(p?.brand);
       const url = getProductUrl(p);
       const img = getImageUrl(p);
@@ -372,7 +374,7 @@ function normalizeProducts(json) {
             ${img ? `<img src="${escapeHtml(img)}" alt="${name}" loading="lazy">` : `<div class="search-dropdown__img--ph"></div>`}
           </div>
           <div class="search-dropdown__txt">
-            <div class="search-dropdown__meta">${category}</div>
+            <div class="search-dropdown__meta">${category}${content}</div>
             <div class="search-dropdown__name">${name}</div>
           </div>
         </a>
