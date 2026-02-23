@@ -27,7 +27,16 @@
     <div class="podsumowanie mt-auto flex flex-col justify-end items-center self-stretch gap-4">
         <div class="flex justify-start items-center self-stretch gap-2.5">
             <div class="flex flex-col justify-center items-start flex-grow h-11 relative gap-1">
-                <span class="text-[24px] font-semibold text-left text-[#eb442d]">{{ \App\Models\GlobalHelper::diplayPrice($product->price_gross) }} zł</span>
+                
+                
+                <span class="text-[24px] font-semibold text-left text-[#eb442d]">
+                    @if ($product->short_expiration_stock > 0)
+                        od {{ \App\Models\GlobalHelper::diplayPrice($product->short_price_gross) }}
+                    @else
+                        {{ \App\Models\GlobalHelper::diplayPrice($product->price_gross) }}
+                    @endif
+                     zł
+                </span>
             </div>
             <div class="border flex flex-row h-10 rounded-lg overflow-hidden" >
                 <button class="minus px-3 w-10 hover:bg-gray-100" aria-label="Zmniejsz ilość" onclick="executedecrementQuantity(this)">
@@ -44,6 +53,13 @@
                 </button>
             </div>
         </div>
+        
+        
+        @if ($product->short_expiration_stock > 0)
+            <a href="/{{ $product->slug }}" class="flex justify-center items-center font-bold w-full h-12 gap-2 px-2.5 rounded-xl bg-[#eb442d] hover:bg-[#d03e26] transition-colors text-white">
+                    Zobacz cenę
+            </a>
+        @else
         <button  onclick="addToBasket(this,{{$product->id}})" class="@if($product->availability <=0) opacity-50 cursor-not-allowed grayscale pointer-events-none @endif flex justify-center items-center w-full h-12 gap-2 px-2.5 rounded-xl bg-[#eb442d] hover:bg-[#d03e26] transition-colors" aria-label="Dodaj do koszyka">
             <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0 w-[43px] h-11 relative" preserveAspectRatio="none">
                 <path d="M6.771 8.25H10.6941C11.3945 8.25 11.7447 8.25 12.0075 8.44076C12.2703 8.63152 12.3788 8.96452 12.5957 9.63052L13.9377 13.75" stroke="white" stroke-width="1.5" stroke-linecap="round"></path>
@@ -55,5 +71,6 @@
             <span class="text-lg font-bold text-white">@if($product->availability <=0) produkt niedostępny @else Do koszyka @endif </span>
         </button>
         <span class="add-to-basker-error-info hidden font-['Open_Sans'] text-sm text-[#d71921]"></span>
+        @endif
     </div>
 </div>

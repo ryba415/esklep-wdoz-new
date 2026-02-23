@@ -29,7 +29,7 @@
                 
                 <div class="flex pt-4 pb-8 justify-evenly flex-wrap">
                     @if($order->user_id != null && $order->user_id != '')
-                    <a href="/profile/profil" class="bg-wdoz-primary hover:bg-wdoz-primary-900 text-white mt-4 rounded p-3 shadow text-base mx-3 my-3 ">Moje konto</a>
+                    <a href="/user-acount/dasboard" class="bg-wdoz-primary hover:bg-wdoz-primary-900 text-white mt-4 rounded p-3 shadow text-base mx-3 my-3 ">Moje konto</a>
                     @endif
                     <a href="/" class="bg-wdoz-primary hover:bg-wdoz-primary-900 text-white mt-4 rounded p-3 shadow text-base mx-3 my-3  ">Przejdź do strony głównej</a>
                     
