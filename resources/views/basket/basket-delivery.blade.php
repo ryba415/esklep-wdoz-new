@@ -279,7 +279,7 @@
       <label class="cursor-pointer ml-2 text-slate-600 text-xs" for="accept-rules1">
         <span class="text-xl text-red-600">*</span>
 
-        Oświadczam, że zapoznałem się z obowiązującym w Drogerii Internetowej Wracam do Zdrowia <a style="color:#38900D" target="blank" href="/podstrona/regulamin/">Regulaminem</a> i wyrażam chęć zawarcia umowy sprzedaży do, której Regulamin ten będzie miał zastosowanie.
+        Oświadczam, że zapoznałem się z obowiązującym w Drogerii Internetowej Wracam do zdrowia <a style="color:#38900D" target="blank" href="/podstrona/regulamin/">Regulaminem</a> i wyrażam chęć zawarcia umowy sprzedaży do, której Regulamin ten będzie miał zastosowanie.
         
         <span class="text-red-700 block text-xs pt-1 hidden field-error-info">Błąd</span>
       </label>

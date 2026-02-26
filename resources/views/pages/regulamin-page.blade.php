@@ -8,8 +8,8 @@
     <div class="w-[1280px] max-w-full">
         <h1 class="m-auto text-center pt-1 pb-4 sm:pt-8 pl-1 pr-1 text-xl sm:text-2xl font-bold max-w-[250px] sm:max-w-[100%] text-[#008641]">{!!$title!!}</h1>
     
-        <p>Sprzedaż wysyłkową produktów leczniczych i innych produktów za pośrednictwem sieci Internet poprzez portal Apteki Internetowej prowadzi Apteka Wracam do Zdrowia przy Pl. Górnośląskim 16 w Gdyni. Podmiotem prowadzącym Aptekę Wracam do Zdrowia, działającą pod adresem www.wracamdozdrowia.pl jest spółka Wracam do zdrowia 8 spółka z ograniczoną odpowiedzialnością, adres: ul. Remusa 6, 81-574 Gdynia, wpisana do Rejestru Przedsiębiorców Krajowego Rejestru Sądowego prowadzonego przez Sąd Rejonowy w Gdańsku, Wydział Gospodarczy Krajowego Rejestru Sądowego pod numerem KRS: 0000674624, posiadająca REGON: 19212264200000, NIP: 5932265550 kapitał zakładowy 5.000,00 zł, pokryty w całości.
-        Farmaceuci, stanowiący zespół Apteki Wracam do Zdrowia, w podejmowanych działaniach kierują się zasadami Kodeksu Etyki Aptekarza oraz Kodeksu Dobrych Praktyk.</p>
+        <p>Sprzedaż wysyłkową produktów leczniczych i innych produktów za pośrednictwem sieci Internet poprzez portal Apteki Internetowej prowadzi Apteka Wracam do zdrowia przy Pl. Górnośląskim 16 w Gdyni. Podmiotem prowadzącym Aptekę Wracam do zdrowia, działającą pod adresem www.wracamdozdrowia.pl jest spółka Wracam do zdrowia 8 spółka z ograniczoną odpowiedzialnością, adres: ul. Remusa 6, 81-574 Gdynia, wpisana do Rejestru Przedsiębiorców Krajowego Rejestru Sądowego prowadzonego przez Sąd Rejonowy w Gdańsku, Wydział Gospodarczy Krajowego Rejestru Sądowego pod numerem KRS: 0000674624, posiadająca REGON: 19212264200000, NIP: 5932265550 kapitał zakładowy 5.000,00 zł, pokryty w całości.
+        Farmaceuci, stanowiący zespół Apteki Wracam do zdrowia, w podejmowanych działaniach kierują się zasadami Kodeksu Etyki Aptekarza oraz Kodeksu Dobrych Praktyk.</p>
 
         <p>Przed rozpoczęciem korzystania z portalu Apteki Internetowej, zachęcamy do dokładnego i starannego zapoznania się z treścią niniejszego Regulaminu oraz Polityki Prywatności.</p>
 
@@ -33,10 +33,10 @@
 
         <h2>II. Definicje.</h2>
 
-        <p><strong>Administrator / Sprzedający</strong> – Wracam do Zdrowia 8 Spółka z ograniczoną odpowiedzialnością, adres: ul. Remusa 6, 81-574 Gdynia, wpisana do Rejestru Przedsiębiorców Krajowego Rejestru Sądowego prowadzonego przez Sąd Rejonowy w Gdańsku, Wydział Gospodarczy Krajowego Rejestru Sądowego pod numerem KRS: 0000674624, posiadająca REGON: 19212264200000, NIP: 5932265550, będąca podmiotem prowadzącym aptekę Wracam do Zdrowia w Gdyni przy Pl. Górnośląski 16, 81-509 Gdynia, posiadającą zezwolenie Pomorskiego Wojewódzkiego Inspektoratu Farmaceutycznego nr 976/2016 na prowadzenie apteki ogólnodostępnej. Apteka Wracam do Zdrowia prowadzi sprzedaż wysyłkową w formie Apteki Internetowej Wracam do Zdrowia</p>
+        <p><strong>Administrator / Sprzedający</strong> – Wracam do zdrowia 8 Spółka z ograniczoną odpowiedzialnością, adres: ul. Remusa 6, 81-574 Gdynia, wpisana do Rejestru Przedsiębiorców Krajowego Rejestru Sądowego prowadzonego przez Sąd Rejonowy w Gdańsku, Wydział Gospodarczy Krajowego Rejestru Sądowego pod numerem KRS: 0000674624, posiadająca REGON: 19212264200000, NIP: 5932265550, będąca podmiotem prowadzącym aptekę Wracam do Zdrowia w Gdyni przy Pl. Górnośląski 16, 81-509 Gdynia, posiadającą zezwolenie Pomorskiego Wojewódzkiego Inspektoratu Farmaceutycznego nr 976/2016 na prowadzenie apteki ogólnodostępnej. Apteka Wracam do zdrowia prowadzi sprzedaż wysyłkową w formie Apteki Internetowej Wracam do zdrowia</p>
 
         <p>Dane do kontaktów ze Sprzedającym:</br>
-        Apteka Internetowa Wracam do Zdrowia</br>
+        Apteka Internetowa Wracam do zdrowia</br>
         Plac Górnośląski 16, 81-509 Gdynia</br>
         Telefon: 798002314</br>
         Adres email: apteka@wdoz.pl.</p>
@@ -324,7 +324,7 @@
 
         <p>7. Sprzedający może wstrzymać się ze zwrotem płatności otrzymanych od Konsumenta lub Przedsiębiorcy, posiadającego uprawnienia konsumenta, do chwili otrzymania Produktu z powrotem lub dostarczenia dowodu jego odesłania, w zależności od tego, które zdarzenie nastąpi wcześniej.</p>
 
-        <p>8. Konsument lub Przedsiębiorca, posiadający uprawnienia konsumenta ma obowiązek niezwłocznie, nie później niż w terminie 14 dni od dnia, w którym odstąpił od Umowy Sprzedaży, zwrócić Produkt Sprzedawcy lub przekazać go osobie upoważnionej przez Sprzedawcę do odbioru. Do zachowania terminu wystarczy odesłanie Produktu przed jego upływem. Konsument może zwrócić Produkt na adres: Apteka Wracam do Zdrowia Plac Górnośląski 16, 81-509 Gdynia.</p>
+        <p>8. Konsument lub Przedsiębiorca, posiadający uprawnienia konsumenta ma obowiązek niezwłocznie, nie później niż w terminie 14 dni od dnia, w którym odstąpił od Umowy Sprzedaży, zwrócić Produkt Sprzedawcy lub przekazać go osobie upoważnionej przez Sprzedawcę do odbioru. Do zachowania terminu wystarczy odesłanie Produktu przed jego upływem. Konsument może zwrócić Produkt na adres: Apteka Wracam do zdrowia Plac Górnośląski 16, 81-509 Gdynia.</p>
 
         <p>9. Konsument lub Przedsiębiorca, posiadający uprawnienia konsumenta ponosi bezpośrednie koszty zwrotu rzeczy oraz odpowiada za zmniejszenie wartości Produktu wynikające z korzystania z niego w sposób inny niż było to konieczne do stwierdzenia charakteru, cech i funkcjonowania rzeczy.</p>
 
@@ -342,14 +342,14 @@
         <p>5. Reklamację, o ile możliwość ich złożenia przysługuje Klientowi, można złożyć:</p>
 
                 <ul style="margin-left: 40px;"</ul>
-                        <li>drogą pocztową na adres: Apteka Wracam do Zdrowia Plac Górnośląski 16, 81-509 Gdynia</li>
+                        <li>drogą pocztową na adres: Apteka Wracam do zdrowia Plac Górnośląski 16, 81-509 Gdynia</li>
                         <li>lub drogą elektroniczną na adres e-mail: <a href="mailto: reklamacje@wdoz.pl">reklamacje@wdoz.pl</a>.</li>
                 </ul>
 
         <p>6. W przypadku reklamacji drogą pocztową, Klient powinien wskazać niezbędne informację do zidentyfikowania zamówienia (np. numer zamówienia), imię i nazwisko, adres poczty elektronicznej, adres do doręczeń oraz wskazać przyczyny reklamacji, w tym szczegółowy opis wady Produktu. Klient powinien wskazać, o jakie działania ze strony Sprzedawcy wnosi. Klient może złożyć reklamację przy wykorzystaniu formularza reklamacji, zamieszczonego na stronie <a href="#">reklamacje i zwroty</a>. Klient powinien przesłać Produkt, będący przedmiotem reklamacji, na adres:</p>
 
                 <ul style="margin-left: 40px; list-style-type:none;"</ul>
-                        <li>Apteka Wracam do Zdrowia Plac Górnośląski 16, 81-509 Gdynia</l1>
+                        <li>Apteka Wracam do zdrowia Plac Górnośląski 16, 81-509 Gdynia</l1>
                 </ul>
 
         <p>7. Sprzedawca jest zobowiązany rozpatrzyć reklamację w terminie 14 dni przesłanie wiadomości elektronicznej na adres e-mail Klienta.</p>

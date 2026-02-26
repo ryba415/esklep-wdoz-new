@@ -111,6 +111,13 @@ class IntegrationsController extends Controller
             $json = json_encode($xml);
             $productsArray = json_decode($json,TRUE);
             
+            
+            $emailVariables = [];
+            $emailVariables['content'] = "Zawartość odpowiedzi Camsoft: " . $json;
+            $emailsArray = ['info@datum.pl'];
+            $email = new Email($emailsArray, 'zawartość odpowiedzi Camsoft', 'emails/standard-mail-template', $emailVariables);
+            $email->send();
+            
             $licz = 0;
             $errorsString = '';
             $errorsStringCritical = '';
@@ -181,7 +188,7 @@ class IntegrationsController extends Controller
         } else {
             $emailVariables = [];
             $emailVariables['content'] = "Nie udało się zaktualizować cen i stanów magazynowych w sklepie z programem aptecznym! Błędny login i lub hasło.";
-            $emailsArray = ['ryba415@gmail.com', 'darek@datum.pl'];
+            $emailsArray = ['darek@datum.pl','info@datum.pl'];
             $email = new Email($emailsArray, 'Błąd w integracji z Camsoft', 'emails/standard-mail-template', $emailVariables);
             $email->send();
         }

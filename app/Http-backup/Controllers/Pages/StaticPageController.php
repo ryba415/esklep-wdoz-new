@@ -33,7 +33,7 @@ class StaticPageController extends Controller
     public function aptekaInternetowaPage(){
         $viewData = [];
         $viewData['title'] = 'Apteka internetowa';
-        $viewData['content'] = 'Apteka Wracam do Zdrowia funkcjonuje na rynku już od ponad 30 lat. W sprzedaży posiadamy między innymi artykuły higieniczne, dermokosmetyki przeznaczone do różnych potrzeb skóry, leki bez recepty, suplementy diety, sprzęt medyczny, jak również zioła i preparaty ziołowe. Można tutaj zamówić z wygodną dostawą do domu ciśnieniomierz, inhalator, wybrany test diagnostyczny, tabletki łagodzące objawy alergii, środki przeciwbólowe, żel na ukąszenia owadów, witaminy, minerały, elektrolity oraz wiele innych artykułów. Zapraszamy do zapoznania się z ofertą.';
+        $viewData['content'] = 'Apteka Wracam do zdrowia funkcjonuje na rynku już od ponad 30 lat. W sprzedaży posiadamy między innymi artykuły higieniczne, dermokosmetyki przeznaczone do różnych potrzeb skóry, leki bez recepty, suplementy diety, sprzęt medyczny, jak również zioła i preparaty ziołowe. Można tutaj zamówić z wygodną dostawą do domu ciśnieniomierz, inhalator, wybrany test diagnostyczny, tabletki łagodzące objawy alergii, środki przeciwbólowe, żel na ukąszenia owadów, witaminy, minerały, elektrolity oraz wiele innych artykułów. Zapraszamy do zapoznania się z ofertą.';
         
         return view('pages.static-page',$viewData);
     }
@@ -127,7 +127,7 @@ email: sekretariat@wiif.gdansk.pl</p>
 
 <p>Na podany adres e-mail otrzymasz potwierdzenie zapisania się do Newslettera. Jeżeli chcesz zrezygnować z subskrypcji, można tego dokonać klikając na podany w e-mailu link lub wysyłając wiadomość o rezygnacji na adres info@datum.pl.</p>
 
-<p>Dane z Newslettera będą przetwarzane zgodnie z polityką prywatności apteki Wracam do Zdrowia.</p>
+<p>Dane z Newslettera będą przetwarzane zgodnie z polityką prywatności apteki Wracam do zdrowia.</p>
                 ';
         
         return view('pages.static-page',$viewData);
@@ -174,7 +174,7 @@ Uwagi lub pytania dotyczące działania strony internetowej prosimy kierować na
 
 <p align="center"><span style="font-size:18px;"><span style="font-family:times new roman,times,serif;"><strong>§ 1</strong></span></span></p>
 
-<p><span style="font-size:18px;"><span style="font-family:times new roman,times,serif;">Niniejszy regulamin usługi Newsletter, zwanym dalej „Regulaminem”, określa zasady świadczenia tej usługi przez Aptekę Internetową Wracam Do Zdrowia, którego właścicielem jest „Wracam do zdrowia 8” spółka z ograniczoną odpowiedzialnością, adres: ul. Remusa 6, 81-574 Gdynia, zwany dalej „Usługodawcą”.</span></span></p>
+<p><span style="font-size:18px;"><span style="font-family:times new roman,times,serif;">Niniejszy regulamin usługi Newsletter, zwanym dalej „Regulaminem”, określa zasady świadczenia tej usługi przez Aptekę Internetową Wracam do zdrowia, którego właścicielem jest „Wracam do zdrowia 8” spółka z ograniczoną odpowiedzialnością, adres: ul. Remusa 6, 81-574 Gdynia, zwany dalej „Usługodawcą”.</span></span></p>
 
 <p align="center"><span style="font-size:18px;"><span style="font-family:times new roman,times,serif;"><strong>§ 2</strong></span></span></p>
 

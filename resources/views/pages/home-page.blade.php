@@ -656,7 +656,7 @@
 </section> 
     
     
-<h1 class="m-auto text-center pt-4 sm:pt-8 pl-1 pr-1 text-xl sm:text-2xl font-bold max-w-[250px] sm:max-w-[100%] text-[#008641]">Wracam Do Zdrowia</h1>
+<h1 class="m-auto text-center pt-4 sm:pt-8 pl-1 pr-1 text-xl sm:text-2xl font-bold max-w-[250px] sm:max-w-[100%] text-[#008641]">Wracam do zdrowia</h1>
 
 <section class="bg-white flex w-full items-center justify-center py-7 xs:py-10 px-5 mt-8 mb-5">
     <div class="self-stretch min-w-60 min-h-[197px] w-[1620px] max-w-[1620px] my-auto">

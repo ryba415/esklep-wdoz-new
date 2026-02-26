@@ -1,5 +1,5 @@
 <div style="max-width: 600px; margin: 0 auto; margin-top: 30px; border: 2px solid #38900D">
-    <div style="background-color: #38900D; color: white; font-size: 23px; padding: 12px; text-align: center;">Apteka Wracam Do Zdrowia</div>
+    <div style="background-color: #38900D; color: white; font-size: 23px; padding: 12px; text-align: center;">Apteka Wracam do zdrowia</div>
 
     <div style="padding: 10px; font-size: 15px; padding-top: 20px;">
     Dzień Dobry, 

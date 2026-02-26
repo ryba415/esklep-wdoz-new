@@ -88,7 +88,7 @@
                 <h2 class="text-white text-[25px] font-semibold">Newsletter</h2>
  
                     <div class="flex max-w-full w-[275px] flex-col items-stretch text-sm text-white font-normal leading-[30px] justify-center mt-[22px]">
-                        <p class="leading-[18px]">Podaj swój adres e-mail już teraz i bądź na bieżąco z nowościami Wracam Do Zdrowia.</p> 
+                        <p class="leading-[18px]">Podaj swój adres e-mail już teraz i bądź na bieżąco z nowościami Wracam do zdrowia.</p> 
                     </div>
                     <div class="flex w-full gap-2 mt-[22px] flex-wrap">
                         <div class="w-[100%]">
@@ -125,7 +125,7 @@
         <div class="border w-full shrink-0 h-px mt-[31px] border-[rgba(9,74,36,1)] border-solid">
             
         </div>
-        <div class="text-white text-base font-normal mt-[21px]">Copyright © 2025 Wracam Do Zdrowia</div>
+        <div class="text-white text-base font-normal mt-[21px]">Copyright © 2025 Wracam do zdrowia</div>
         <div class="text-white text-xs font-normal leading-loose mt-[11px] max-md:max-w-full">realizacja: Mateusz Karaszewski, projekt graficzny: Marcin Kosicki, nadzór nad wdrożeniem: Datum S. C.</div>
             
     </div>

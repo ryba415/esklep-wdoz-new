@@ -32,7 +32,7 @@ return [
     'paynow_thankyou_page' => 'https://test.wracamdozdrowia.pl/dziekujemy-za-zakup',
     
     'use_ssl' => false,
-    'shop_name' => 'Apteka Wracam Do Zdrowia',
+    'shop_name' => 'Apteka Wracam do zdrowia',
     'bank_acount_number' => '31 1140 1052 0000 4188 6500 1004',
     'bank_acount_recipent' => 'Wracam do zdrowia 8 Sp. z z o.o.',
     //'drogeria_domain' => 'esklep-checkout.local',
