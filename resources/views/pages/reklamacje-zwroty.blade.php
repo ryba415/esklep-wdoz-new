@@ -1,9 +1,9 @@
 <div class="content">
 <h2 class="text-big-bold text-2xl mt-4 mb-4">Reklamacje</h2>
 
-<p class="mb-3">Kupujący ma prawo do zgłoszenia reklamacji zgodnie z Regulaminem wracamdozdrowia.pl.<br></p>
+<p class="mb-3">Kupujący ma prawo do zgłoszenia reklamacji zgodnie z Regulaminem Apteki Internetowej Wracam do zdrowia.<br></p>
 
-<p class="mb-3">Reklamacje prosimy składać drogą mailową na adres: <a class="text-[#008641] font-bold" href="mailto:reklamacje@wdoz.pl">reklamacje@wdoz.pl</a>. Reklamacja powinna zawierać dokładny opis reklamacji, numer zamówienia oraz dane klienta.</p>
+<p class="mb-3">Reklamacje prosimy składać drogą mailową na adres: <a class="text-[#008641] font-bold" href="mailto:reklamacje@wracamdozdrowia.pl">reklamacje@wracamdozdrowia.pl</a>. Reklamacja powinna zawierać dokładny opis reklamacji, numer zamówienia oraz dane klienta.</p>
 
 <p class="mb-3">Reklamacje rozpatrywane są w ciągu 14 dni od dnia otrzymania reklamowanego towaru. Po rozpatrzeniu reklamacji skontaktuje się z Państwem pracownik Działu Obsług Klienta i przekaże decyzję reklamacyjną oraz wszelkie niezbędne informacje.</p>
 

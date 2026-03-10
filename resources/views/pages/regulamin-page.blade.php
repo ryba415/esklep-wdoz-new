@@ -8,16 +8,16 @@
     <div class="w-[1280px] max-w-full">
         <h1 class="m-auto text-center pt-1 pb-4 sm:pt-8 pl-1 pr-1 text-xl sm:text-2xl font-bold max-w-[250px] sm:max-w-[100%] text-[#008641]">{!!$title!!}</h1>
     
-        <p>Sprzedaż wysyłkową produktów leczniczych i innych produktów za pośrednictwem sieci Internet poprzez portal Apteki Internetowej prowadzi Apteka Wracam do zdrowia przy Pl. Górnośląskim 16 w Gdyni. Podmiotem prowadzącym Aptekę Wracam do zdrowia, działającą pod adresem www.wracamdozdrowia.pl jest spółka Wracam do zdrowia 8 spółka z ograniczoną odpowiedzialnością, adres: ul. Remusa 6, 81-574 Gdynia, wpisana do Rejestru Przedsiębiorców Krajowego Rejestru Sądowego prowadzonego przez Sąd Rejonowy w Gdańsku, Wydział Gospodarczy Krajowego Rejestru Sądowego pod numerem KRS: 0000674624, posiadająca REGON: 19212264200000, NIP: 5932265550 kapitał zakładowy 5.000,00 zł, pokryty w całości.
+        <p>Sprzedaż wysyłkową produktów leczniczych i innych produktów za pośrednictwem sieci Internet poprzez portal Apteki Internetowej Wracam do zdrowia prowadzi Apteka Wracam do zdrowia przy Pl. Górnośląskim 16 w Gdyni. Podmiotem prowadzącym Aptekę Wracam do zdrowia, działającą pod adresem www.wracamdozdrowia.pl jest spółka Wracam do zdrowia 8 spółka z ograniczoną odpowiedzialnością, adres: ul. Remusa 6, 81-574 Gdynia, wpisana do Rejestru Przedsiębiorców Krajowego Rejestru Sądowego prowadzonego przez Sąd Rejonowy w Gdańsku, Wydział Gospodarczy Krajowego Rejestru Sądowego pod numerem KRS: 0000674624, posiadająca REGON: 19212264200000, NIP: 5932265550 kapitał zakładowy 5.000,00 zł, pokryty w całości.
         Farmaceuci, stanowiący zespół Apteki Wracam do zdrowia, w podejmowanych działaniach kierują się zasadami Kodeksu Etyki Aptekarza oraz Kodeksu Dobrych Praktyk.</p>
 
-        <p>Przed rozpoczęciem korzystania z portalu Apteki Internetowej, zachęcamy do dokładnego i starannego zapoznania się z treścią niniejszego Regulaminu oraz Polityki Prywatności.</p>
+        <p>Przed rozpoczęciem korzystania z portalu Apteki Internetowej Wracam do zdrowia, zachęcamy do dokładnego i starannego zapoznania się z treścią niniejszego Regulaminu oraz Polityki Prywatności.</p>
 
         <h2>I. Spis treści.</h2>
 
         <ul style="margin-left: 40px; list-style-type:none">
                 <li>2. Definicje.</li>
-                <li>3. Ogólne warunki korzystania z Apteki Internetowej.</li>
+                <li>3. Ogólne warunki korzystania z Apteki Internetowej Wracam do zdrowia.</li>
                 <li>4. Rejestracja Konta.</li>
                 <li>5. Logowanie.</li>
                 <li>6. Zamówienia.</li>
@@ -39,11 +39,11 @@
         Apteka Internetowa Wracam do zdrowia</br>
         Plac Górnośląski 16, 81-509 Gdynia</br>
         Telefon: 798002314</br>
-        Adres email: apteka@wdoz.pl.</p>
+        Adres email: apteka@wracamdozdrowia.pl.</p>
 
         <p><strong>Apteka Internetowa</strong> – portal internetowy o nazwie Apteka Wracam do zdrowia pod domeną internetową www.wracamdozdrowia.pl   oraz domenami partnerskimi …… </p>
 
-        <p><strong>Klient</strong> – osoba fizyczna, osoba prawna lub jednostka organizacyjna posiadająca zdolność do czynności prawnych, korzystająca z portalu Apteki Internetowej lub dokonująca zakupu w Aptece Internetowej - zgodnie z przepisami prawa, w odniesieniu do asortymentu sprzedawanego w ramach Apteki Internetowej.</p>
+        <p><strong>Klient</strong> – osoba fizyczna, osoba prawna lub jednostka organizacyjna posiadająca zdolność do czynności prawnych, korzystająca z portalu Apteki Internetowej Wracam do zdrowia lub dokonująca zakupu w Aptece Internetowej - zgodnie z przepisami prawa, w odniesieniu do asortymentu sprzedawanego w ramach Apteki Internetowej Wracam do zdrowia.</p>
 
         <p><strong>Konsument</strong> – osoba fizyczna dokonująca z przedsiębiorcą czynności prawnej niezwiązanej bezpośrednio z jej działalnością gospodarczą lub zawodową (konsument w rozumieniu art. 221 Kodeksy cywilnego);</p>
 
@@ -67,7 +67,7 @@
 
         <p><strong>RODO</strong> - Rozporządzenie Parlamentu Europejskiego i Rady UE 2016/679 z 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (Ogólne rozporządzenie o ochronie danych) (Dz.Urz. UE L 119, s. 1, ze zm.) (dalej: „RODO”);</p>
 
-        <p><strong>Umowa sprzedaży</strong> – umowa sprzedaży Produktu zawierana albo zawarta między Klientem a Sprzedawcą z wykorzystaniem środków porozumiewania się na odległość za pośrednictwem Apteki Internetowej;</p>
+        <p><strong>Umowa sprzedaży</strong> – umowa sprzedaży Produktu zawierana albo zawarta między Klientem a Sprzedawcą z wykorzystaniem środków porozumiewania się na odległość za pośrednictwem Apteki Internetowej Wracam do zdrowia;</p>
 
         <p><strong>Usługi</strong> – usługa świadczona przez Aptekę Internetową drogą elektroniczną na zasadach określonych w Regulaminie;</p>
 
@@ -81,13 +81,13 @@
 
         <p><strong>Zarejestrowany Klient/ Użytkownik</strong> – osoba, która dokonała rejestracji w Aptece Internetowej oraz założyła konto, przy użyciu adresu e-mail oraz hasła, na zasadach i warunkach określonych w Regulaminie.</p>
 
-        <h2>III. Ogólne warunki korzystania z Apteki Internetowej.</h2>
+        <h2>III. Ogólne warunki korzystania z Apteki Internetowej Wracam do zdrowia.</h2>
 
-        <p>1. Za pośrednictwem Apteki Internetowej, Klienci mają możliwość dokonać zakupu Produktów, w tym Produktów Leczniczych, a także uzyskać na warunkach i zasadach określonych w niniejszym Regulaminie, usługi farmaceutyczne.</p>
+        <p>1. Za pośrednictwem Apteki Internetowej Wracam do zdrowia, Klienci mają możliwość dokonać zakupu Produktów, w tym Produktów Leczniczych, a także uzyskać na warunkach i zasadach określonych w niniejszym Regulaminie, usługi farmaceutyczne.</p>
 
-        <p>2. Informacje umieszczone na stronie internetowej Apteki Internetowej nie stanowią oferty zawarcia umowy w myśl przepisów Kodeksu Cywilnego. Zawarcie umowy następuje wyłącznie poprzez złożenie zamówienia przez Klienta oraz przez dostarczenie towaru.</p>
+        <p>2. Informacje umieszczone na stronie internetowej Apteki Internetowej Wracam do zdrowia nie stanowią oferty zawarcia umowy w myśl przepisów Kodeksu Cywilnego. Zawarcie umowy następuje wyłącznie poprzez złożenie zamówienia przez Klienta oraz przez dostarczenie towaru.</p>
 
-        <p>3. Warunkiem skorzystania z Apteki Internetowej jest posiadanie aktywnego konta poczty elektronicznej, dostęp do Internetu oraz skorzystanie z urządzenia z możliwością użycia przeglądarki:</p>
+        <p>3. Warunkiem skorzystania z Apteki Internetowej Wracam do zdrowia jest posiadanie aktywnego konta poczty elektronicznej, dostęp do Internetu oraz skorzystanie z urządzenia z możliwością użycia przeglądarki:</p>
         <ul style="margin-left: 40px;">
                 <li>Chrome ver. 80;</li>
                 <li>Firefoxver. 74;</li>
@@ -97,7 +97,7 @@
                 <li>Safari ver. 13.</li>
         </ul>
 
-        <p>4. Klientem Apteki Internetowej może być:</p>
+        <p>4. Klientem Apteki Internetowej Wracam do zdrowia może być:</p>
         <ul style="margin-left: 40px; list-style-type:none;">
                 <li>1) osoba fizyczna, posiadająca pełną zdolność do czynności prawnych, a w przypadkach przewidzianych przez przepisy prawa także osoba fizyczna posiadająca ograniczoną zdolność do czynności prawnych,</li>
                 <li>2) osoba prawna,</li>
@@ -119,9 +119,9 @@
 
         <h2>IV. Rejestracja Konta.</h2>
 
-        <p>1. Klient ma możliwość dokonania rejestracji na portalu Apteki Internetowej oraz utworzenia Konta.</p>
+        <p>1. Klient ma możliwość dokonania rejestracji na portalu Apteki Internetowej Wracam do zdrowia oraz utworzenia Konta.</p>
         <p>2. Rejestracja nie jest konieczna do złożenia zamówienia.</p>
-        <p>3. Rejestracja na portalu Apteki Internetowej jest bezpłatna. Rejestracja odbywa się poprzez wypełnienie dostępnego na stronie internetowej formularza rejestracyjnego następującymi danymi:</p>
+        <p>3. Rejestracja na portalu Apteki Internetowej Wracam do zdrowia jest bezpłatna. Rejestracja odbywa się poprzez wypełnienie dostępnego na stronie internetowej formularza rejestracyjnego następującymi danymi:</p>
 
                         <ul style="margin-left: 40px; list-style-type:none;"</ul>
                                 <li>1) imię nazwisko,</li>
@@ -129,7 +129,7 @@
                                 <li>3) NIP,</li>
                                 <li>4) aktywny adres e-mail,</li>
                                 <li>5) hasło,</li>
-                                <li>6) akceptację treści Regulaminu i Polityki Prywatności (Regulamin i Polityka Prywatności są dostępne na podstronie formularza rejestracyjnego oraz w dolnej części każdej z podstron portalu Apteki Internetowej; Klient ma możliwość zapoznania się z powyższymi dokumentami przed oraz w trakcie rejestracji Konta) a następnie przesłanie wypełnionego formularza rejestracyjnego drogą elektroniczną do Administratora poprzez wybór ikony „Zarejestruj się”.</li>
+                                <li>6) akceptację treści Regulaminu i Polityki Prywatności (Regulamin i Polityka Prywatności są dostępne na podstronie formularza rejestracyjnego oraz w dolnej części każdej z podstron portalu Apteki Internetowej Wracam do zdrowia; Klient ma możliwość zapoznania się z powyższymi dokumentami przed oraz w trakcie rejestracji Konta) a następnie przesłanie wypełnionego formularza rejestracyjnego drogą elektroniczną do Administratora poprzez wybór ikony „Zarejestruj się”.</li>
                         </ul>
         <p>4. Hasło jest ustalane indywidualnie przez Użytkownika i musi posiadać co najmniej 8 znaków.</p>
 
@@ -139,7 +139,7 @@
 
         <p>7. Klient jest uprawniony do posiadania tylko jednego konta. Zabronione jest tworzenie odrębnych kont przy pomocy innych adresów e-mail Klienta lub adresów e-mail tymczasowych.</p>
 
-        <p>8. Klient jest uprawniony do korzystania z portalu Apteki Internetowej jedynie za pośrednictwem własnego konta. Zabronione jest udostępnianie konta osobom trzecim.</p>
+        <p>8. Klient jest uprawniony do korzystania z portalu Apteki Internetowej Wracam do zdrowia jedynie za pośrednictwem własnego konta. Zabronione jest udostępnianie konta osobom trzecim.</p>
 
         <p>9. Rejestracja i utworzenie Konta przez osoby i jednostki, o których mowa w par. III ust. 4 pkt 2 i 3, może zostać dokonana jedynie przez ich przedstawicieli, uprawnionych do dokonania czynności w tym zakresie lub przez umocowanych pełnomocników.</p>
 
@@ -147,7 +147,7 @@
 
         <p>11. Z chwilą dokonania rejestracji i utworzenia Konta, zostaje zawarta umowa pomiędzy Klientem a Administratorem o świadczenie usług, na warunkach i zasadach określonych w Regulaminie.</p>
 
-        <p>12. Klient może usunąć swoje konto w każdym momencie poprzez wysłanie wiadomości e-mail zawierającej oświadczenie o chęci jego usunięcia na adres: apteka@wdoz.pl</p>
+        <p>12. Klient może usunąć swoje konto w każdym momencie poprzez wysłanie wiadomości e-mail zawierającej oświadczenie o chęci jego usunięcia na adres: apteka@wracamdozdrowia.pl</p>
 
 
         <h2>V. Logowanie.</h2>
@@ -180,7 +180,7 @@
 
                 <ul style="margin-left: 40px;"</ul>
                 <li>Zarejestrowany Klient albo</li>
-                <li>jako Gość– bez konieczności rejestracji oraz założenia Konta na stronie Apteki Internetowej.</li>
+                <li>jako Gość– bez konieczności rejestracji oraz założenia Konta na stronie Apteki Internetowej Wracam do zdrowia.</li>
                 </ul>
 
         <p>6. Zarejestrowany Klient po dokonaniu zamówienia ma możliwość wglądu w historię swoich zamówień oraz śledzenie zamówienia.</p>
@@ -202,7 +202,7 @@
 
         <p>12. Informacja o przyjęciu zamówienia do realizacji (stanowiąca oświadczenie Sprzedawcy o przyjęciu oferty), zostanie przesłana przez Sprzedawcę na podany przez Klienta adres e-mail. Z chwilą otrzymania przez Klienta informacji o przyjęciu zamówienia do realizacji, zostaje zawarta Umowa sprzedaży.</p>
 
-        <p>13. W przypadku przesłania błędnego zamówienia, dotyczącego wybranych Produktów, Klient powinien niezwłocznie poinformować o tym Sprzedawcę, dzwoniąc na numer 798002314 lub adres e-mail: <a href="mailto: eapteka@wdoz.pl">eapteka@wdoz.pl</a>. Sprzedawca nie ma obowiązku zmiany zamówienia po przyjęciu go do realizacji.</p>
+        <p>13. W przypadku przesłania błędnego zamówienia, dotyczącego wybranych Produktów, Klient powinien niezwłocznie poinformować o tym Sprzedawcę, dzwoniąc na numer 798002314 lub adres e-mail: <a href="mailto: eapteka@wracamdozdrowia.pl">eapteka@wracamdozdrowia.pl</a>. Sprzedawca nie ma obowiązku zmiany zamówienia po przyjęciu go do realizacji.</p>
 
 
         <h2>VII. Płatności i dostawa.</h2>
@@ -262,10 +262,10 @@
 
         <h2>VIII. Pozostałe prawa i obowiązki Klientów.</h2>
 
-        <p>1. Klient jest obowiązany do korzystania z Apteki Internetowej zgodnie z obowiązującymi przepisami prawa oraz postanowieniami Regulaminu. Klient ponosi pełną odpowiedzialność prawną za wszelkie działania sprzeczne z obowiązującymi przepisami prawa lub niezgodne z Regulaminem, a w szczególności za podanie fałszywych danych. W szczególności zabronione jest:</p>
+        <p>1. Klient jest obowiązany do korzystania z Apteki Internetowej Wracam do zdrowia zgodnie z obowiązującymi przepisami prawa oraz postanowieniami Regulaminu. Klient ponosi pełną odpowiedzialność prawną za wszelkie działania sprzeczne z obowiązującymi przepisami prawa lub niezgodne z Regulaminem, a w szczególności za podanie fałszywych danych. W szczególności zabronione jest:</p>
 
                 <ul style="margin-left: 40px;"</ul>
-                        <li>podejmowanie działań uniemożliwiających, ograniczających lub zakłócających działanie portalu Apteki Internetowej, w tym rozsyłanie wirusów, przeprowadzania ataków lub ich prób typu odmowa usługi (DOS) lub rozproszona odmowa usługi (DDOS), rozsyłanie innych szkodliwych technologii, próby nieautoryzowanego dostępu do portalu Apteki Internetowej, baz danych, serwerów lub jakichkolwiek urządzeń,</li>
+                        <li>podejmowanie działań uniemożliwiających, ograniczających lub zakłócających działanie portalu Apteki Internetowej Wracam do zdrowia, w tym rozsyłanie wirusów, przeprowadzania ataków lub ich prób typu odmowa usługi (DOS) lub rozproszona odmowa usługi (DDOS), rozsyłanie innych szkodliwych technologii, próby nieautoryzowanego dostępu do portalu Apteki Internetowej Wracam do zdrowia, baz danych, serwerów lub jakichkolwiek urządzeń,</li>
 
                         <li>rozsyłanie spamu,</li>
 
@@ -276,15 +276,15 @@
                         <li>podejmowanie bezprawnych działań, które naruszają lub negatywnie wpływają na dobre imię, renomę lub wizerunek Sprzedawcy.</li>
                 </ul>
 
-        <p>2. Klient powinien niezwłocznie powiadomić Administratora o każdym naruszeniu jego praw w związku z korzystaniem z portalu Apteki Internetowej, a także o wszelkich błędach w zakresie funkcjonowaniu Apteki Internetowej (Klient może skontaktować się z Administratorem telefonicznie pod numerem tel. 798002314 lub przesłać wiadomość drogą elektroniczną na adres e-mail: <a href="mailto: eapteka@wdoz.pl)">eapteka@wdoz.pl</a>.</p>
+        <p>2. Klient powinien niezwłocznie powiadomić Administratora o każdym naruszeniu jego praw w związku z korzystaniem z portalu Apteki Internetowej Wracam do zdrowia, a także o wszelkich błędach w zakresie funkcjonowaniu Apteki Internetowej Wracam do zdrowia (Klient może skontaktować się z Administratorem telefonicznie pod numerem tel. 798002314 lub przesłać wiadomość drogą elektroniczną na adres e-mail: <a href="mailto: eapteka@wracamdozdrowia.pl)">eapteka@wracamdozdrowia.pl</a>.</p>
 
         <h2>IX. Odpowiedzialność.</h2>
 
-        <p>1. Opis Produktów, w tym w szczególności produktów leczniczych, znajdujący się na stronie internetowej Apteki Internetowej służy wyłącznie celom informacyjnym. Przed użyciem Produktu należy szczegółowo zapoznać się z ulotką, załączoną do opakowania. W szczególności przed użyciem leków OTC należy zapoznać się z treścią ulotki dołączonej do opakowania bądź skonsultować się z lekarzem lub farmaceutą, gdyż każdy lek niewłaściwie stosowany zagraża Twojemu życiu lub zdrowiu.</p>
+        <p>1. Opis Produktów, w tym w szczególności produktów leczniczych, znajdujący się na stronie internetowej Apteki Internetowej Wracam do zdrowia służy wyłącznie celom informacyjnym. Przed użyciem Produktu należy szczegółowo zapoznać się z ulotką, załączoną do opakowania. W szczególności przed użyciem leków OTC należy zapoznać się z treścią ulotki dołączonej do opakowania bądź skonsultować się z lekarzem lub farmaceutą, gdyż każdy lek niewłaściwie stosowany zagraża Twojemu życiu lub zdrowiu.</p>
 
         <p>2. Sprzedawca nie ponosi odpowiedzialności za skutki niewłaściwego użycia Produktów i w sposób odbiegający od informacji podanej przez producenta.</p>
 
-        <p>3. Administrator podejmuje wszelkie możliwe środki do zapewnienia stałego i niezakłóconego korzystania z Apteki Internetowej, jednakże zastrzega możliwość czasowych przerw w jego funkcjonowaniu (ze względów technicznych lub innych niezależnych od Administratora) i nie odpowiada za ewentualne szkody z tym związane.</p>
+        <p>3. Administrator podejmuje wszelkie możliwe środki do zapewnienia stałego i niezakłóconego korzystania z Apteki Internetowej Wracam do zdrowia, jednakże zastrzega możliwość czasowych przerw w jego funkcjonowaniu (ze względów technicznych lub innych niezależnych od Administratora) i nie odpowiada za ewentualne szkody z tym związane.</p>
 
         <p>4. Sprzedawca jest uprawniony do zablokowania Konta Klienta w przypadku działania przez Klienta na szkodę Sprzedawcy, naruszenia przez Klienta przepisów prawa lub postanowień Regulaminu. Sprzedawca jest uprawniony do zawieszenia Konta w przypadku powzięcia wątpliwości w zakresie prawdziwej tożsamości Klienta lub posiadania przez niego większej liczby Kont na Portalu.</p>
 
@@ -312,9 +312,9 @@
 
         <ul style="margin-left: 40px; list-style-type:none;"</ul>
                 <li>a) w formie pisemnej na adres: Plac Górnośląski 16, 81-509 Gdynia;</li>
-                <li>b) w formie elektronicznej za pośrednictwem poczty elektronicznej na adres e-mail: <a href="mailto: reklamacje@wdoz.pl">reklamacje@wdoz.pl</a></li>
+                <li>b) w formie elektronicznej za pośrednictwem poczty elektronicznej na adres e-mail: <a href="mailto: reklamacje@wracamdozdrowia.pl">reklamacje@wracamdozdrowia.pl</a></li>
                 <li>c) przy wykorzystaniu wzoru formularza odstąpienia od umowy;</li>
-                <li>d) poprzez złożenie oświadczenia na stronie Apteki Internetowej (w przypadku skorzystania z tej możliwości, Sprzedawca prześle niezwłocznie potwierdzenie otrzymania informacji o odstąpieniu od umowy na trwałym.</li>
+                <li>d) poprzez złożenie oświadczenia na stronie Apteki Internetowej Wracam do zdrowia (w przypadku skorzystania z tej możliwości, Sprzedawca prześle niezwłocznie potwierdzenie otrzymania informacji o odstąpieniu od umowy na trwałym.</li>
                 <li><a href="#">Formularz odstąpienia od umowy</a></li>
         </ul>
 
@@ -343,7 +343,7 @@
 
                 <ul style="margin-left: 40px;"</ul>
                         <li>drogą pocztową na adres: Apteka Wracam do zdrowia Plac Górnośląski 16, 81-509 Gdynia</li>
-                        <li>lub drogą elektroniczną na adres e-mail: <a href="mailto: reklamacje@wdoz.pl">reklamacje@wdoz.pl</a>.</li>
+                        <li>lub drogą elektroniczną na adres e-mail: <a href="mailto: reklamacje@wracamdozdrowia.pl">reklamacje@wracamdozdrowia.pl</a>.</li>
                 </ul>
 
         <p>6. W przypadku reklamacji drogą pocztową, Klient powinien wskazać niezbędne informację do zidentyfikowania zamówienia (np. numer zamówienia), imię i nazwisko, adres poczty elektronicznej, adres do doręczeń oraz wskazać przyczyny reklamacji, w tym szczegółowy opis wady Produktu. Klient powinien wskazać, o jakie działania ze strony Sprzedawcy wnosi. Klient może złożyć reklamację przy wykorzystaniu formularza reklamacji, zamieszczonego na stronie <a href="#">reklamacje i zwroty</a>. Klient powinien przesłać Produkt, będący przedmiotem reklamacji, na adres:</p>
@@ -420,13 +420,13 @@
 
         <h2>XIII. Prawa zastrzeżone.</h2>
 
-        <p>1. Wszelkie prawa własności, w tym prawo własności intelektualnej do nazwy i znaku towarowego, prawa autorskie do treści, zdjęć, nazw produktów, grafik i innych materiałów zamieszczonych na stronie Apteki Internetowej, a także do elementów technicznych i wszelkich innych części serwisu, za wyjątkiem treści w zakresie prezentacji danego Produktu (w tym zdjęć i logotypów Produktów), należą do Sprzedającego. Prawa do treści, w tym prawa autorskie do zdjęć, grafik oraz logotypów w zakresie prezentacji danego Produktu należą do ich producentów lub innych uprawnionych podmiotów. Każdorazowe użycie powyższych elementów w jakiejkolwiek formie wymaga pisemnej zgody właściciela.</p>
+        <p>1. Wszelkie prawa własności, w tym prawo własności intelektualnej do nazwy i znaku towarowego, prawa autorskie do treści, zdjęć, nazw produktów, grafik i innych materiałów zamieszczonych na stronie Apteki Internetowej Wracam do zdrowia, a także do elementów technicznych i wszelkich innych części serwisu, za wyjątkiem treści w zakresie prezentacji danego Produktu (w tym zdjęć i logotypów Produktów), należą do Sprzedającego. Prawa do treści, w tym prawa autorskie do zdjęć, grafik oraz logotypów w zakresie prezentacji danego Produktu należą do ich producentów lub innych uprawnionych podmiotów. Każdorazowe użycie powyższych elementów w jakiejkolwiek formie wymaga pisemnej zgody właściciela.</p>
 
-        <p>2. Zabronione jest jakiekolwiek wykorzystywanie danych dostępnych na stronie Apteki Internetowej  w zakresie wykraczającym poza uprawnienia przewidziane niniejszym Regulaminem. Jakiekolwiek wykorzystywanie lub przetwarzanie danych lub informacji dostępnych na Portalu musi być zgodne z postanowieniami Regulaminu oraz przepisami obowiązującego prawa.</p>
+        <p>2. Zabronione jest jakiekolwiek wykorzystywanie danych dostępnych na stronie Apteki Internetowej Wracam do zdrowia w zakresie wykraczającym poza uprawnienia przewidziane niniejszym Regulaminem. Jakiekolwiek wykorzystywanie lub przetwarzanie danych lub informacji dostępnych na Portalu musi być zgodne z postanowieniami Regulaminu oraz przepisami obowiązującego prawa.</p>
 
         <h2>XIV. Postanowienia końcowe.</h2>
 
-        <p>1. Klient jest obowiązany do akceptacji niniejszego Regulaminu oraz załączników przy rejestracji na stronie Apteki Internetowej lub złożenia zamówienia bez rejestracji.</p>
+        <p>1. Klient jest obowiązany do akceptacji niniejszego Regulaminu oraz załączników przy rejestracji na stronie Apteki Internetowej Wracam do zdrowia lub złożenia zamówienia bez rejestracji.</p>
 
         <p>2. Administrator jest uprawniony do zmian Regulaminu, o czym powiadamia Klienta poprzez przesłanie zmienionej wersji Regulaminu na adres e-mail, wskazany przez Klienta oraz przy pierwszym logowaniu Klienta, dokonanym od wejścia w życie Regulaminu.</p>
 
