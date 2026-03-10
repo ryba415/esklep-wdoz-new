@@ -65,7 +65,7 @@ class StaticPageController extends Controller
 
     public function regulaminPage(){
         $viewData = [];
-        $viewData['title'] = 'REGULAMIN APTEKI INTERNETOWEJ WRACAM DO ZDROWIA';
+        $viewData['title'] = 'Regulamin Apteki Internetowej Wracam do zdrowia';
         $viewData['content'] = '';
         return view('pages/regulamin-page',$viewData);
     }
@@ -81,7 +81,7 @@ class StaticPageController extends Controller
 
     public function regulaminNewsletteraPage(){
         $viewData = [];
-        $viewData['title'] = 'Regulamin Newslettera Apteki Internetowej wracamdozdrowia.pl';
+        $viewData['title'] = 'Regulamin Newslettera Apteki Internetowej Wracam do zdrowia';
         $viewData['content'] = '';
 
         return view('pages.regulamin-newsletera',$viewData);
