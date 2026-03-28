@@ -74,7 +74,7 @@
 <p align="center"><span style="font-size:18px;"><span style="font-family:times new roman,times,serif;"><strong>§ 10</strong></span></span></p>
 
 <ol>
-	<li><span style="font-size:18px;"><span style="font-family:times new roman,times,serif;">Administratorem danych osobowych udostępnionych przez użytkownika jest: „Wracam do zdrowia 8” sp. z o.o., adres:&nbsp;ul. Remusa 6, 81-574 Czersk.</span></span></li>
+	<li><span style="font-size:18px;"><span style="font-family:times new roman,times,serif;">Administratorem danych osobowych udostępnionych przez użytkownika jest: „Wracam do zdrowia 8” sp. z o.o., adres:&nbsp;ul. Remusa 6, 81-574 Gdynia.</span></span></li>
 	<li><span style="font-size:18px;"><span style="font-family:times new roman,times,serif;">Kontakt z Administratorem możliwy jest w szczególności pod adresem wskazanym powyżej lub pod adresem email:&nbsp;ido@wracamdozdrowia.pl.</span></span></li>
 	<li><span style="font-size:18px;"><span style="font-family:times new roman,times,serif;">Podanie danych osobowych jest dobrowolne.</span></span></li>
 	<li><span style="font-size:18px;"><span style="font-family:times new roman,times,serif;">Dane będą przetwarzane na podstawie udzielonej zgody w celu świadczenia usługi Newsletter.</span></span></li>
@@ -92,9 +92,9 @@
 <ol>
 	<li><span style="font-size:18px;"><span style="font-family:times new roman,times,serif;">Usługodawca zastrzega sobie prawo do zmiany Regulaminu.</span></span></li>
 	<li><span style="font-size:18px;"><span style="font-family:times new roman,times,serif;">Informacje o zmianie Regulaminu, będą komunikowane Użytkownikom poprzez indywidualną wiadomość e-mail skierowaną bezpośrednio na adres e-mail danej osoby.</span></span></li>
-	<li><span style="font-size:18px;"><span style="font-family:times new roman,times,serif;">Zmiany regulaminu wchodzą w życie z dniem ich ogłoszenia na portalu: esklep.wdoz.pl.</span></span></li>
+	<li><span style="font-size:18px;"><span style="font-family:times new roman,times,serif;">Zmiany regulaminu wchodzą w życie z dniem ich ogłoszenia na portalu: wracamdozdrowia.pl.</span></span></li>
 	<li><span style="font-size:18px;"><span style="font-family:times new roman,times,serif;">Prawem właściwym dla wszystkich stosunków prawnych wynikających z niniejszego Regulaminu jest prawo polskie. Wszelkie spory będą rozstrzygane przez właściwe miejscowo polskie sądy powszechne.</span></span></li>
-	<li><span style="font-size:18px;"><span style="font-family:times new roman,times,serif;">Niniejszy Regulamin wchodzi w życie z dniem 30.04.2023.</span></span></li>
+	<li><span style="font-size:18px;"><span style="font-family:times new roman,times,serif;">Niniejszy Regulamin wchodzi w życie z dniem 08.03.2026.</span></span></li>
 </ol>
     </div>
 </div>
