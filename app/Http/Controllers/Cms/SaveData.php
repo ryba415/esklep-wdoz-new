@@ -49,11 +49,11 @@ class SaveData extends Controller
                             }
                         }
                         if ($this->editElemId == null || $this->editElemId == ''){
-                            $saveStatus = DB::table($this->modelObject->dbTableName)
+                            $saveStatus = DB::connection('mysql-esklep')->table($this->modelObject->dbTableName)
                                 ->insert(
                                     $updateTable
                                 );
-                            $this->editElemId = DB::getPdo()->lastInsertId();
+                            $this->editElemId = DB::connection('mysql-esklep')->getPdo()->lastInsertId();
                             
                             if ($saveStatus === 0){
                                 $this->status = false;
@@ -61,8 +61,8 @@ class SaveData extends Controller
                             }
 
                         } else {
-                            $updateStatus = DB::table($this->modelObject->dbTableName)
-                                ->where(['id'=>$this->editElemId, 'user_id' => $userId])
+                            $updateStatus = DB::connection('mysql-esklep')->table($this->modelObject->dbTableName)
+                                ->where(['id'=>$this->editElemId]) //, 'user_id' => $userId
                                     ->update($updateTable);
                             
                             /*if ($updateStatus === 0){
@@ -175,7 +175,7 @@ class SaveData extends Controller
         if (in_array($objectName,$this->modelsEnabledToSave)){
             $fullObjectUrl = "\App\Models" . "\\" . $objectName;
             $modelObject = new $fullObjectUrl();
-            DB::table($modelObject->dbTableName)->where('id', $itemId)->delete();
+            DB::connection('mysql-esklep')->table($modelObject->dbTableName)->where('id', $itemId)->delete();
             $status = true;
         }
         

@@ -49,10 +49,6 @@ Route::get('/clear-cache', function () {
     return 'Cache has clear successfully !';
 });
 
-Route::controller(SaveData::class)->group(function () {
-    Route::post('/cms-universal-save/{objectName}', 'universalSave')->name('cms-universal-save');
-});
-
 Route::controller(BasketController::class)->group(function () {
     Route::get('/koszyk', "showBasket")->name('koszyk');
     Route::get('/koszyk-apteka', "showPharmacyConfirmation")->name('koszyk-apteka');
@@ -101,6 +97,10 @@ Route::middleware(["auth:usercustom-admin"])->group(function () {
         Route::get('/admin/slides/', "slidersList")->name('sliders-list'); 
         Route::get('/admin/slides/slide-{id}','editSlide')->name('edit-slide');
 
+    });
+    
+    Route::controller(SaveData::class)->group(function () {
+        Route::post('/cms-universal-save/{objectName}', 'universalSave')->name('cms-universal-save');
     });
     
 });
