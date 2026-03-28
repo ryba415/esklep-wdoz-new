@@ -24,7 +24,6 @@ class TableEdit extends Controller
     }
     
     public function render($id){
-        
         return $this->modelObject->renderEdit($id);
         
     }

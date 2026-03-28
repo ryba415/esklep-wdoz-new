@@ -19,11 +19,22 @@ class Products
         
     }
     
-    function getProducts($conditions = '', $conditionsValues = [], $limit = 99) {
+        function getProducts($conditions = '', $conditionsValues = [], $limit = 99) {
         $this->products = DB::connection('mysql-esklep')->select('SELECT ecommerce_products.*, image.image_name as image_name FROM ecommerce_products'
-                . ' LEFT JOIN ecommerce_product_images ON ecommerce_product_images.product_id = ecommerce_products.id'
-                . ' LEFT JOIN ecommerce_product_image as image ON ecommerce_product_images.product_image_id = image.id'
-                . ' WHERE '.$conditions.' LIMIT ' . $limit, $conditionsValues);
+                . ' LEFT JOIN (
+                    SELECT 
+                      ecommerce_product_images.product_id, 
+                      MAX(ecommerce_product_image.image_name) AS image_name
+                    FROM 
+                      ecommerce_product_images
+                    LEFT JOIN ecommerce_product_image 
+                      ON ecommerce_product_images.product_image_id = ecommerce_product_image.id
+                    GROUP BY 
+                      ecommerce_product_images.product_id
+                    ) AS image ON ecommerce_products.id = image.product_id '
+                //. ' LEFT JOIN ecommerce_product_image as image ON ecommerce_product_images.product_image_id = image.id'
+                . ' WHERE '.$conditions
+                . ' LIMIT ' . $limit, $conditionsValues);
         
     /*$this->products = DB::connection('mysql-esklep')->select('
         SELECT 

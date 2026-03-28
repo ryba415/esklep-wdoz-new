@@ -38,9 +38,11 @@ class CmsObject implements CmsObjectInterface
         
     }
     
-    public function renderList($objectName){
+    public function renderList($objectName, $request = [], $extraView = ''){
         $fullObjectUrl = "\App\Models" . "\\" . $objectName;
         $this->modelObject = new $fullObjectUrl();
+        
+        $request = $request->all();
         
         $selectString = 'id';
         $headers = [];
@@ -54,8 +56,30 @@ class CmsObject implements CmsObjectInterface
             }
         }
         
-        $this->listItems = DB::select('select ' . $selectString
-                        . ' FROM ' . $this->dbTableName . ' ORDER BY id DESC'
+        $filtersExist = false;
+        $searchString = '';
+        $filtersValues = [];
+        foreach ($this->modelObject->areas as $area){
+            if (isset($area['onFilter']) && $area['onFilter']){
+                $filtersExist = true;
+                if (isset($request[$area['field']])){
+                    if ($searchString != ''){
+                        $searchString = $searchString . ' AND ';
+                    }
+                    $searchValue = $request[$area['field']];
+                    if ($searchValue != ''){
+                        $filtersValues[$area['field']] = $searchValue;
+                        $searchString = $searchString . ' ' .$area['field'] . " LIKE '%" . $searchValue . "%'";
+                    }
+                }
+            }
+        }
+        if ($searchString != ''){
+            $searchString = ' WHERE ' . $searchString;
+        }
+        
+        $this->listItems = DB::connection('mysql-esklep')->select('select ' . $selectString
+                        . ' FROM ' . $this->dbTableName . $searchString . ' ORDER BY id DESC'
                         . ' ', []);
         
         $viewData = [
@@ -65,7 +89,19 @@ class CmsObject implements CmsObjectInterface
             'listItems' => $this->listItems, 
             'breadCrub1' => $this->breadCrub1,
             'headers' => $headers,
+            'dbTableName' => $this->dbTableName,
+            'objectName' => $objectName,
+            'areas' => $this->areas,
+            'filtersExist' => $filtersExist,
+            'filtersValues' => $filtersValues,
+            'extraView' => $extraView
         ];
+        
+        if (isset($this->addHtmlToList)){
+            $viewData['extraView'] = view($this->addHtmlToList,$viewData);
+        } else {
+            $viewData['extraView'] = '';
+        }
         return view('cms.list',$viewData);
     }
     
@@ -74,9 +110,9 @@ class CmsObject implements CmsObjectInterface
             $id = '';
             $editItem = null;
         } else {
-            $editItem = DB::select('select * '
+            $editItem = DB::connection('mysql-esklep')->select('select * '
                 . ' FROM ' . $this->dbTableName . ' '
-                . ' ', []);
+                . ' WHERE id = ?', [$id]);
             
             if (count($editItem) === 0){
                 echo 'Acess danied!';die();
@@ -89,6 +125,12 @@ class CmsObject implements CmsObjectInterface
             'objectName' => $this->objectName,
             'editItem' => $editItem
         ];
+        //var_dump($this);
+        if (isset($this->addHtmlToEdit)){
+            $viewData['extraView'] = view($this->addHtmlToEdit,$viewData);
+        } else {
+            $viewData['extraView'] = '';
+        }
         return view('cms.edit',$viewData);
     }
     

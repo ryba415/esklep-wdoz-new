@@ -12,7 +12,7 @@ use App\Http\Controllers\globalHelper\globalHelper;
 
 class SaveData extends Controller
 {
-    protected $modelsEnabledToSave = ['WorkoutDefinitions'];
+    protected $modelsEnabledToSave = ['WorkoutDefinitions','Workshops',"Users","Orders","AdminSliders"];
     protected $modelObject = null;
     protected $status = true;
     protected $errors = [];
@@ -24,6 +24,7 @@ class SaveData extends Controller
     public function universalSave(Request $request, $objectName){
         $userUnloged = false;
         if (in_array($objectName,$this->modelsEnabledToSave)){
+            
             $this->postData = $request->all();
             $this->editElemId = $this->postData['id']["value"];
             $fullObjectUrl = "\App\Models" . "\\" . $objectName;
@@ -31,9 +32,12 @@ class SaveData extends Controller
             $userId = Auth::id();
             if ($userId != null){
                 if (is_object($this->modelObject)){
+                    
+                    if (method_exists($this->modelObject, 'ownSaveAction')){
+                        return response()->json($this->modelObject->ownSaveAction($request, $this->postData));
+                    }
                     $this->validateData();
                     if ($this->status){
-                        $updateTable = ['user_id' => $userId];
                         foreach ($this->postData  as $area => $value){
                             foreach ($this->modelObject->areas  as $madelArea){
                                 if ($madelArea['field'] == $area){
@@ -57,17 +61,14 @@ class SaveData extends Controller
                             }
 
                         } else {
-                            var_dump($this->editElemId);
-                            var_dump($userId);
                             $updateStatus = DB::table($this->modelObject->dbTableName)
                                 ->where(['id'=>$this->editElemId, 'user_id' => $userId])
                                     ->update($updateTable);
-                            var_dump($updateStatus);
                             
-                            if ($updateStatus === 0){
+                            /*if ($updateStatus === 0){
                                 $this->status = false;
                                 $this->errors[] = 'Wystąpił wewnętrzny błąd podczas próbu zapisu2';
-                            }
+                            }*/
                         }
                         $this->sucessSaveInfoText = $this->modelObject->sucessSaveInfoText;
                     }       
@@ -167,6 +168,20 @@ class SaveData extends Controller
                 return false;
             }
         }
+    }
+    
+    public function universalDeleteOnList($itemId, $objectName){
+        $status = false;
+        if (in_array($objectName,$this->modelsEnabledToSave)){
+            $fullObjectUrl = "\App\Models" . "\\" . $objectName;
+            $modelObject = new $fullObjectUrl();
+            DB::table($modelObject->dbTableName)->where('id', $itemId)->delete();
+            $status = true;
+        }
+        
+        return response()->json([
+            'status' => $status,
+        ]);
     }
 
 }

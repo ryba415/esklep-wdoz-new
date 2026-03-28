@@ -26,5 +26,11 @@ class AuthServiceProvider extends ServiceProvider
         Auth::provider('custom_provider_driver', function ($app, array $config) {
             return new CustomUserProvider(new SimpleHasher(), $config['model']);
         });
+        
+        
+        Auth::provider('custom_provider_driver_admin', function ($app, array $config) {
+            return new CustomUserAdminProvider(new SimpleHasher(), $config['model']);
+        });
+        
     }
 }

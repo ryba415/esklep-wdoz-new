@@ -2,7 +2,7 @@
     <div class="page-footer-container">
         <div class="left-section"><strong>Kontakt</strong>
             <br>
-            Arpol Narzędzia profesjonalne
+            WDOZ
 
         </div>
         

@@ -15,7 +15,9 @@
     @include('cms.editAreas.' . $area['type'] ,['area' => $area, 'editItem' => $editItem])
     @endif
     @endforeach
-    <div class="cms-save-areas-container">
+    
+    {!! $extraView !!}
+    <div class="cms-save-areas-container save-all-areas-container-fixed">
         <button id="save-all-areas" class="standard-button standard-big-button-green">Zapisz</button>
     </div>
     </div>
@@ -31,6 +33,7 @@ document.getElementById('save-all-areas').addEventListener("click", (event) => {
 async function saveDate(){
     let jsonData = await preparedataJson();
     sendSave(jsonData);
+    //console.log(jsonData);
 }
 
 async function preparedataJson(){
@@ -38,6 +41,15 @@ async function preparedataJson(){
     let dataArray = {};
     for (let i=0;i<inputs.length;i++){
         dataArray[inputs[i].getAttribute('name')] = {'area' : inputs[i].getAttribute('name'), 'value' : inputs[i].value};
+    }
+    
+    if (typeof ownSaveFunction === 'function') {
+        const result = ownSaveFunction();
+        
+        //console.log(result);
+        //console.log(dataArray);
+        dataArray = { ...dataArray, ...result };
+        //console.log(dataArray);
     }
     
     return JSON.stringify(dataArray);
@@ -62,6 +74,11 @@ async function sendSave(jsonData){
             failArea.style.display = 'none';
             sucessArea.style.display = 'block';
             sucessArea.innerHTML = res.sucessSaveInfoText;
+            sucessArea.scrollIntoView({
+                behavior: 'smooth', 
+                block: 'center', 
+                inline: 'center'     
+            });
         } else {
             
             let failAreaUl = failArea.querySelector('ul');
@@ -81,6 +98,11 @@ async function sendSave(jsonData){
                 li.innerHTML = 'Wystąpił nieoczekiwany błąd podczas próby zapisu';
                 failAreaUl.append(li);
             }
+            failArea.scrollIntoView({
+                behavior: 'smooth', 
+                block: 'center', 
+                inline: 'center'   
+            });
             if (res.userUnloged){
                 window.location.replace("/login");
             }

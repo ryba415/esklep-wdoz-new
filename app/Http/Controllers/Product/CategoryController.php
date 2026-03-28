@@ -65,12 +65,23 @@ class CategoryController extends Controller
             $viewData['category'] = $category[0];
             
             $products = DB::connection('mysql-esklep')->select('SELECT DISTINCT ecommerce_products.*, image.image_name as image_name FROM ecommerce_products '
-                . ' JOIN ecommerce_products_categories ON ecommerce_products_categories.product_id = ecommerce_products.id'
-                . ' LEFT JOIN ecommerce_product_images ON ecommerce_product_images.product_id = ecommerce_products.id'
-                . ' LEFT JOIN ecommerce_product_image as image ON ecommerce_product_images.product_image_id = image.id'
+                . ' LEFT JOIN (
+                    SELECT 
+                      ecommerce_product_images.product_id, 
+                      MAX(ecommerce_product_image.image_name) AS image_name
+                    FROM 
+                      ecommerce_product_images
+                    LEFT JOIN ecommerce_product_image 
+                      ON ecommerce_product_images.product_image_id = ecommerce_product_image.id
+                    GROUP BY 
+                      ecommerce_product_images.product_id
+                    ) AS image ON ecommerce_products.id = image.product_id
+                    LEFT JOIN ecommerce_products_categories 
+                      ON ecommerce_products_categories.product_id = ecommerce_products.id '
                 . ' WHERE ecommerce_products_categories.category_id = ? '
+
                 . $searchSortBy     
-                . ' LIMIT '.$productsPerPage.' OFFSET '.$offset.' ' , [$category[0]->id]);
+                . ' LIMIT '.$productsPerPage.' OFFSET '.$offset.' '  , [$category[0]->id]);
             
             $allProductsInCategoryCount = DB::connection('mysql-esklep')->select('SELECT DISTINCT COUNT(*) AS total_products_in_category
                 FROM ecommerce_products_categories

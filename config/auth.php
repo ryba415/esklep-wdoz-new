@@ -44,6 +44,10 @@ return [
             'driver' => 'session',
             'provider' => 'userCustomProvider',
         ],
+        'usercustom-admin' => [
+            'driver' => 'session',
+            'provider' => 'userCustomAdminProvider',
+        ],
     ],
 
     /*
@@ -71,6 +75,10 @@ return [
         'userCustomProvider' => [
             'driver' => 'custom_provider_driver',
             'model' => App\Models\UserCustom::class,
+        ],
+        'userCustomAdminProvider' => [
+            'driver' => 'custom_provider_driver_admin',
+            'model' => App\Models\UserCustomAdmin::class,
         ],
         // 'users' => [
         //     'driver' => 'database',

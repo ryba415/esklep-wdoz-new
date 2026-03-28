@@ -15,6 +15,7 @@ use App\Http\Controllers\Pages\StaticPageController;
 use App\Http\Controllers\Product\FavoritesListController;
 use App\Http\Controllers\Product\IntegrationsController;
 use App\Http\Controllers\Wiedza\WiedzaController;
+use App\Http\Controllers\Admin\AdminDashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +73,9 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('/set-new-password/{hash}', "setNewPassword")->name('set-new-password');
     Route::post('/set-client-password-confirm', "setClientPasswordConfirm")->name('set-client-password-confirm');
     
+    Route::post('/authenticate-admin-wwd2341', 'authenticateAdmin')->name('authenticate');
+    Route::get('/login-admin-admin-wwd2341/', "loginAdmin")->name('login-admin'); 
+    
 });
 
 Route::middleware(["auth:usercustom"])->group(function () {
@@ -84,6 +88,19 @@ Route::middleware(["auth:usercustom"])->group(function () {
         Route::get('/user-acount/dasboard', "showDashboard")->name('show-dashboard'); 
         
         Route::post('/user-acount/save-user-data', "saveUserData")->name('save-user-data');
+    });
+    
+});
+
+Route::middleware(["auth:usercustom-admin"])->group(function () {
+    
+    Route::controller(AdminDashboard::class)->group(function () {
+        Route::get('/admin/dashboard', "showDashboard")->name('dashboard');
+        
+        /*slider*/
+        Route::get('/admin/slides/', "slidersList")->name('sliders-list'); 
+        Route::get('/admin/slides/slide-{id}','editSlide')->name('edit-slide');
+
     });
     
 });

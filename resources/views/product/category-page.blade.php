@@ -67,7 +67,7 @@
                       <ul class="list-none m-0 p-0" role="menu">
                         <li class="mt-1" role="none">
                           <button 
-                            class="subcategory-toggle flex justify-between items-center w-full h-[50px] pl-4 pr-4 text-sm font-medium text-gray-600 hover:text-[#eb442d] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#eb442d] focus-visible:ring-offset-1" 
+                            class="subcategory-toggle flex justify-between items-center w-full pl-4 pr-4 text-sm font-medium text-gray-600 hover:text-[#eb442d] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#eb442d] focus-visible:ring-offset-1" 
                             data-open="false" 
                             aria-expanded="false" 
                             aria-controls="subcategory-1"

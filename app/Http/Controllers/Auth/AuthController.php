@@ -47,6 +47,8 @@ class AuthController extends Controller
                 }
                 $returnData["status"] = true;
             }else {
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
                 $returnData["status"] = false;
                 $returnData["errors"][] = 'Błędny login i/lub hasło';
             }
@@ -475,4 +477,58 @@ class AuthController extends Controller
 
         return $jsonResponse;
     }
+    
+    /**
+     * Display a login form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function loginAdmin()
+    {
+        return view('auth.login-admin');
+    }
+    
+    /**
+     * Authenticate the user.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function authenticateAdmin(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        //if(Auth::attempt($credentials))
+        if (Auth::guard('usercustom-admin')->attempt($credentials)){
+            
+            //if (Auth::user()->isActive()){
+                $request->session()->regenerate();
+                return redirect()->route('dashboard')
+                ->withSuccess('You have successfully logged in!');
+            /*} else {
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+                return back()->withErrors([
+                    'email' => 'Konto w serwisie nie zostało jeszcze aktywowane. Sprawdź swoją skrzynkę e-mail i kilkinij w link aktywacyjny. '
+                    . 'Jeżeli nie możesz znaleźć e-maila aktywacyjnego sprawdź folder spam, lub wygeneruj nowy link aktywacyjny: <a href="/resend-activate-email">tutaj</a> ',
+                ])->onlyInput('email');
+            }*/
+            
+            //echo 'okok';die();
+            
+        } else {
+            //echo 'jail';die();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+        }
+
+        return back()->withErrors([
+            'email' => 'Błędny login i/lub hasło',
+        ])->onlyInput('email');
+
+    } 
 }

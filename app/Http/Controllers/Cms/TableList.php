@@ -23,9 +23,9 @@ class TableList extends Controller
         $this->modelObject = new $fullObjectUrl();
     }
     
-    public function render(){
+    public function render($request = [], $extraView = ''){
         
-        return $this->modelObject->renderList($this->objectName);
+        return $this->modelObject->renderList($this->objectName,$request, $extraView);
         
     }
 

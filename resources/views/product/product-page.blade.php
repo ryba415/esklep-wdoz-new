@@ -11,7 +11,7 @@
         </nav>
             <div class="product-container flex w-full gap-[40px_68px] flex-wrap mt-[60px] max-md:max-w-full max-md:mt-10">
                 <div class="flex min-w-60 flex-col items-center justify-center w-[450px] p-2.5 max-md:max-w-full">
-                    <img src="/uploads/images/product/{{$product->image_name}}" alt="CIŚNIENIOMIERZ OMRON M2 INTELLI IT + NARAMIENNY AUTOMATYCZNY" class="aspect-[1] object-contain w-[412px] max-w-full"></div>
+                    <img src="/uploads/images/product/{{$product->image_name}}" alt="{{$product->name}}" class="aspect-[1] object-contain w-[412px] max-w-full"></div>
                     <div class="min-w-60 flex-1 shrink basis-5 max-md:max-w-full">
                         <div class="w-full font-normal max-md:max-w-full">
                             <h1 class="text-[#2c2c2c] text-3xl font-semibold max-md:max-w-full">{{$product->name}}</h1>
