@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\Cms;
 
+use App\Helpers\CmsImageHelper;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use App\Models\User;
-use App\Models\ListCrud;
-use App\Http\Controllers\globalHelper\globalHelper;
 
 class SaveData extends Controller
 {
@@ -18,62 +16,132 @@ class SaveData extends Controller
     protected $errors = [];
     protected $errorsAreas = [];
     protected $postData = [];
+    protected $filesData = [];
     protected $editElemId = null;
     protected $sucessSaveInfoText = '';
-    
-    public function universalSave(Request $request, $objectName){
+    protected $currentEditItem = null;
+    protected $request = null;
+
+    protected CmsImageHelper $cmsImageHelper;
+
+    public function __construct(CmsImageHelper $cmsImageHelper)
+    {
+        $this->cmsImageHelper = $cmsImageHelper;
+    }
+
+    public function universalSave(Request $request, $objectName)
+    {
         $userUnloged = false;
-        if (in_array($objectName,$this->modelsEnabledToSave)){
-            
+
+        if (in_array($objectName, $this->modelsEnabledToSave)) {
+
+            $this->request = $request;
             $this->postData = $request->all();
-            $this->editElemId = $this->postData['id']["value"];
+            $this->filesData = $request->file('cms_files', []);
+            $this->editElemId = $this->postData['id']['value'] ?? null;
+
             $fullObjectUrl = "\App\Models" . "\\" . $objectName;
             $this->modelObject = new $fullObjectUrl();
             $userId = Auth::id();
-            if ($userId != null){
-                if (is_object($this->modelObject)){
-                    
-                    if (method_exists($this->modelObject, 'ownSaveAction')){
+
+            if ($userId != null) {
+                if (is_object($this->modelObject)) {
+
+                    if (!empty($this->editElemId)) {
+                        $this->currentEditItem = DB::connection('mysql-esklep')
+                            ->table($this->modelObject->dbTableName)
+                            ->where('id', $this->editElemId)
+                            ->first();
+                    }
+
+                    if (method_exists($this->modelObject, 'ownSaveAction')) {
                         return response()->json($this->modelObject->ownSaveAction($request, $this->postData));
                     }
+
                     $this->validateData();
-                    if ($this->status){
-                        foreach ($this->postData  as $area => $value){
-                            foreach ($this->modelObject->areas  as $madelArea){
-                                if ($madelArea['field'] == $area){
-                                    if (isset($madelArea['editable']) && $madelArea['editable']){
-                                        $updateTable[$area] = $value["value"];
-                                    }
-                                    break;
+
+                    if ($this->status) {
+                        $updateTable = [];
+
+                        foreach ($this->modelObject->areas as $modelArea) {
+                            if (
+                                isset($modelArea['editable']) && $modelArea['editable'] &&
+                                (!isset($modelArea['type']) || $modelArea['type'] !== 'image')
+                            ) {
+                                $field = $modelArea['field'];
+
+                                if (isset($this->postData[$field]) && isset($this->postData[$field]['value'])) {
+                                    $updateTable[$field] = $this->postData[$field]['value'];
                                 }
                             }
                         }
-                        if ($this->editElemId == null || $this->editElemId == ''){
-                            $saveStatus = DB::connection('mysql-esklep')->table($this->modelObject->dbTableName)
-                                ->insert(
-                                    $updateTable
-                                );
+
+                        if ($this->editElemId == null || $this->editElemId == '') {
+                            $saveStatus = DB::connection('mysql-esklep')
+                                ->table($this->modelObject->dbTableName)
+                                ->insert($updateTable);
+
                             $this->editElemId = DB::connection('mysql-esklep')->getPdo()->lastInsertId();
-                            
-                            if ($saveStatus === 0){
+
+                            if ($saveStatus === 0) {
                                 $this->status = false;
-                                $this->errors[] = 'Wystąpił wewnętrzny błąd podczas próbu zapisu1';
+                                $this->errors[] = 'Wystąpił wewnętrzny błąd podczas próby zapisu';
                             }
 
-                        } else {
-                            $updateStatus = DB::connection('mysql-esklep')->table($this->modelObject->dbTableName)
-                                ->where(['id'=>$this->editElemId]) //, 'user_id' => $userId
-                                    ->update($updateTable);
-                            
-                            /*if ($updateStatus === 0){
-                                $this->status = false;
-                                $this->errors[] = 'Wystąpił wewnętrzny błąd podczas próbu zapisu2';
-                            }*/
+                            if ($this->status) {
+                                $this->currentEditItem = DB::connection('mysql-esklep')
+                                    ->table($this->modelObject->dbTableName)
+                                    ->where('id', $this->editElemId)
+                                    ->first();
+                            }
                         }
-                        $this->sucessSaveInfoText = $this->modelObject->sucessSaveInfoText;
-                    }       
+
+                        $imageUpdateTable = [];
+
+                        if ($this->status) {
+                            foreach ($this->modelObject->areas as $modelArea) {
+                                if (
+                                    isset($modelArea['editable']) && $modelArea['editable'] &&
+                                    isset($modelArea['type']) && $modelArea['type'] === 'image'
+                                ) {
+                                    $imageResult = $this->cmsImageHelper->prepareFieldForSave(
+                                        $modelArea,
+                                        (int)$this->editElemId,
+                                        $this->currentEditItem,
+                                        $this->request,
+                                        $this->filesData,
+                                        $this->modelObject
+                                    );
+
+                                    $this->applyHelperResult($imageResult);
+
+                                    if (!$this->status) {
+                                        break;
+                                    }
+
+                                    if ($imageResult['shouldUpdate']) {
+                                        $imageUpdateTable[$modelArea['field']] = $imageResult['value'];
+                                    }
+                                }
+                            }
+                        }
+
+                        if ($this->status) {
+                            $finalUpdateTable = array_merge($updateTable, $imageUpdateTable);
+
+                            if (!empty($finalUpdateTable)) {
+                                DB::connection('mysql-esklep')
+                                    ->table($this->modelObject->dbTableName)
+                                    ->where(['id' => $this->editElemId])
+                                    ->update($finalUpdateTable);
+                            }
+
+                            $this->sucessSaveInfoText = $this->modelObject->sucessSaveInfoText;
+                        }
+                    }
+
                 } else {
-                    $this->errors[] = 'Błędny objekt modelu';
+                    $this->errors[] = 'Błędny obiekt modelu';
                     $this->status = false;
                 }
             } else {
@@ -82,10 +150,10 @@ class SaveData extends Controller
                 $this->status = false;
             }
         } else {
-            $this->errors[] = 'Brak uprawnień do zapisu tego objektu';
+            $this->errors[] = 'Brak uprawnień do zapisu tego obiektu';
             $this->status = false;
         }
-        
+
         return response()->json([
             'status' => $this->status,
             'errors' => $this->errors,
@@ -95,93 +163,158 @@ class SaveData extends Controller
             'userUnloged' => $userUnloged
         ]);
     }
-    
-    private function validateData(){
-        foreach ($this->modelObject->areas as $area){
-            if ($area['editable']){
-                if (isset($area['validations'])){
-                    foreach ($area['validations'] as $validation => $validationRestict){
-                        switch ($validation) {
-                            case 'require':
-                                $this->requireValidation($area['field'], $area['name']);
-                                break;
-                            case 'nimLength':
-                                $this->nimLengthValidation($area['field'], $area['name'], $validationRestict);
-                                break;
-                            case 'maxLength':
-                                $this->maxLengthValidation($area['field'], $area['name'], $validationRestict);
-                                break;
-                        }
-                    }
+
+    private function validateData()
+    {
+        foreach ($this->modelObject->areas as $area) {
+            if (!isset($area['editable']) || !$area['editable']) {
+                continue;
+            }
+
+            $field = $area['field'];
+            $fieldName = $area['name'];
+            $validations = $area['validations'] ?? [];
+            $isRequired = isset($validations['require']) ? (bool)$validations['require'] : false;
+
+            if (isset($area['type']) && $area['type'] === 'image') {
+                $result = $this->cmsImageHelper->validateArea(
+                    $area,
+                    $isRequired,
+                    $this->currentEditItem,
+                    $this->request,
+                    $this->filesData,
+                    $this->modelObject
+                );
+
+                $this->applyHelperResult($result);
+                continue;
+            }
+
+            if ($isRequired) {
+                $this->requireValidation($field, $fieldName);
+            }
+
+            if ($this->hasPostedValue($field)) {
+                if (isset($validations['nimLength'])) {
+                    $this->nimLengthValidation($field, $fieldName, $validations['nimLength']);
+                }
+
+                if (isset($validations['maxLength'])) {
+                    $this->maxLengthValidation($field, $fieldName, $validations['maxLength']);
                 }
             }
         }
     }
-    
-    private function requireValidation($field, $fieldName, $showErrors = true){
-        if (isset($this->postData[$field]) && isset($this->postData[$field]['value']) ){
-            if ($this->postData[$field]['value'] !== '' || $this->postData[$field]['value'] !== null){
-                return true;
-            } else {
-                $this->status = false;
-                if ($showErrors){
-                    $this->errors[] = 'Pole: ' . $fieldName . ' nie może pozostać puste ';
-                    $this->errorsAreas[] = $field;
-                }
-                return false;
-            }
-        } else {
+
+    private function applyHelperResult(array $result): void
+    {
+        if (!($result['status'] ?? true)) {
             $this->status = false;
-            if ($showErrors){
-                $this->errors[] = 'Pole: ' . $fieldName . ' nie może pozostać puste ';
-                $this->errorsAreas[] = $field;
-            }
-            return false;
+        }
+
+        if (!empty($result['errors'])) {
+            $this->errors = array_merge($this->errors, $result['errors']);
+        }
+
+        if (!empty($result['errorsAreas'])) {
+            $this->errorsAreas = array_values(array_unique(array_merge($this->errorsAreas, $result['errorsAreas'])));
         }
     }
-    
-    private function nimLengthValidation($field, $fieldName, $restict, $showErrors = true){
-        if ($this->requireValidation($field, $fieldName, false)){
-            if (strlen($this->postData[$field]['value']) >= $restict){
+
+    private function hasPostedValue($field): bool
+    {
+        return isset($this->postData[$field]) &&
+            isset($this->postData[$field]['value']) &&
+            trim((string)$this->postData[$field]['value']) !== '';
+    }
+
+    private function requireValidation($field, $fieldName, $showErrors = true)
+    {
+        if ($this->hasPostedValue($field)) {
+            return true;
+        }
+
+        $this->status = false;
+
+        if ($showErrors) {
+            $this->errors[] = 'Pole: ' . $fieldName . ' nie może pozostać puste';
+            $this->errorsAreas[] = $field;
+        }
+
+        return false;
+    }
+
+    private function nimLengthValidation($field, $fieldName, $restict, $showErrors = true)
+    {
+        if ($this->hasPostedValue($field)) {
+            if (mb_strlen((string)$this->postData[$field]['value']) >= $restict) {
                 return true;
             } else {
                 $this->status = false;
-                if ($showErrors){
+                if ($showErrors) {
                     $this->errors[] = 'Pole: ' . $fieldName . ' musi mieć minimalnie ' . $restict . ' znaków';
                     $this->errorsAreas[] = $field;
                 }
                 return false;
             }
         }
+
+        return true;
     }
-    
-    private function maxLengthValidation($field, $fieldName, $restict, $showErrors = true){
-        if ($this->requireValidation($field, $fieldName, false)){
-            if (strlen($this->postData[$field]['value']) <= $restict){
+
+    private function maxLengthValidation($field, $fieldName, $restict, $showErrors = true)
+    {
+        if ($this->hasPostedValue($field)) {
+            if (mb_strlen((string)$this->postData[$field]['value']) <= $restict) {
                 return true;
             } else {
                 $this->status = false;
-                if ($showErrors){
+                if ($showErrors) {
                     $this->errors[] = 'Pole: ' . $fieldName . ' może mieć maksymalnie ' . $restict . ' znaków';
                     $this->errorsAreas[] = $field;
                 }
                 return false;
             }
         }
+
+        return true;
     }
-    
-    public function universalDeleteOnList($itemId, $objectName){
+
+    public function universalDeleteOnList($itemId, $objectName)
+    {
         $status = false;
-        if (in_array($objectName,$this->modelsEnabledToSave)){
+
+        if (in_array($objectName, $this->modelsEnabledToSave)) {
             $fullObjectUrl = "\App\Models" . "\\" . $objectName;
             $modelObject = new $fullObjectUrl();
-            DB::connection('mysql-esklep')->table($modelObject->dbTableName)->where('id', $itemId)->delete();
+
+            $item = DB::connection('mysql-esklep')
+                ->table($modelObject->dbTableName)
+                ->where('id', $itemId)
+                ->first();
+
+            if ($item) {
+                foreach ($modelObject->areas as $area) {
+                    if (isset($area['type']) && $area['type'] === 'image') {
+                        $field = $area['field'];
+
+                        if (isset($item->{$field}) && $item->{$field} != null && $item->{$field} != '') {
+                            $this->cmsImageHelper->deleteImagesFromStoredValue($item->{$field});
+                        }
+                    }
+                }
+            }
+
+            DB::connection('mysql-esklep')
+                ->table($modelObject->dbTableName)
+                ->where('id', $itemId)
+                ->delete();
+
             $status = true;
         }
-        
+
         return response()->json([
             'status' => $status,
         ]);
     }
-
 }

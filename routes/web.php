@@ -36,9 +36,9 @@ Route::controller(BasketApiController::class)->group(function () {
     Route::post('/remove-from-basket/', "removeFromBasket")->name('removeFromBasket');
     //Route::post('/get-basket-data/', "getBasketData")->name('getBasketData');
     Route::match(['get', 'post'], '/get-basket-data/', "getBasketData")->name('getBasketData');
-    Route::post('/buy-now/', "buyNow")->name('buyNow'); 
-    Route::post('/validate-delivery-data/', "validateDeliveryData")->name('validate-delivery-data'); 
-    
+    Route::post('/buy-now/', "buyNow")->name('buyNow');
+    Route::post('/validate-delivery-data/', "validateDeliveryData")->name('validate-delivery-data');
+
 });
 
 Route::get('/clear-cache', function () {
@@ -53,57 +53,57 @@ Route::controller(BasketController::class)->group(function () {
     Route::get('/koszyk', "showBasket")->name('koszyk');
     Route::get('/koszyk-apteka', "showPharmacyConfirmation")->name('koszyk-apteka');
     Route::get('/dziekujemy-za-zakup', "thankYouPage")->name('dziekujemy-za-zakup');
-    
+
 });
 
 Route::controller(AuthController::class)->group(function () {
-    Route::post('/checkout-login/', "login")->name('login'); 
-    Route::get('/logout/', "logout")->name('logout'); 
+    Route::post('/checkout-login/', "login")->name('login');
+    Route::get('/logout/', "logout")->name('logout');
     Route::post('/logout/', "logout")->name('logout-post');
     Route::post('/register-new-user/', "registerNewUer")->name('register-new-user');
     Route::get('/repeat-send-activate-user-email/{email}', "resendActivateUserEmail")->name('repeat-send-activate-user-email');
     Route::get('/activate-acount/{hash}', "activateUserAcount")->name('activate-acount');
-    
+
     Route::get('/reset-client-password', "resetPassword")->name('reset-client-password');
     Route::post('/reset-client-password-confirm', "resetPasswordConfirm")->name('reset-client-password-confirm');
     Route::get('/set-new-password/{hash}', "setNewPassword")->name('set-new-password');
     Route::post('/set-client-password-confirm', "setClientPasswordConfirm")->name('set-client-password-confirm');
-    
+
     Route::post('/authenticate-admin-wwd2341', 'authenticateAdmin')->name('authenticate');
-    Route::get('/login-admin-admin-wwd2341/', "loginAdmin")->name('login-admin'); 
-    
+    Route::get('/login-admin-admin-wwd2341/', "loginAdmin")->name('login-admin');
+
 });
 
 Route::middleware(["auth:usercustom"])->group(function () {
-    
+
     Route::controller(AuthController::class)->group(function () {
-        Route::post('/get-user-data/{ide}', "getUserData")->name('get-user-data'); 
+        Route::post('/get-user-data/{ide}', "getUserData")->name('get-user-data');
     });
-    
+
     Route::controller(UserAcountController::class)->group(function () {
-        Route::get('/user-acount/dasboard', "showDashboard")->name('show-dashboard'); 
-        
+        Route::get('/user-acount/dasboard', "showDashboard")->name('show-dashboard');
+
         Route::post('/user-acount/save-user-data', "saveUserData")->name('save-user-data');
     });
-    
-});
 
+});
 Route::middleware(["auth:usercustom-admin"])->group(function () {
-    
+
     Route::controller(AdminDashboard::class)->group(function () {
-        Route::get('/admin/dashboard', "showDashboard")->name('dashboard');
-        
+        Route::get('/panel/dashboard', "showDashboard")->name('dashboard');
+
         /*slider*/
-        Route::get('/admin/slides/', "slidersList")->name('sliders-list'); 
-        Route::get('/admin/slides/slide-{id}','editSlide')->name('edit-slide');
+        Route::get('/panel/slides/', "slidersList")->name('sliders-list');
+        Route::get('/panel/slides/slide-{id}','editSlide')->name('edit-slide');
 
     });
-    
+
     Route::controller(SaveData::class)->group(function () {
         Route::post('/cms-universal-save/{objectName}', 'universalSave')->name('cms-universal-save');
     });
-    
+
 });
+
 
 Route::controller(LoginRegisterController::class)->group(function () {
     Route::get('/logowanie', "login")->name('logowanie');
@@ -138,27 +138,27 @@ Route::controller(StaticPageController::class)->group(function () {
     Route::get('/reklamacje-i-zwroty', "reklamacjezwrotyPage")->name('reklamacje-i-zwroty');
     Route::get('/platnosci', "platnosciPage")->name('platnosci');
     Route::get('/koszty-dostawy', "kosztyDostawyPage")->name('koszty-dostawy');
-    
+
 });
 
 Route::controller(IntegrationsController::class)->group(function () {
-    Route::get('/kamsoft-integration', "updateShopData")->name('update-shop-data'); 
+    Route::get('/kamsoft-integration', "updateShopData")->name('update-shop-data');
     Route::get('/soap/wsdl', [IntegrationsController::class, 'wsdl']);
     Route::match(['GET', 'POST'], '/soap/server', [IntegrationsController::class, 'server']);
-    
-    Route::get('/soap-get-orders-test', "getOrdersTest")->name('soap-get-orders-test'); 
-    Route::get('/soap-set-offer-test', "setOfferTest")->name('soap-set-offer-test'); 
+
+    Route::get('/soap-get-orders-test', "getOrdersTest")->name('soap-get-orders-test');
+    Route::get('/soap-set-offer-test', "setOfferTest")->name('soap-set-offer-test');
 
 });
 
 Route::controller(WiedzaController::class)->group(function () {
-    Route::get('/wiedza-farmaceutyczna/', "showList")->name('show-list'); 
-    Route::get('/wiedza-farmaceutyczna/{slug}', "showArticle")->name('show-article'); 
+    Route::get('/wiedza-farmaceutyczna/', "showList")->name('show-list');
+    Route::get('/wiedza-farmaceutyczna/{slug}', "showArticle")->name('show-article');
 });
 
 
 Route::controller(FavoritesListController::class)->group(function () {
-    Route::get('/favorites-list', "showList")->name('favorites-list'); 
+    Route::get('/favorites-list', "showList")->name('favorites-list');
 });
 
 Route::controller(ProductController::class)->group(function () {

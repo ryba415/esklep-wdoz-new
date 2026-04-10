@@ -22,23 +22,31 @@ class AdminDashboard extends Controller
     {
 
     }
-    
 
-    
+
+
     public function showDashboard(Request $request){
+        //phpinfo();
+//        dd([
+//            'gd_loaded' => extension_loaded('gd'),
+//            'imagewebp' => function_exists('imagewebp'),
+//            'imagecreatefromjpeg' => function_exists('imagecreatefromjpeg'),
+//            'imagecreatefrompng' => function_exists('imagecreatefrompng'),
+//            'gd_info' => function_exists('gd_info') ? gd_info() : null,
+//        ]);
         return view('admin.dashboard');
     }
-    
+
     public function slidersList(Request $request){
         $list = new TableList('AdminSliders');
 
         return $list->render($request);
     }
-    
+
     public function editSlide($id){
         $edit = new TableEdit('AdminSliders');
 
         return $edit->render($id);
     }
-    
+
 }

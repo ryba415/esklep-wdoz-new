@@ -23,16 +23,16 @@
     @if(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) == '/settings' )
         <link href="/css/admin-settings.min.css?v=9" rel="stylesheet">
     @endif
-    
+
     <link rel="preload" as="font" href="/fonts/page-font.woff2" crossorigin>
-    
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
-    
-    
+
+
     <style>
     /* Główna nakładka */
     .loader-overlay {
@@ -43,7 +43,7 @@
         height: 100%;
         background-color: rgba(0, 0, 0, 0.35); /* Ciemne, półprzezroczyste tło */
         z-index: 9999;
-        
+
         /* Flexbox do idealnego centrowania */
         display: flex;
         justify-content: center;
@@ -114,7 +114,7 @@
             loader.classList.remove('is-active');
         }
     };
-    
+
     function showGlobalLoader() {
         const loader = document.getElementById('global-loader');
         if (loader) {
@@ -124,13 +124,13 @@
 </script>
     <nav class="admin-top-navbar navbar navbar-expand-lg bg-light border-bottom">
         <div class="container">
-            
+
             <button id="show-settings-menu" class="navbar-settings navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 <svg width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#a)"><path d="m19.122 11.59-.832-.685a1.172 1.172 0 0 1 0-1.81l.832-.685a1.558 1.558 0 0 0 .36-1.987l-1.643-2.846a1.558 1.558 0 0 0-1.901-.682l-1.01.378a1.172 1.172 0 0 1-1.567-.904l-.177-1.063A1.558 1.558 0 0 0 11.643 0H8.357C7.59 0 6.942.55 6.816 1.306l-.177 1.063a1.172 1.172 0 0 1-1.567.904l-1.01-.378a1.558 1.558 0 0 0-1.9.682L.517 6.423c-.383.664-.232 1.5.36 1.987l.832.685c.57.47.57 1.341 0 1.81l-.832.685a1.558 1.558 0 0 0-.36 1.987l1.643 2.846a1.558 1.558 0 0 0 1.902.682l1.009-.378a1.172 1.172 0 0 1 1.567.904l.177 1.063A1.558 1.558 0 0 0 8.357 20h3.286c.767 0 1.415-.55 1.541-1.306l.177-1.063a1.172 1.172 0 0 1 1.567-.904l1.01.378a1.558 1.558 0 0 0 1.9-.682l1.644-2.846c.383-.664.232-1.5-.36-1.987Zm-2.636 4.052-1.01-.379a2.734 2.734 0 0 0-3.656 2.112l-.177 1.063H8.357l-.177-1.063a2.734 2.734 0 0 0-3.656-2.112l-1.01.379-1.642-2.846.832-.685a2.734 2.734 0 0 0 0-4.222l-.832-.685 1.642-2.846 1.01.379A2.734 2.734 0 0 0 8.18 2.626l.177-1.063h3.286l.177 1.063a2.734 2.734 0 0 0 3.656 2.11l1.01-.378 1.643 2.846-.832.685a2.734 2.734 0 0 0 0 4.222l.832.685-1.643 2.846ZM10 6.146A3.859 3.859 0 0 0 6.146 10 3.859 3.859 0 0 0 10 13.854 3.859 3.859 0 0 0 13.854 10 3.859 3.859 0 0 0 10 6.146Zm0 6.146A2.294 2.294 0 0 1 7.708 10 2.294 2.294 0 0 1 10 7.708 2.294 2.294 0 0 1 12.292 10 2.294 2.294 0 0 1 10 12.292Z" fill="#353535"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h20v20H0z"/></clipPath></defs></svg>
             </button>
             <div class="hidden" id="settings-menu">
-                
+
               @guest
               @else
                 <p>{{ Auth::user()->name }}</p>
@@ -144,21 +144,21 @@
                 </form>
               <a class="dropdown-item" href="/settings">Ustawienia</a>
           </div>
-            
-            
+
+
             <a class="navbar-brand" href="/dashboard">
                 logo
 
             </a>
-            
+
             <div id="show-admin-main-menu" class="show-admin-main-menu">
                 <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.063 11.063H.938a.937.937 0 1 0 0 1.874h22.125a.937.937 0 1 0 0-1.874ZM23.063 3.563H.938a.937.937 0 1 0 0 1.874h22.125a.937.937 0 1 0 0-1.875ZM23.063 18.563H.938a.937.937 0 1 0 0 1.875h22.125a.937.937 0 1 0 0-1.875Z" fill="#353535"/></svg>
-            </div>    
-            
+            </div>
+
         </div>
-    </nav>  
-    
-    
+    </nav>
+
+
 
     <div id="main-menu-container" class="main-menu-container">
         <nav id="user-left-menu" class="user-left-menu">@include('layouts/admin-left-menu',['user'=>Auth::user()])</nav>
@@ -167,7 +167,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="/dashboard">
+                    <a href="/panel/dashboard">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
                             <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146ZM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5Z"></path>
                         </svg>
@@ -210,15 +210,15 @@
                 @endif
             </ol>
         </nav>
-  
+
         <div class="user-content-container">
         @yield('content')
         </div>
     </div>
-    
+
     <nav class="bottom-bar">
         <a class="bottom-bar-item @if($_SERVER['REQUEST_URI'] == '/dashboard') bottom-bar-item-selected @endif" href="/dashboard">
-            <svg width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.5"><path d="M9.08325 21.2659C9.08325 19.003 9.08325 17.8715 9.54069 16.877C9.99812 15.8824 10.8572 15.146 12.5753 13.6733L14.242 12.2448C17.3475 9.58289 18.9003 8.25195 20.7499 8.25195C22.5995 8.25195 24.1523 9.58289 27.2578 12.2448L28.9245 13.6733C30.6426 15.146 31.5017 15.8824 31.9592 16.877C32.4166 17.8715 32.4166 19.003 32.4166 21.2659V28.3332C32.4166 31.4759 32.4166 33.0473 31.4403 34.0236C30.464 34.9999 28.8926 34.9999 25.7499 34.9999H15.7499C12.6072 34.9999 11.0359 34.9999 10.0596 34.0236C9.08325 33.0473 9.08325 31.4759 9.08325 28.3332V21.2659Z" stroke="#222222" stroke-width="1.5"/><path d="M24.9166 35V26C24.9166 25.4477 24.4689 25 23.9166 25H17.5833C17.031 25 16.5833 25.4477 16.5833 26V35" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g></svg> 
+            <svg width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.5"><path d="M9.08325 21.2659C9.08325 19.003 9.08325 17.8715 9.54069 16.877C9.99812 15.8824 10.8572 15.146 12.5753 13.6733L14.242 12.2448C17.3475 9.58289 18.9003 8.25195 20.7499 8.25195C22.5995 8.25195 24.1523 9.58289 27.2578 12.2448L28.9245 13.6733C30.6426 15.146 31.5017 15.8824 31.9592 16.877C32.4166 17.8715 32.4166 19.003 32.4166 21.2659V28.3332C32.4166 31.4759 32.4166 33.0473 31.4403 34.0236C30.464 34.9999 28.8926 34.9999 25.7499 34.9999H15.7499C12.6072 34.9999 11.0359 34.9999 10.0596 34.0236C9.08325 33.0473 9.08325 31.4759 9.08325 28.3332V21.2659Z" stroke="#222222" stroke-width="1.5"/><path d="M24.9166 35V26C24.9166 25.4477 24.4689 25 23.9166 25H17.5833C17.031 25 16.5833 25.4477 16.5833 26V35" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></g></svg>
             <span class="item-title">Start</span>
         </a>
         <a class="bottom-bar-item @if($_SERVER['REQUEST_URI'] == '/legal-tasks') bottom-bar-item-selected @endif" href="/legal-tasks">
@@ -227,13 +227,13 @@
         </a>
     </nav>
 
-    
+
     <div class="bg-light border-top  footer-container">
         <div class="container">
             @include('auth/footer')
         </div>
     </div>
-    
+
     <div id="global-loader" class="loader-overlay">
         <div class="loader-content">
             <div class="loader-spinner"></div>
@@ -250,7 +250,7 @@
             menuContainer.classList.add('main-menu-opened');
         }
     });
-    
+
     document.getElementById('show-settings-menu').addEventListener("click", function(){
         let settinsMenu = document.getElementById('settings-menu');
         let menuContainer = document.getElementById('main-menu-container');
@@ -261,11 +261,11 @@
             settinsMenu.classList.add('hidden');
         }
     });
-    
-    
-    
+
+
+
     function checkIsSelectEnable(e,taskId){
-        
+
         if (!e.checked){
             return false;
         }
@@ -274,7 +274,7 @@
         let rows = document.querySelectorAll('.workshop-tree-table-row');
         let isStarted = false;
         let isEnabled = true;
-        
+
         for (let i=0;i<rows.length;i++){
             if (isStarted){
                 if (rows[i].getAttribute('data-level') <= thisLevel ){
@@ -300,23 +300,23 @@
             warningDiv.classList.add('selected-disabled-warning');
             warningDiv.innerText = 'nie wszystkie elmenty podrzędne są zaznaczone';
             e.after(warningDiv);
-            
+
             waitAndDelete(warningDiv);
         }
     }
-    
+
     function waitAndDelete(item){
         setTimeout(function(){
             item.remove();
         }, 1000);
     }
-    
+
     function trigerSelectChilds(e,taskId){
         let checkoxElemenet = e.parentNode.querySelector('.select-subactions-checbox');
         checkoxElemenet.click();
-        
+
     }
-    
+
     function selectSubactions(e,taskId){
         setTimeout(() => {
         let thisRowId = e.closest('.workshop-tree-table-row').getAttribute('data-identity');
@@ -356,7 +356,7 @@
         }
         }, 100);
     }
-    
+
     function highlightTreeChils(e){
         let thisRowId = e.closest('.workshop-tree-table-row').getAttribute('data-identity');
         let thisLevel = e.closest('.workshop-tree-table-row').getAttribute('data-level');
@@ -370,7 +370,7 @@
                     isStarted = false;
                 }
                 if (isStarted){
-                    
+
                     rows[i].classList.add('workshop-tree-hilight');
                 }
             }
@@ -379,7 +379,7 @@
             }
         }
     }
-    
+
     function unhighlightTreeChils(e){
         let thisRowId = e.closest('.workshop-tree-table-row').getAttribute('data-identity');
         let thisLevel = e.closest('.workshop-tree-table-row').getAttribute('data-level');
@@ -393,7 +393,7 @@
                     isStarted = false;
                 }
                 if (isStarted){
-                    
+
                     rows[i].classList.remove('workshop-tree-hilight');
                 }
             }
@@ -452,9 +452,9 @@ console.log(thisLevel);
         }
     }
 
-    
-    
-</script>   
+
+
+</script>
 
 <script>
   // Inicjalizacja dla wszystkich elementów z klasą .set-calendar

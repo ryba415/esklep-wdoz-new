@@ -2,39 +2,27 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Support\Facades\Mail;
-use App\Http\Controllers\Cms\SaveData;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-//use App\Interfaces\CmsObjectInterface;
-use App\Models\CmsObject;
-
 class AdminSliders extends CmsObject
 {
     public $objectName = 'AdminSliders';
     public $dbTableName = 'slider';
     public $listName = 'Lista slajdów na stronie głównej';
-    public $editItemUrl = 'admin/slides/slide';
+    public $editItemUrl = 'panel/slides/slide';
     public $addNewItemButtonName = 'Stwórz slajd';
     public $breadCrub1 = [
-        'url' => '/admin/slides/',
+        'url' => '/panel/slides/',
         'name' => 'sjalder na stronie głównej'
     ];
     public $breadCrub2 = [
-        'url' => '/admin/slides/slide-new',
+        'url' => '/panel/slides/slide-new',
         'name' => 'slajd'
     ];
-    
-    
+
     public $areas = [
+
         0 => [
-            'name' => 'Nazwa',
-            'type' => 'select',
+            'name' => 'Tytuł',
+            'type' => 'text',
             'field' => 'title',
             'editable' => true,
             'onList' => true,
@@ -42,14 +30,7 @@ class AdminSliders extends CmsObject
             'validations' => [
                 'require' => true,
                 'nimLength' => 2,
-                'maxLength' => 399
-            ],
-            'options' => [
-                '' => '',
-                'nazwa1' => 'nazwa 1',
-                'nazwa2' => 'inna nazwa',
-                'nazwa3' => 'nazwa 3',
-                'nazwa4' => 'nnnn',
+                'maxLength' => 299
             ]
         ],
         1 => [
@@ -60,14 +41,42 @@ class AdminSliders extends CmsObject
             'onList' => true,
             'onFilter' => true,
             'validations' => [
-                'require' => true,
+                'require' => false,
                 'nimLength' => 2,
-                'maxLength' => 399
+                'maxLength' => 599
             ]
         ],
-        
+        2 => [
+            'name' => 'Link',
+            'type' => 'text',
+            'field' => 'url',
+            'editable' => true,
+            'onList' => false,
+            'onFilter' => false,
+            'validations' => [
+                'require' => false,
+                'nimLength' => 2,
+                'maxLength' => 299
+            ]
+        ],
+
+        3 => [
+            'name' => 'Zdjęcie',
+            'type' => 'image',
+            'field' => 'img_name',
+            'editable' => true,
+            'onList' => true,
+            'onFilter' => false,
+            'multiple' => false,
+            'uploadPath' => '/uploads/media/slider/',
+            'allowedExtensions' => ['jpg', 'jpeg', 'png', 'webp'],
+            'maxSizeMb' => 10,
+
+            'validations' => [
+                'require' => true,
+            ],
+
+            'info' => 'Dozwolone formaty: jpg, jpeg, png, webp'
+        ],
     ];
-
 }
-
-

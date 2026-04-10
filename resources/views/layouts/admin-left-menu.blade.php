@@ -5,7 +5,7 @@
             <span>Start</span>
         </a>
     </li>
-    <li><a href="/admin/slides/">
+    <li><a href="/panel/slides/">
             <span>Slider</span>
         </a>
     </li>

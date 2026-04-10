@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-
+    <link rel="stylesheet" href="{{ asset('css/tailwind.css') }}">
 <div class="all-content-big cms-list-container">
     <h1>{{$listName}}</h1>
     @if ($filtersExist)
@@ -11,10 +11,10 @@
             @foreach ($areas as $area => $value)
             @if (isset($value['onFilter']) && $value['onFilter'])
             <div class="filter-row">
-                <label>{{$value['name']}}:</label> 
+                <label>{{$value['name']}}:</label>
                 <input type="text" name="{{$value['field']}}" @if(isset($filtersValues[$value['field']])) value="{{$filtersValues[$value['field']]}}" @endif>
-            </div>           
-            @endif    
+            </div>
+            @endif
             @endforeach
             <input type="submit" value="Filtruj" class="standard-button standard-big-button-green submit-filters">
         </form>
@@ -24,7 +24,7 @@
         <a href="/{{$editItemUrl}}-new" class="standard-button standard-big-button-green" id="add-nawe-list-item">{{$addNewItemButtonName}}</a>
     </div>
     {!! $extraView !!}
-    
+
     @if (is_countable($listItems) and count($listItems) > 0)
     <table class="cms-list-table">
         <thead>
@@ -39,9 +39,27 @@
         @foreach ($listItems as $item)
         <tr>
             <!--<td class="workshop-action-checbox"><input type="checkbox" autocomplete="off" data-row-id="{{$item->id}}"></td>-->
-            @foreach ($item as $area => $value)
-                @if ($area != 'id')
-                <td>{{$value}} @if($area == 'progress')%@endif</td>
+            @foreach ($item as $field => $value)
+                @if ($field != 'id')
+                    @php
+                        $fieldArea = $areasByField[$field] ?? null;
+                        $isSingleImage = $fieldArea
+                            && isset($fieldArea['type'])
+                            && $fieldArea['type'] === 'image'
+                            && (!isset($fieldArea['multiple']) || !$fieldArea['multiple']);
+                    @endphp
+
+                    <td>
+                        @if($isSingleImage)
+                            @if($value)
+                                <img src="{{ $value }}" alt="" class="h-[70px] w-[120px] rounded-md border border-gray-200 object-cover">
+                            @else
+                                <span class="text-gray-400">-</span>
+                            @endif
+                        @else
+                            {{ $value }} @if($field == 'progress')%@endif
+                        @endif
+                    </td>
                 @endif
             @endforeach
             <td class="cms-list-actions" data-item-id="{{$item->id}}">
@@ -52,7 +70,7 @@
         @endforeach
     </table>
     <!--<div class="table-mass-actions">
-        masowe działania na zaznaczonych pozycjach: 
+        masowe działania na zaznaczonych pozycjach:
         <select id="mass-actions-action" autocomplete="off">
             <option value=""></option>
             <option value="print">Drukuj</option>
@@ -66,7 +84,7 @@
     @else
     <p>brak elementów listy</p>
     @endif
-    
+
     <?=$extraView?>
 </div>
 
@@ -78,7 +96,7 @@ for (let i=0;i<deleteButtons.length;i++){
             let itemId = event.target.getAttribute('data-id');
             let itemType = event.target.getAttribute('data-list-type');
             fetch("/cms-universal-delete-list/" + itemId + '/' + itemType,{
-                headers: { 
+                headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}',
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
@@ -119,9 +137,9 @@ document.getElementById('select-all-items').addEventListener("click", (event) =>
 
 document.getElementById('mass-actions-action').addEventListener("change", (event) => {
     let massActionSelect = document.getElementById('mass-actions-action');
-    
+
     let allChcecboxes = document.querySelectorAll('.workshop-action-checbox input[type="checkbox"]');
-    
+
     let checkedIds = [];
     for (let i=0;i<allChcecboxes.length;i++){
         if (allChcecboxes[i].checked){
@@ -142,5 +160,5 @@ document.getElementById('mass-actions-action').addEventListener("change", (event
         }
     }
 });*/
-</script>  
+</script>
 @endsection
