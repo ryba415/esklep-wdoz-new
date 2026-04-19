@@ -43,7 +43,7 @@ class AdminArticlesCategory extends CmsObject
             'field' => 'position',
             'editable' => true,
             'onList' => true,
-            'onFilter' => true,
+            'onFilter' => false,
             'validations' => [
                 'require' => false,
                 'maxLength' => 11,
