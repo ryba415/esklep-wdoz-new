@@ -49,4 +49,28 @@ class AdminDashboard extends Controller
         return $edit->render($id);
     }
 
+    public function articlesList(Request $request){
+        $list = new TableList('AdminArticles');
+
+        return $list->render($request);
+    }
+
+    public function editArticle($id){
+        $edit = new TableEdit('AdminArticles');
+
+        return $edit->render($id);
+    }
+
+    public function articlesCategoryList(Request $request)
+    {
+        $list = new TableList('AdminArticlesCategory');
+        return $list->render($request);
+    }
+
+    public function editArticlesCategory($id)
+    {
+        $edit = new TableEdit('AdminArticlesCategory');
+        return $edit->render($id);
+    }
+
 }

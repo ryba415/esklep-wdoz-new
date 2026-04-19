@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class SaveData extends Controller
 {
-    protected $modelsEnabledToSave = ['WorkoutDefinitions','Workshops',"Users","Orders","AdminSliders"];
+    protected $modelsEnabledToSave = ['WorkoutDefinitions', 'Workshops', 'Users', 'Orders', 'AdminSliders', 'AdminArticles', 'AdminArticlesCategory'];
     protected $modelObject = null;
     protected $status = true;
     protected $errors = [];
@@ -294,6 +294,10 @@ class SaveData extends Controller
                 ->first();
 
             if ($item) {
+                if (method_exists($modelObject, 'ownDeleteAction')) {
+                    $modelObject->ownDeleteAction($itemId);
+                }
+
                 foreach ($modelObject->areas as $area) {
                     if (isset($area['type']) && $area['type'] === 'image') {
                         $field = $area['field'];

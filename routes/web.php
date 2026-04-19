@@ -96,10 +96,16 @@ Route::middleware(["auth:usercustom-admin"])->group(function () {
         Route::get('/panel/slides/', "slidersList")->name('sliders-list');
         Route::get('/panel/slides/slide-{id}','editSlide')->name('edit-slide');
 
+        /*zakładka wiedza dla edycji artykułów*/
+        Route::get('/panel/articles/', "articlesList")->name('articles-list');
+        Route::get('/panel/articles/article-{id}','editArticle')->name('edit-article');
+        Route::get('/panel/articlesCategory/', "articlesCategoryList")->name('articlesCategory-list');
+        Route::get('/panel/articlesCategory/article-{id}','editArticlesCategory')->name('edit-articlesCategory');
     });
 
     Route::controller(SaveData::class)->group(function () {
         Route::post('/cms-universal-save/{objectName}', 'universalSave')->name('cms-universal-save');
+        Route::post('/cms-universal-delete-list/{itemId}/{objectName}', 'universalDeleteOnList')->name('cms-universal-delete-list');
     });
 
 });

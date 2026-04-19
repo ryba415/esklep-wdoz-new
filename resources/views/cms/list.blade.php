@@ -118,47 +118,6 @@ for (let i=0;i<deleteButtons.length;i++){
 
     });
 }
-/*
-document.getElementById('select-all-items').addEventListener("click", (event) => {
-    let select = false;
-    if (event.target.checked){
-        select = true;
-    }
-    let allChcecboxes = document.querySelectorAll('.workshop-action-checbox input[type="checkbox"]');
-    for (let i=0;i<allChcecboxes.length;i++){
-        if (select){
-            allChcecboxes[i].checked = true;
-        } else {
-            allChcecboxes[i].checked = false;
-        }
-    }
-});
 
-
-document.getElementById('mass-actions-action').addEventListener("change", (event) => {
-    let massActionSelect = document.getElementById('mass-actions-action');
-
-    let allChcecboxes = document.querySelectorAll('.workshop-action-checbox input[type="checkbox"]');
-
-    let checkedIds = [];
-    for (let i=0;i<allChcecboxes.length;i++){
-        if (allChcecboxes[i].checked){
-            checkedIds.push(allChcecboxes[i].getAttribute('data-row-id'));
-        }
-    }
-    if (massActionSelect.value == 'print'){
-        let idsString = '';
-        for (let i=0;i<checkedIds.length;i++){
-            if (idsString != ''){
-                idsString = idsString + '-';
-            }
-            idsString = idsString + checkedIds[i];
-        }
-        if (idsString != ''){
-            window.open("/import-workshop-0?workshop-ids=" + idsString + '&isPrint=true&history=0', '_blank');
-            //window.location.href = "/import-workshop" + idsString + '?isPrint=true&history=0';
-        }
-    }
-});*/
 </script>
 @endsection

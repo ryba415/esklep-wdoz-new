@@ -146,7 +146,7 @@
           </div>
 
 
-            <a class="navbar-brand" href="/dashboard">
+            <a class="navbar-brand" href="/panel/dashboard">
                 logo
 
             </a>
