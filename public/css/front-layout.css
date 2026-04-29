@@ -128,5 +128,49 @@ and open the template in the editor.
     border-radius: 24px 0 0 24px;
   }
 }
+@media only screen and (max-width: 500px) {
+  #mobile-menu {
+    margin-right: -15px;
+  }
+  #top-header-main-logo {
+    width: 180px;
+    margin-left: -25px;
+  }
+}
+.home-page-box-background {
+  width: calc(100% + 48px);
+  text-align: center;
+  padding-top: 10px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  margin-bottom: -15px;
+  padding-bottom: 10px;
+}
+
+.home-page-extra-box {
+  background-size: cover !important;
+  background-position: top center !important;
+}
+
+@media only screen and (max-width: 920px) {
+  .home-page-extra-box {
+    height: 380px !important;
+  }
+}
+@media only screen and (max-width: 620px) {
+  .home-page-extra-box {
+    height: 350px !important;
+  }
+}
+@media only screen and (max-width: 520px) {
+  .home-page-extra-box {
+    height: 300px !important;
+  }
+}
+@media only screen and (max-width: 350px) {
+  .home-page-extra-box {
+    height: 280px !important;
+  }
+}
 
 /*# sourceMappingURL=menu-search-results.css.map */

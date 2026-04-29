@@ -13,14 +13,20 @@
     <link rel="stylesheet" href="/css/tailwind.css" /> 
     <script type="text/javascript" src="/js/scripts.js?v=1"></script>
     
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
     
     <!--@ vite('resources/css/app.css')-->
     
     
     <meta id="cform" name="csrf-token" content="{{ csrf_token() }}">
     
-    
-    <!--opinie ceneo-->
     <script>(function(w,d,s,i,dl){w._ceneo = w._ceneo || function () {
     w._ceneo.e = w._ceneo.e || []; w._ceneo.e.push(arguments); };
     w._ceneo.e = w._ceneo.e || [];dl=dl===undefined?"dataLayer":dl;

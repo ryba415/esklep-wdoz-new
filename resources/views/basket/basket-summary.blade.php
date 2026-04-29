@@ -200,11 +200,40 @@ async function rebuildBasket(){
                 document.getElementById('get-free-delivery-container').classList.remove("hidden");
                 document.getElementById('missing-for-free-delivery-container2').classList.add("hidden");
                 document.getElementById('get-free-delivery-container2').classList.remove("hidden");
+                document.getElementById('basket-delivery-finish-price').innerHTML = priceFormat(0);
+                
+                let deliveriesInputs = document.querySelectorAll('.delivey-method-radio[name="select-delivey-method"]');
+                for (let i=0;i<deliveriesInputs.length;i++){
+                    deliveriesInputs[i].setAttribute('data-price',0);
+                }
+                
+                let deliveriesPricesDisplay = document.querySelectorAll('.delivery-method-in-basket .delivery-price');
+                for (let i=0;i<deliveriesPricesDisplay.length;i++){
+                    deliveriesPricesDisplay[i].innerHTML = '0 zł';
+                }
+                
             } else {
                 document.getElementById('missing-for-free-delivery-container').classList.remove("hidden");
                 document.getElementById('get-free-delivery-container').classList.add("hidden");
                 document.getElementById('missing-for-free-delivery-container2').classList.remove("hidden");
                 document.getElementById('get-free-delivery-container2').classList.add("hidden");
+                
+                let selectedDelivery = document.querySelector('.delivey-method-radio[name="select-delivey-method"]:checked');
+                if (selectedDelivery != null){
+                    let deliveryPrice = parseFloat(selectedDelivery.closest('li').querySelector('.delivery-price').getAttribute('data-price').replace(',','.'));
+                    document.getElementById('basket-delivery-finish-price').innerHTML = priceFormat(parseFloat(deliveryPrice));
+                }
+                for (let i=0;i<jsonResponse.deliveries.length;i++){
+                    let deliveryInput = document.querySelector('.delivey-method-radio[data-method-id="'+jsonResponse.deliveries[i].id+'"]');
+                    if (deliveryInput != null){
+                        deliveryInput.setAttribute('data-price',jsonResponse.deliveries[i].payu_price);
+                        
+                        let deliveryDisplay = deliveryInput.closest('.delivery-method-in-basket').querySelector('.delivery-price');
+                        if (deliveryDisplay != null){
+                            deliveryDisplay.innerHTML = priceFormat(parseFloat(jsonResponse.deliveries[i].payu_price)) + ' zł';
+                        }
+                    }
+                }
             }
             document.getElementById('missing-for-free-delivery').innerHTML = priceFormat(missingFreeDelivery);
             document.getElementById('missing-for-free-delivery2').innerHTML = priceFormat(missingFreeDelivery);

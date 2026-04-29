@@ -13,6 +13,7 @@ use App\Models\Email;
 use App\Models\Products;
 use App\Http\Controllers\globalHelper\globalHelper;
 use Config;
+use Illuminate\Support\Facades\Cache;
 
 class CategoryController extends Controller
 {
@@ -30,9 +31,11 @@ class CategoryController extends Controller
         $url = preg_replace("/[^a-zA-Z0-9\-]+/", "", $url);
         
         $sortBy = '';
+        $sortyByGetParam = '';
         $searchSortBy = '';
         if (isset($requestData['sort-by'])){
             $sortBy = preg_replace("/[^a-zA-Z0-9\-]+/", "", $requestData['sort-by']);
+            $sortyByGetParam = '&sort-by=' . $sortBy;
             switch ($sortBy) {
                 case 'price-asc':
                     $searchSortBy = ' ORDER BY ecommerce_products.price ASC ';
@@ -49,6 +52,8 @@ class CategoryController extends Controller
             }
             
         }
+        
+        $viewData['sortyByGetParam'] = $sortyByGetParam;
         $viewData['sortBy'] = $sortBy;
 
         $category = DB::connection('mysql-esklep')->select('SELECT ecommerce_categories.* FROM ecommerce_categories '
@@ -127,91 +132,87 @@ class CategoryController extends Controller
     }
     
     public function getCategiesTreesFromCategoryId($id, $getOnlyOneLongest = false){
-        /*$categories = DB::connection('mysql-esklep')->select('WITH RECURSIVE category_tree AS (
-                ( SELECT c.id, c.parent_id, c.name, c.slug
-                FROM ecommerce_categories c
-                WHERE c.id = ?  ) 
-                
-                UNION ALL
-
-                SELECT c.id, c.parent_id, c.name, c.slug
-                FROM ecommerce_categories c
-                JOIN category_tree ct ON c.id = ct.parent_id
-            )
-            SELECT DISTINCT id, parent_id, name, slug FROM category_tree',[$id]);*/
         
-        $categories = [];
-        //$firsts = DB::connection('mysql-esklep')->select('SELECT * FROM ecommerce_products_categories WHERE product_id = ? ',[$id]);
+        $cacheKey = 'categories_tree_form_' . $id;
+        if ($getOnlyOneLongest){
+            $cacheKey = $cacheKey . '_only_one';
+        }
+        
+        if (Cache::has($cacheKey)) {
+            return Cache::get($cacheKey);
+            
+        } else {
 
-        //foreach ($firsts as $first){
-            $firstCat = DB::connection('mysql-esklep')->select('SELECT * FROM ecommerce_categories WHERE id = ? ',[$id]);
-            $categories[] = $firstCat[0];
-            
-            //echo '<pre>';
-            //var_dump($firstCat[0]);die();
-            
-            while (count($firstCat) > 0 && $firstCat[0]->parent_id != null){
-                $firstCat = DB::connection('mysql-esklep')->select('SELECT * FROM ecommerce_categories WHERE id = ? ',[$firstCat[0]->parent_id]);
-                if (count($firstCat) > 0){
-                    $categories[] = $firstCat[0];
+            $categories = [];
+
+                $firstCat = DB::connection('mysql-esklep')->select('SELECT * FROM ecommerce_categories WHERE id = ? ',[$id]);
+                $categories[] = $firstCat[0];
+
+                while (count($firstCat) > 0 && $firstCat[0]->parent_id != null){
+                    $firstCat = DB::connection('mysql-esklep')->select('SELECT * FROM ecommerce_categories WHERE id = ? ',[$firstCat[0]->parent_id]);
+                    if (count($firstCat) > 0){
+                        $categories[] = $firstCat[0];
+                    }
                 }
+
+
+            if (count($categories)<1){
+                return [];
             }
-        //}
-        
-        if (count($categories)<1){
-            return [];
-        }
-        $categoriesArray = [];
-        foreach ($categories as $category){
-            if ($category->parent_id == null){
-                $categoriesArray[] = [
-                    'category' => $category,
-                    'depth' => 1,
-                    'childs' => []
-                ];
-            }
-        }
-        
-        foreach ($categoriesArray as $i => $category){
-            $parentId = $category['category']->id;
-            $thiCat = & $categoriesArray[$i];
-            do {
-                $child = $this->findChild($parentId, $categories);
-                if ($child != null){
-                    $parentId = $child->id;
-                    $categoriesArray[$i]['depth']++;
-                    $thiCat['childs'] = [
-                        'category' => $child,
+            $categoriesArray = [];
+            foreach ($categories as $category){
+                if ($category->parent_id == null){
+                    $categoriesArray[] = [
+                        'category' => $category,
+                        'depth' => 1,
                         'childs' => []
                     ];
-                    $thiCat =& $thiCat['childs'];
-                } 
-            } while ($child != null);
-        }
-        
-        if ($getOnlyOneLongest){
-            $toReturn = [];
-            $longest = 0;
-            foreach ($categoriesArray as $cat){
-                if ($cat["depth"] > $longest){
-                    $toReturn = $cat;
-                    $longest = $cat["depth"];
                 }
             }
-            $toReturnFlatArray = [];
-            if (count($toReturn) > 0){
-                $toReturnFlatArray[] = $toReturn["category"];
-                $iterateCat = $toReturn;
-                do{
-                    if (isset($iterateCat["childs"]["category"])){
-                        $toReturnFlatArray[] = $iterateCat["childs"]["category"];
-                        $iterateCat = $iterateCat["childs"];
-                    }
-                } while(count($iterateCat["childs"]) > 0);
+
+            foreach ($categoriesArray as $i => $category){
+                $parentId = $category['category']->id;
+                $thiCat = & $categoriesArray[$i];
+                do {
+                    $child = $this->findChild($parentId, $categories);
+                    if ($child != null){
+                        $parentId = $child->id;
+                        $categoriesArray[$i]['depth']++;
+                        $thiCat['childs'] = [
+                            'category' => $child,
+                            'childs' => []
+                        ];
+                        $thiCat =& $thiCat['childs'];
+                    } 
+                } while ($child != null);
             }
-            return $toReturnFlatArray;
+
+            if ($getOnlyOneLongest){
+                $toReturn = [];
+                $longest = 0;
+                foreach ($categoriesArray as $cat){
+                    if ($cat["depth"] > $longest){
+                        $toReturn = $cat;
+                        $longest = $cat["depth"];
+                    }
+                }
+                $toReturnFlatArray = [];
+                if (count($toReturn) > 0){
+                    $toReturnFlatArray[] = $toReturn["category"];
+                    $iterateCat = $toReturn;
+                    do{
+                        if (isset($iterateCat["childs"]["category"])){
+                            $toReturnFlatArray[] = $iterateCat["childs"]["category"];
+                            $iterateCat = $iterateCat["childs"];
+                        }
+                    } while(count($iterateCat["childs"]) > 0);
+                }
+                Cache::put($cacheKey, $toReturnFlatArray, 60 * 60 * 24 * 3 );
+                return $toReturnFlatArray;
+            }
+            Cache::put($cacheKey, $categoriesArray, 60 * 60 * 24 * 3 );
+            return $categoriesArray;
         }
-        return $categoriesArray;
     }
     
     private function findChild($parentId, $categories){

@@ -39,7 +39,7 @@
         <div class="self-stretch min-w-[120px] flex-1 shrink basis-[0%] max-w-[270px] my-auto pr-5 ms:pr-10">
             <a href="/">
 
-<svg id="top-header-main-logo" class="header-top-icons-logo aspect-[5] object-contain w-[230px] bg-blend-darken" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 314.797699 79.5192213">
+<svg id="top-header-main-logo" class="header-top-icons-logo aspect-[5] object-contain w-[230px] xs:w-[180px] bg-blend-darken" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 314.797699 79.5192213">
   <path d="M81.5602728,24.7839565v29.9518751h-24.7828053v24.7833897h-29.9524596v-24.7833897h-.0081291v-29.9518751h.0081291V0h29.9524596v24.7839565h24.7828053ZM25.1292589,54.7358316H0v-29.9518751h25.1292589v29.9518751Z" style="fill: #024023; fill-rule: evenodd;"/>
   <g>
     <path d="M96.4492188,12.0322266h6.3789062l2.2958984,12.1669922,3.3613281-12.1669922h6.3554688l3.3701172,12.1503906,2.2988281-12.1503906h6.3457031l-4.7910156,21.7333984h-6.5859375l-3.8115234-13.6835938-3.796875,13.6835938h-6.5859375l-4.8349609-21.7333984Z" style="fill: #d71822;"/>
@@ -70,7 +70,6 @@
 
             <div id="header-search-dropdown" class="search-dropdown" hidden>
             <div class="search-dropdown__inner">
-                <!-- JS tu wstrzykuje wyniki -->
             </div>
             </div>
         </div>
@@ -104,13 +103,10 @@
               <div id="user-acount-header-menu" class="fixed top-[60px] right-2 z-50 hidden pt-0 left-[-175px] lg:left-[-225px] xl:left-[-100px] absolute">
                     <div class="w-80 md:w-96 border border-gray-300 shadow-lg bg-white rounded-lg overflow-hidden absolute">
 
-                        <!-- Header -->
                         <div class="bg-green-600 text-white py-3 px-4 flex justify-between items-center w-[100%] -ml-1">
                             <h3 id="cart-title" class="text-base font-medium">Moje konto</h3>
                         </div>
 
-                        
-                        <!-- Footer -->
                         <div class="border-t border-gray-200 p-4 space-y-4">
                             <div class="space-y-4">
                                 <a href="/user-acount/dasboard" class="w-full py-3 bg-[#eb442d] hover:bg-[#d03e26] text-white rounded-xl font-medium transition-colors block text-center">
@@ -150,7 +146,7 @@
           </div>
 
           <img src="https://cdn.builder.io/api/v1/image/assets/c1af26aca41e46a69245d41457563759/6e5da7afa088c49cec863ef95e5872cd24748929?placeholderIfAbsent=true" class="h-8 w-px" role="separator" aria-orientation="vertical">
-            <span id="top-header-basket-link" class="top-header-basket-link">
+            <div id="top-header-basket-link" class="top-header-basket-link">
                 
                 <div class="relative flex items-center gap-4 h-full">    
                     <a href="/koszyk" class="flex items-center gap-4 h-full">
@@ -166,13 +162,10 @@
                     </div> 
                     </a>    
                 </div>
-                
-                
-                <!-- MiniCart Popover -->
+
                 <div id="minicart" class="fixed top-[10px] right-2 z-50 hidden pt-5 -mt-5 relative ml-[-262px] lg:ml-[-335px] xl:ml-[-275px]">
                     <div class="w-80 md:w-96 border border-gray-300 shadow-lg bg-white rounded-lg overflow-hidden absolute">
 
-                        <!-- Header -->
                         <div class="bg-green-600 text-white py-3 px-4 flex justify-between items-center">
                             <h3 id="cart-title" class="text-base font-medium">Koszyk (<span id="minicart-products-count"></span>)</h3>
                             <button id="close-minicart" class="p-1 hover:bg-white/10 rounded" onclick="closeMinicart(this)">
@@ -183,10 +176,8 @@
                             </button>
                         </div>
 
-                        <!-- Products List -->
                         <div class="max-h-80 overflow-y-auto py-2 px-4">
                             <ul class="hidden">
-                                <!-- Product 1 -->
                                 <li class="basket-item-container product-item py-4 flex gap-3 hidden"
                                   data-item-id=""
                                   data-product-id=""
@@ -206,7 +197,6 @@
                                             </button>
                                         </div>
                                         <div class="flex mt-2 justify-between items-center">
-                                            <!-- Quantity Controls -->
                                             <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden">
                                                 <button onclick="executedecrementQuantityAndUpdate(this)" class="quantity-decrease w-8 h-8 flex items-center justify-center hover:bg-gray-100" aria-label="Zmniejsz ilość" >
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -232,7 +222,6 @@
                             </ul>
                         </div>
 
-                        <!-- Footer -->
                         <div class="border-t border-gray-200 p-4 space-y-4">
                             <div class="flex justify-between text-base font-semibold">
                                 <span>Razem:</span>
@@ -268,19 +257,20 @@
      
         </div>
 
-        <div class="header-top-icons-search-container header-top-icons-search-container-mobile flex self-stretch w-full items-center mt-4 md:hidden">
-        <div class="header-search-autocomplete header-search-autocomplete--mobile">
-            <input id="header-search-input-mobile" type="text" name="query" placeholder="Szukaj produktu" class="self-stretch w-full sm:w-[200px] md:w-[250px] lg:w-[400px] bg-[rgba(235,235,235,1)] min-h-[42px] text-sm text-[rgba(52,52,52,1)] font-normal flex-1 shrink basis-[0%] my-auto pl-5 rounded-[24px_0px_0px_24px] hover:bg-[rgba(225,225,225,1)] transition-colors" autocomplete="off" />
+        <!--<div class="header-top-icons-search-container header-top-icons-search-container-mobile flex self-stretch w-full items-center mt-4 md:hidden">-->
+        <form class="header-top-icons-search-container header-top-icons-search-container-mobile flex self-stretch w-full items-center mt-4 md:hidden" action="/search" method="get">
+            <div class="header-search-autocomplete header-search-autocomplete--mobile">
+                <input id="header-search-input-mobile" type="text" name="query" placeholder="Szukaj produktu" class="self-stretch w-full sm:w-[200px] md:w-[250px] lg:w-[400px] bg-[rgba(235,235,235,1)] min-h-[42px] text-sm text-[rgba(52,52,52,1)] font-normal flex-1 shrink basis-[0%] my-auto pl-5 rounded-[24px_0px_0px_24px] hover:bg-[rgba(225,225,225,1)] transition-colors" autocomplete="off" />
 
-            <div id="header-search-dropdown-mobile" class="search-dropdown" hidden>
-            <div class="search-dropdown__inner"></div>
+                <div id="header-search-dropdown-mobile" class="search-dropdown" hidden>
+                <div class="search-dropdown__inner"></div>
+                </div>
             </div>
-        </div>
 
-        <button class="self-stretch min-h-[42px] gap-2.5 text-base text-white font-medium whitespace-nowrap w-[100px] bg-[#EB442D] hover:bg-[#d13a27] transition-colors my-auto rounded-[0px_90px_90px_0px] flex items-center justify-center">
-            Szukaj
-        </button>
-        </div>
+            <button class="self-stretch min-h-[42px] gap-2.5 text-base text-white font-medium whitespace-nowrap w-[100px] bg-[#EB442D] hover:bg-[#d13a27] transition-colors my-auto rounded-[0px_90px_90px_0px] flex items-center justify-center">
+                Szukaj
+            </button>
+        </form>
 
         
     </div>
@@ -346,7 +336,6 @@ function normalizeProducts(json) {
       return;
     }
 
-    // Brak wyników
     if (!products.length) {
       inner.innerHTML = `
         <div class="search-dropdown__empty">
@@ -400,7 +389,6 @@ function attachAutocomplete(inputEl, dropdownEl) {
   const doSearch = debounce(async () => {
     const query = inputEl.value.trim();
 
-    // Zawsze chowaj dropdown, dopóki nie ma min 2 znaków
     if (query.length < MIN_CHARS) {
       dropdownEl.hidden = true;
       const inner = dropdownEl.querySelector(".search-dropdown__inner");
@@ -408,11 +396,9 @@ function attachAutocomplete(inputEl, dropdownEl) {
       return;
     }
 
-    // anuluj poprzedni request
     if (abortController) abortController.abort();
     abortController = new AbortController();
 
-    // loader
     const inner = dropdownEl.querySelector(".search-dropdown__inner");
     if (inner) inner.innerHTML = `<div class="search-dropdown__loading">Szukam…</div>`;
     dropdownEl.hidden = false;
@@ -430,7 +416,6 @@ function attachAutocomplete(inputEl, dropdownEl) {
       const json = await res.json();
       const data = normalizeProducts(json);
 
-      // jeśli user zdążył zmienić wpis
       if (inputEl.value.trim() !== query) return;
 
       renderDropdown(dropdownEl, query, data.products, data.total);
@@ -465,7 +450,6 @@ function attachAutocomplete(inputEl, dropdownEl) {
     if (e.key === "Enter") dropdownEl.hidden = true;
   });
 
-  // Focus: pokaż tylko jeśli query >= 2 i dropdown ma realną treść
   inputEl.addEventListener("focus", () => {
     const q = inputEl.value.trim();
     if (q.length < MIN_CHARS) {
@@ -477,14 +461,11 @@ function attachAutocomplete(inputEl, dropdownEl) {
   });
 }
 
-
-  // Desktop
   attachAutocomplete(
     document.getElementById("header-search-input"),
     document.getElementById("header-search-dropdown")
   );
 
-  // Mobile
   attachAutocomplete(
     document.getElementById("header-search-input-mobile"),
     document.getElementById("header-search-dropdown-mobile")

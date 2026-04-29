@@ -136,6 +136,9 @@ class BasketApiController extends Controller
             $basket = new Basket($request['hash']);
             $returnData['hash'] = $basket->getHash();
             $returnData['basket'] = $basket;
+            
+            $returnData['deliveries'] = DB::connection('mysql-esklep')->select('SELECT id, payu_price, name FROM ecommerce_delivery_method', []);    
+            
         } else {
             $returnData['status'] = false;
             $returnData['errors'][] = 'Hash is require';
@@ -917,11 +920,6 @@ class BasketApiController extends Controller
                                 $returnData['errors'][] = $paynowResponse["error"];
                                 $returnData['errorsAreas'][] = '';
                                 $returnData['status'] = false;
-                                
-                                /*$returnData['status'] = true; //tymaczowo do testów
-                                $returnData['errors'] = []; //tymaczowo do testów
-                                $returnData['errorsAreas'] = []; //tymaczowo do testów
-                                $returnData['redirectUrl'] = "/test-przelewy-payment"; //tymaczowo do testów*/
                             }
                         } else {
                             if (count($order) > 0){
@@ -935,7 +933,7 @@ class BasketApiController extends Controller
                             $emailVariables['order'] = $order[0];
                             $emailVariables['delivery'] = $delivery[0];
                             $emailVariables['date'] = date('Y-m-d H:i:s');
-                            $emailsArray = [$buyFormEmail];
+                            $emailsArray = [$buyFormEmail, 'eapteka@wdoz.pl'];
                             $email = new Email($emailsArray, 'Potwierdzenie złożenia nowego zamówienia', 'emails/order-confirm-mail', $emailVariables);
                             $email->send();
                             
@@ -992,20 +990,9 @@ class BasketApiController extends Controller
             $postArray['buyer'] = [
                 'email' => $order->email
             ];
-            /*$postArray['transfers'] = [
-                [
-                    "sellerId" => "MB9-CWR-7R9-QMP",
-                    "grossAmount" => $priceGross,
-                    "feeAmount" => "0"
-                ]
-            ];*/
 
 
             $postString = json_encode($postArray, JSON_UNESCAPED_SLASHES);
-
-            //old signature v1
-            /*$signature = hash_hmac('SHA256', $postString, Config::get('constants.paynow_signature_key'), true);
-            $signature = base64_encode($signature);*/
             
             $signatureBody = [
                 'headers' => [
@@ -1013,7 +1000,7 @@ class BasketApiController extends Controller
                     'Idempotency-Key' => $order->name,
                 ],
                 'parameters' => new \stdClass(),
-                'body' => json_encode($postArray, JSON_UNESCAPED_SLASHES)
+                'body' => $postString
             ];
 
             $signature = base64_encode(hash_hmac('sha256', json_encode($signatureBody, JSON_UNESCAPED_SLASHES), Config::get('constants.paynow_signature_key'), true));
@@ -1027,7 +1014,6 @@ class BasketApiController extends Controller
                 'Content-Type: ' . 'application/json',
             ));
 
-            //curl_setopt($ch, CURLOPT_USERPWD, 'esklep' . ":" . 'b*&4[Hv@');
             curl_setopt($ch, CURLOPT_POSTFIELDS, $postString);
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
@@ -1038,11 +1024,6 @@ class BasketApiController extends Controller
             $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
             curl_close($ch);
-            
-            /*var_dump($httpcode);
-            var_dump(curl_error($ch));
-            var_dump($server_output);die();*/
-
             
             $errorDetails = '';
 

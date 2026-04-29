@@ -86,7 +86,7 @@
         </tr>
         <tr class="border-t-4 border-wdoz-primary ">
             <td class="p-2"><span class="text-[rgba(61,61,61,1)] text-sm">data:</span><br> <span class="font-semibold">{{$order->order_date}}</span></td>
-            <td class="p-2"><span class="text-[rgba(61,61,61,1)] text-sm">status płatności:</span><br> <span class="font-semibold">{{$globalHelper->mapPaymentStatus($order->paynow_payment_status)}}</span></td>
+            <td class="p-2"><span class="text-[rgba(61,61,61,1)] text-sm">status płatności:</span><br> <span class="font-semibold " @if($order->paynow_payment_status == 'CONFIRMED') style="color: green;"@endif >{{$globalHelper->mapPaymentStatus($order->paynow_payment_status)}}</span></td>
             <td class="p-2"><span class="text-[rgba(61,61,61,1)] text-sm">status zamówienia:</span><br> <span class="font-semibold">{{$globalHelper->mapOrderStatus($order->status)}}</span></td>
             <td class="p-2"><span class="text-[rgba(61,61,61,1)] text-sm">wartość:</span><br> <span class="font-semibold">{{$order->value_gross}} zł</span></td>
             <td class="p-2"></td>

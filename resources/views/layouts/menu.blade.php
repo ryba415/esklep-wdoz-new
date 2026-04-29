@@ -1,7 +1,7 @@
 
-    <div id="menu-overlay" class="fixed inset-0 z-50 bg-black/80 animate-in fade-in-0 hidden"></div>
+<div id="menu-overlay" class="fixed inset-0 z-50 bg-black/80 animate-in fade-in-0 hidden"></div>
 
-<?php $menuArray = \App\Models\GlobalHelper::getMenuTree() ?>
+    <?php $menuArray = \App\Models\GlobalHelper::getMenuTree() ?>
     <div id="menu-panel" role="dialog" class="fixed z-50 gap-2 bg-background shadow-lg transition ease-in-out inset-y-0 right-0 h-full w-3/4 border-l animate-in slide-in-from-right sm:max-w-sm p-0 hidden">
         <div class="h-full bg-white">
             <div class="p-6 border-b">
@@ -25,7 +25,6 @@
                             <div class="submenu transform transition-all duration-300 ease-in-out h-0 overflow-hidden pl-6 py-0 space-y-1">
                                 <ul>@foreach ($menuArray[1] as $itemLv1)
                                     @if ($itemLv1->parent_id == $itemLv0->id)
-                                    
                                     <li class="p-2 text-sm text-gray-700 hover:bg-gray-50 rounded cursor-pointer"><a href="/{{ $itemLv1->slug }}">{{$itemLv1->name}}</a></li>
                                     @endif
                                     @endforeach
@@ -34,37 +33,22 @@
                         </li>
                         @endforeach
                     </ul>
-  
 
                     <script>
                         document.addEventListener('DOMContentLoaded', function() {
-                            // Pobierz wszystkie elementy kategorii
                             const categoryItems = document.querySelectorAll('.category-item');
-
-                            // Obsługa kliknięcia dla każdej kategorii
                             categoryItems.forEach(item => {
                                 item.addEventListener('click', function() {
-                                    // Znajdź element submenu, który jest rodzeństwem (sąsiadem) klikniętego elementu
                                     const submenu = this.nextElementSibling;
-                                    // Znajdź ikonę strzałki wewnątrz klikniętego elementu
                                     const arrow = this.querySelector('.arrow-icon');
-
-                                    // Sprawdź, czy submenu jest już otwarte
                                     const isOpen = submenu.classList.contains('h-auto');
-
-                                    // Zamknij wszystkie otwarte submenu
                                     document.querySelectorAll('.submenu.h-auto').forEach(openSubmenu => {
                                         openSubmenu.classList.remove('h-auto', 'py-1');
                                         openSubmenu.classList.add('h-0', 'py-0');
                                     });
-
-                                    // Zresetuj wszystkie ikony strzałek
                                     document.querySelectorAll('.arrow-icon.rotate-90').forEach(rotatedArrow => {
                                         rotatedArrow.classList.remove('rotate-90');
                                     });
-
-                                    // Jeśli kliknięty submenu był już otwarty, nie rób nic więcej (zostanie zamknięty)
-                                    // W przeciwnym razie, otwórz go
                                     if (!isOpen) {
                                         submenu.classList.remove('h-0', 'py-0');
                                         submenu.classList.add('h-auto', 'py-1');
@@ -86,18 +70,15 @@
         </button>
     </div>
 
-
-    
     <div class="hiddent-classet-to-tailwind hidden aspect-[1] object-contain w-[52px] self-stretch my-auto"></div>
      <nav id="header-top-desktop-menu" class=" bg-white min-h-[186px] w-full pt-3 border-t-4 border-[rgba(56,144,13,1)] px-[5px] relative border-b  hidden lg:flex ">
-            <div id="desktop-category-menus" class="flex w-full flex-wrap justify-between"><!---->
+            <div id="desktop-category-menus" class="flex w-full flex-wrap justify-between">
                 
                 @foreach ($menuArray[0] as $itemLv0)
                 <div data-menu-id="{{$itemLv0->id}}" class="desktop-category-container flex flex-col items-center flex-1 shrink basis-[0%] pt-5 justify-start cursor-pointer transition-all category-item"> <!---->
                     <a class="flex flex-col justify-center text-center hover:opacity-90 " @if (str_contains($itemLv0->slug,'https://'))target="_blank"@endif  href="@if (!str_contains($itemLv0->slug,'https://'))/@endif{{ $itemLv0->slug }}" >
                         
                         <div @if (isset($itemLv0->color) ) style="background-color: {{$itemLv0->color}}" @endif class=" m-auto @if (isset($itemLv0->color) ) bg-[#{{$itemLv0->color}}] @else bg-[#d8f0e0] @endif  flex min-h-20 w-20 items-center gap-2.5 justify-center h-20 rounded-xl hover:shadow-md transition-shadow">
-                            <!--<img class="aspect-[1] object-contain w-[52px] self-stretch my-auto"/>-->
                             @if (isset($itemLv0->icon) )
                             {!! $itemLv0->icon !!}
                             @endif
@@ -161,7 +142,6 @@
 
                 <div id="zdrowie-menu" class="hidden max-w-[1200px] mx-auto" data-mega-menu>
                     <div class="flex flex-wrap -mx-2">
-                        <!-- Alergia -->
                         <div class="subcategory w-1/5 px-2 mb-5">
                             <h3 class="font-medium text-gray-800 mb-3 border-b pb-2">Alergia</h3>
                             <ul class="space-y-2">
@@ -171,8 +151,7 @@
                                 <li><a href="#" class="text-sm text-gray-600 hover:text-black">Wszystkie kategorie</a></li>
                             </ul>
                         </div>
-                        
-                        <!-- Ból -->
+
                         <div class="subcategory w-1/5 px-2 mb-5">
                             <h3 class="font-medium text-gray-800 mb-3 border-b pb-2">Ból</h3>
                             <ul class="space-y-2">
@@ -182,8 +161,7 @@
                                 <li><a href="#" class="text-sm text-gray-600 hover:text-black">Wszystkie kategorie</a></li>
                             </ul>
                         </div>
-                        
-                        <!-- Choroba lokomocyjna -->
+
                         <div class="subcategory w-1/5 px-2 mb-5">
                             <h3 class="font-medium text-gray-800 mb-3 border-b pb-2">Choroba lokomocyjna</h3>
                             <ul class="space-y-2">
@@ -191,8 +169,7 @@
                                 <li><a href="#" class="text-sm text-gray-600 hover:text-black">Wszystkie kategorie</a></li>
                             </ul>
                         </div>
-                        
-                        <!-- Dermatologia -->
+
                         <div class="subcategory w-1/5 px-2 mb-5">
                             <h3 class="font-medium text-gray-800 mb-3 border-b pb-2">Dermatologia</h3>
                             <ul class="space-y-2">
@@ -202,8 +179,7 @@
                                 <li><a href="#" class="text-sm text-gray-600 hover:text-black">Wszystkie kategorie</a></li>
                             </ul>
                         </div>
-                        
-                        <!-- Przeziębienie i grypa -->
+
                         <div class="subcategory w-1/5 px-2 mb-5">
                             <h3 class="font-medium text-gray-800 mb-3 border-b pb-2">Przeziębienie i grypa</h3>
                             <ul class="space-y-2">
@@ -212,8 +188,16 @@
                                 <li><a href="#" class="text-sm text-gray-600 hover:text-black">Wszystkie kategorie</a></li>
                             </ul>
                         </div>
-                        
-                        <!-- Dodatkowa kategoria 1 -->
+
+                        <div class="subcategory w-1/5 px-2 mb-5">
+                            <h3 class="font-medium text-gray-800 mb-3 border-b pb-2">Układ krążenia</h3>
+                            <ul class="space-y-2">
+                                <li><a href="#" class="text-sm text-gray-600 hover:text-black">Cholesterol</a></li>
+                                <li><a href="#" class="text-sm text-gray-600 hover:text-black">Nadciśnienie</a></li>
+                                <li><a href="#" class="text-sm text-gray-600 hover:text-black">Wszystkie kategorie</a></li>
+                            </ul>
+                        </div>
+>
                         <div class="subcategory w-1/5 px-2 mb-5">
                             <h3 class="font-medium text-gray-800 mb-3 border-b pb-2">Układ krążenia</h3>
                             <ul class="space-y-2">
@@ -223,17 +207,6 @@
                             </ul>
                         </div>
 
-                                               <!-- Dodatkowa kategoria 1 -->
-                        <div class="subcategory w-1/5 px-2 mb-5">
-                            <h3 class="font-medium text-gray-800 mb-3 border-b pb-2">Układ krążenia</h3>
-                            <ul class="space-y-2">
-                                <li><a href="#" class="text-sm text-gray-600 hover:text-black">Cholesterol</a></li>
-                                <li><a href="#" class="text-sm text-gray-600 hover:text-black">Nadciśnienie</a></li>
-                                <li><a href="#" class="text-sm text-gray-600 hover:text-black">Wszystkie kategorie</a></li>
-                            </ul>
-                        </div>
-
-                                               <!-- Dodatkowa kategoria 1 -->
                         <div class="subcategory w-1/5 px-2 mb-5">
                             <h3 class="font-medium text-gray-800 mb-3 border-b pb-2">Układ krążenia</h3>
                             <ul class="space-y-2">
@@ -245,66 +218,54 @@
                     </div>
                 </div>
 
-                <!-- Ciąża i macierzyństwo Menu -->
                 <div id="ciaza-menu" class="hidden w-full mx-auto" data-mega-menu>
                     <div class="flex flex-wrap -mx-2">
                       
                     </div>
                 </div>
-
-                <!-- Pozostałe menu dla innych kategorii -->
-                <!-- Każde menu ma taką samą strukturę z podkategoriami zajmującymi 20% szerokości -->
-
-                <!-- Przykładowe menu dla kategorii Dziecko -->
+                
                 <div id="dziecko-menu" class="hidden w-full mx-auto" data-mega-menu>
                     <div class="flex flex-wrap -mx-2">
                        
                     </div>
                 </div>
-                
-                <!-- Higiena Menu -->
+
                 <div id="higiena-menu" class="hidden w-full mx-auto" data-mega-menu>
                     <div class="flex flex-wrap -mx-2">
                      
                     </div>
                 </div>
 
-                <!-- Zdrowy tryb życia Menu -->
                 <div id="tryb-zycia-menu" class="hidden w-full mx-auto" data-mega-menu>
                     <div class="flex flex-wrap -mx-2">
                        
                     </div>
                 </div>
 
-                <!-- Sprzęt medyczny -->
                 <div id="sprzet-menu" class="hidden w-full mx-auto" data-mega-menu>
                     <div class="flex flex-wrap -mx-2">
                        
                     </div>
                 </div>
 
-                <!-- Bestsellery -->
                 <div id="bestsellery-menu" class="hidden w-full mx-auto" data-mega-menu>
                     <div class="flex flex-wrap -mx-2">
                        
                     </div>
                 </div>
 
-                <!-- Nowości -->
                 <div id="nowosci-menu" class="hidden w-full mx-auto" data-mega-menu>
                     <div class="flex flex-wrap -mx-2">
                     
                     </div>
                 </div>
 
-                <!-- Krótkie daty -->
                 <div id="krotkie-daty-menu" class="hidden w-full mx-auto" data-mega-menu>
                     <div class="flex flex-wrap -mx-2">
                        
                     </div>
                 </div>
 
-                <!-- Wiedza -->
                 <div id="wiedza-menu" class="hidden w-full mx-auto" data-mega-menu>
                     <div class="flex flex-wrap -mx-2">
                        </div>

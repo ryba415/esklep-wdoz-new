@@ -165,7 +165,7 @@
                 </span>
               </label>
               <label class="cursor-pointer ml-3 text-slate-600 text-xs" for="check-2">
-                Akceptuję <a href="#">Regulamin Apteki</a> <span class="redStar ml-1 text-lg text-red-600">* </span></span>
+                  Oświadczam, że zapoznałem się z obowiązującym w Aptece Internetowej Wracam do zdrowia <a href="/regulamin">Regulaminem</a> i wyrażam chęć zawarcia umowy sprzedaży do, której Regulamin ten będzie miał zastosowanie.<span class="redStar ml-1 text-lg text-red-600">* </span>
               </label>
             </div>
             @endif

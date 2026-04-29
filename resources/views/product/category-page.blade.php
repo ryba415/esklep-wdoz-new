@@ -162,7 +162,7 @@
           <nav aria-label="Paginacja" class="flex items-center space-x-2">
 
             @if ($currentPage > 1)
-            <a href="{{$category->slug}}?page={{$currentPage-1}}" rel="prev" aria-label="Przejdź do poprzedniej strony" class="flex items-center justify-center w-10 h-10 rounded-md border-2 border-gray-200 text-gray-400 hover:text-[#38900D] hover:border-[#38900D] hover:bg-[#f0f8ee] transition-all duration-200">
+            <a href="{{$category->slug}}?page={{$currentPage-1}}{{$sortyByGetParam}}" rel="prev" aria-label="Przejdź do poprzedniej strony" class="flex items-center justify-center w-10 h-10 rounded-md border-2 border-gray-200 text-gray-400 hover:text-[#38900D] hover:border-[#38900D] hover:bg-[#f0f8ee] transition-all duration-200">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
               </svg>
@@ -174,7 +174,7 @@
 
             @if ($currentPage > 2)
 
-              <a href="{{$category->slug}}" aria-label="Przejdź do strony 1" class="flex items-center justify-center w-10 h-10 rounded-md bg-white border-2 border-gray-200 text-gray-700 font-medium hover:border-[#38900D] hover:text-[#38900D] hover:bg-[#f0f8ee] transition-all duration-200">
+              <a href="{{$category->slug}}{{str_replace('&','?',$sortyByGetParam)}}" aria-label="Przejdź do strony 1" class="flex items-center justify-center w-10 h-10 rounded-md bg-white border-2 border-gray-200 text-gray-700 font-medium hover:border-[#38900D] hover:text-[#38900D] hover:bg-[#f0f8ee] transition-all duration-200">
                 1
               </a>
             @endif
@@ -186,11 +186,11 @@
 
               @for ($i=$startPaginationNumber;$i<=$finishPaginationNumber;$i++)
               @if ($i==$currentPage)
-              <a href="@if(!str_contains($category->slug,'?')) {{$category->slug}}?page={{$i}} @else {{$category->slug}}&page={{$i}} @endif" aria-current="page" aria-label="Strona 1, aktualna strona" class="flex items-center justify-center w-10 h-10 rounded-md bg-[#38900D] text-white font-medium shadow-sm hover:bg-[#2d7109] transition-all duration-200">
+              <a href="@if(!str_contains($category->slug,'?')) {{$category->slug}}?page={{$i}}{{$sortyByGetParam}} @else {{$category->slug}}&page={{$i}}{{$sortyByGetParam}} @endif" aria-current="page" aria-label="Strona 1, aktualna strona" class="flex items-center justify-center w-10 h-10 rounded-md bg-[#38900D] text-white font-medium shadow-sm hover:bg-[#2d7109] transition-all duration-200">
                 {{$i}}
               </a>
               @else 
-              <a href="@if(!str_contains($category->slug,'?')) {{$category->slug}}?page={{$i}} @else {{$category->slug}}&page={{$i}} @endif" aria-label="Przejdź do strony 3" class="flex items-center justify-center w-10 h-10 rounded-md bg-white border-2 border-gray-200 text-gray-700 font-medium hover:border-[#38900D] hover:text-[#38900D] hover:bg-[#f0f8ee] transition-all duration-200">
+              <a href="@if(!str_contains($category->slug,'?')) {{$category->slug}}?page={{$i}}{{$sortyByGetParam}} @else {{$category->slug}}&page={{$i}}{{$sortyByGetParam}} @endif" aria-label="Przejdź do strony 3" class="flex items-center justify-center w-10 h-10 rounded-md bg-white border-2 border-gray-200 text-gray-700 font-medium hover:border-[#38900D] hover:text-[#38900D] hover:bg-[#f0f8ee] transition-all duration-200">
                 {{$i}}
               </a>
               @endif
@@ -203,13 +203,13 @@
                 ...
               </span>
               @endif
-              <a href="@if(!str_contains($category->slug,'?')){{$category->slug}}?page={{$allPagesCount}}@else{{$category->slug}}&page={{$allPagesCount}}@endif" aria-label="Przejdź do strony 8" class="flex items-center justify-center w-10 h-10 rounded-md bg-white border-2 border-gray-200 text-gray-700 font-medium hover:border-[#38900D] hover:text-[#38900D] hover:bg-[#f0f8ee] transition-all duration-200">
+              <a href="@if(!str_contains($category->slug,'?')){{$category->slug}}?page={{$allPagesCount}}{{$sortyByGetParam}}@else{{$category->slug}}&page={{$allPagesCount}}{{$sortyByGetParam}}@endif" aria-label="Przejdź do strony 8" class="flex items-center justify-center w-10 h-10 rounded-md bg-white border-2 border-gray-200 text-gray-700 font-medium hover:border-[#38900D] hover:text-[#38900D] hover:bg-[#f0f8ee] transition-all duration-200">
                 {{$allPagesCount}}
               </a>
               @endif
             </div>
             @if ($currentPage < $allPagesCount)
-            <a href="@if(!str_contains($category->slug,'?')){{$category->slug}}?page={{$currentPage+1}}@else{{$category->slug}}&page={{$currentPage+1}}@endif" rel="next" aria-label="Przejdź do następnej strony" class="flex items-center justify-center w-10 h-10 rounded-md border-2 border-gray-200 text-gray-400 hover:text-[#38900D] hover:border-[#38900D] hover:bg-[#f0f8ee] transition-all duration-200">
+            <a href="@if(!str_contains($category->slug,'?')){{$category->slug}}?page={{$currentPage+1}}{{$sortyByGetParam}}@else{{$category->slug}}&page={{$currentPage+1}}{{$sortyByGetParam}}@endif" rel="next" aria-label="Przejdź do następnej strony" class="flex items-center justify-center w-10 h-10 rounded-md border-2 border-gray-200 text-gray-400 hover:text-[#38900D] hover:border-[#38900D] hover:bg-[#f0f8ee] transition-all duration-200">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
               </svg>

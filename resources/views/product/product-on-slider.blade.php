@@ -1,12 +1,11 @@
 <div class="product-container bg-white rounded-2xl overflow-hidden hover:shadow-md transition p-4 flex flex-col h-full border border-[#ddd] min-h-[448px]">
-    <!-- Obrazek produktu z sercem -->
     <div class="relative">
         <a href="/{{$product->slug}}" class="cursor-pointer">
             <img src="/uploads/images/product/{{$product->image_name}}" alt="BIFLORIN LGG" class="w-[200px] h-[200px] mx-auto" />
         </a>
         
         <div id="favorite-item-icon-{{$product->id}}" onclick="addProductToFavorite(this,{{$product->id}})" class="add-product-to-favorite bg-transparent cursor-pointer heart coursor-pointer flex flex-col justify-center items-center flex-grow-0 flex-shrink-0 h-[40px] w-[40x] absolute right-[12px] top-[12px] gap-2.5 px-[7px] py-1 rounded bg-white">
-            <svg class="z-20"  width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0 w-7 h-7 relative" preserveAspectRatio="none">
+            <svg class="z-20"  width="29" height="29" viewBox="0 0 29 29" fill="none" preserveAspectRatio="none">
                 <path d="M14.2754 9.5686C11.9421 4.09176 3.77539 4.67509 3.77539 11.6751C3.77539 18.6752 14.2754 24.5087 14.2754 24.5087C14.2754 24.5087 24.7754 18.6752 24.7754 11.6751C24.7754 4.67509 16.6087 4.09176 14.2754 9.5686Z" stroke="#353535" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
             <div class="heart-add-to-favorite-button hidden absolute z-10" onclick="this.classList.remove('animate'); void this.offsetWidth; this.classList.add('animate');">
@@ -23,7 +22,6 @@
         <p class="w-full text-base text-left text-[#595959] min-h-[72px]">{{$product->brand}}@if(!empty($product->content)), {{$product->content}}@endif</p>
     </div>
 
-    <!-- Podsumowanie (zawsze na dole) -->
     <div class="podsumowanie mt-auto flex flex-col justify-end items-center self-stretch gap-4">
         <div class="flex justify-start items-center self-stretch gap-2.5">
             <div class="flex flex-col justify-center items-start flex-grow h-11 relative gap-1">

@@ -128,4 +128,19 @@ and open the template in the editor.
   }
 }
 
+@media only screen and (max-width: 500px) {
+  #mobile-menu {
+    margin-right: -15px;
+  }
+  #top-header-main-logo {
+    width: 180px;
+    margin-left: -25px;
+  }
+}
+.home-page-box-background {
+  width: calc(100% + 45px);
+  text-align: center;
+  padding-top: 10px;
+}
+
 /*# sourceMappingURL=front-header.css.map */

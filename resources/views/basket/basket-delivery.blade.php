@@ -117,7 +117,7 @@
                     autocomplete="off" value="delivery-{{$method->id}}" class="hidden peer delivey-method-radio" />
               <label for="delivery-{{$method->id}}" class="inline-flex gap-4 items-center justify-between w-full p-2 px-4 bg-white border border-1 border border-wdoz-input-border rounded cursor-pointer peer-checked:bg-wdoz-primary-10 peer-checked:border-wdoz-primary  hover:text-gray-900 hover:bg-wdoz-primary-10  ">                           
                 <div class="flex flex-col w-full">
-                  <div class="w-full text-sm sm:text-base font-medium delivery-name">{{$method->name}}</div>
+                  <div class="w-full text-sm sm:text-base font-medium delivery-name">{!! $method->name !!}</div>
                   <div class="w-full text-sm hidden sm:inline-flex">{{$method->description}}</div>
                   @if ($method->show_orlen_widget == 1)
                     <div id="selected-orlen-point-visible" class="selected-visible font-semibold mt-4 mb-4 hidden"></div>
@@ -341,6 +341,18 @@
     for (let i=0;i<deliveryRadios.length;i++){
         deliveryRadios[i].addEventListener("change", (event) => {
             deliveryChanged(event.target);
+        });
+    }
+    
+    if (document.getElementById('accept-rules-newsletter') != null){
+        document.getElementById('accept-rules-newsletter').addEventListener("change", (event) => {
+            setTimeout(() => {
+                if (document.getElementById('accept-rules-newsletter').checked){
+                    document.getElementById('check-3').checked = true;
+                } else {
+                    document.getElementById('check-3').checked = false;
+                }
+            }, 300);
         });
     }
     
