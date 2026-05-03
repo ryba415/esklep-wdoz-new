@@ -26,7 +26,7 @@ class AdminDashboard extends Controller
 
 
     public function showDashboard(Request $request){
-        //phpinfo();
+//        phpinfo();
 //        dd([
 //            'gd_loaded' => extension_loaded('gd'),
 //            'imagewebp' => function_exists('imagewebp'),
@@ -70,6 +70,55 @@ class AdminDashboard extends Controller
     public function editArticlesCategory($id)
     {
         $edit = new TableEdit('AdminArticlesCategory');
+        return $edit->render($id);
+    }
+
+    public function newsletterList(Request $request)
+    {
+        $list = new TableList('AdminNewsletter');
+        return $list->render($request);
+    }
+
+    public function editNewsletter($id)
+    {
+        $edit = new TableEdit('AdminNewsletter');
+        return $edit->render($id);
+    }
+
+
+    public function settingsList(Request $request)
+    {
+        $list = new TableList('AdminSettings');
+        return $list->render($request);
+    }
+
+    public function editSetting($id)
+    {
+        $edit = new TableEdit('AdminSettings');
+        return $edit->render($id);
+    }
+
+    public function usersList(Request $request)
+    {
+        $list = new TableList('AdminUsers');
+        return $list->render($request);
+    }
+
+    public function editUser($id)
+    {
+        $edit = new TableEdit('AdminUsers');
+        return $edit->render($id);
+    }
+
+    public function adminsList(Request $request)
+    {
+        $list = new TableList('AdminAdmins');
+        return $list->render($request);
+    }
+
+    public function editAdmin($id)
+    {
+        $edit = new TableEdit('AdminAdmins');
         return $edit->render($id);
     }
 

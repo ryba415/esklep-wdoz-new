@@ -8,9 +8,9 @@
 
     <input
         class="cms-edit-area"
-        type="text"
-        value="@if ($editItem != null){{ $editItem[0]->{$area['field']} }}@endif"
+        type="password"
+        value=""
         name="{{ $area['field'] }}"
-        @if(!empty($area['readonly'])) readonly @endif
+        autocomplete="new-password"
     >
 </div>

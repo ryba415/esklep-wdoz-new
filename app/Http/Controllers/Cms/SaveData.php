@@ -10,7 +10,20 @@ use Illuminate\Support\Facades\DB;
 
 class SaveData extends Controller
 {
-    protected $modelsEnabledToSave = ['WorkoutDefinitions', 'Workshops', 'Users', 'Orders', 'AdminSliders', 'AdminArticles', 'AdminArticlesCategory'];
+    protected $modelsEnabledToSave = [
+        'WorkoutDefinitions',
+        'Workshops',
+        'Users',
+        'Orders',
+        'AdminSliders',
+        'AdminArticles',
+        'AdminArticlesCategory',
+        'AdminNewsletter',
+        'AdminSettings',
+        'AdminUsers',
+        'AdminAdmins'
+    ];
+
     protected $modelObject = null;
     protected $status = true;
     protected $errors = [];
@@ -40,7 +53,7 @@ class SaveData extends Controller
             $this->filesData = $request->file('cms_files', []);
             $this->editElemId = $this->postData['id']['value'] ?? null;
 
-            $fullObjectUrl = "\App\Models" . "\\" . $objectName;
+            $fullObjectUrl = "\\App\\Models\\" . $objectName;
             $this->modelObject = new $fullObjectUrl();
             $userId = Auth::id();
 
@@ -66,7 +79,8 @@ class SaveData extends Controller
                         foreach ($this->modelObject->areas as $modelArea) {
                             if (
                                 isset($modelArea['editable']) && $modelArea['editable'] &&
-                                (!isset($modelArea['type']) || $modelArea['type'] !== 'image')
+                                (!isset($modelArea['type']) || $modelArea['type'] !== 'image') &&
+                                (!isset($modelArea['saveToMainTable']) || $modelArea['saveToMainTable'] !== false)
                             ) {
                                 $field = $modelArea['field'];
 
@@ -75,6 +89,8 @@ class SaveData extends Controller
                                 }
                             }
                         }
+
+                        $this->applyAutomaticTimestamps($updateTable);
 
                         if ($this->editElemId == null || $this->editElemId == '') {
                             $saveStatus = DB::connection('mysql-esklep')
@@ -202,6 +218,18 @@ class SaveData extends Controller
                 if (isset($validations['maxLength'])) {
                     $this->maxLengthValidation($field, $fieldName, $validations['maxLength']);
                 }
+
+                if (!empty($validations['email'])) {
+                    $this->emailValidation($field, $fieldName);
+                }
+
+                if (isset($validations['unique'])) {
+                    $this->uniqueValidation($field, $fieldName, $validations['unique']);
+                }
+
+                if (isset($validations['in'])) {
+                    $this->inValidation($field, $fieldName, $validations['in']);
+                }
             }
         }
     }
@@ -280,12 +308,119 @@ class SaveData extends Controller
         return true;
     }
 
+    private function emailValidation($field, $fieldName, $showErrors = true)
+    {
+        if (!$this->hasPostedValue($field)) {
+            return true;
+        }
+
+        $value = trim((string)$this->postData[$field]['value']);
+
+        if (filter_var($value, FILTER_VALIDATE_EMAIL)) {
+            return true;
+        }
+
+        $this->status = false;
+
+        if ($showErrors) {
+            $this->errors[] = 'Pole: ' . $fieldName . ' ma nieprawidłowy format';
+            $this->errorsAreas[] = $field;
+        }
+
+        return false;
+    }
+
+    private function uniqueValidation($field, $fieldName, $config = true, $showErrors = true)
+    {
+        if (!$this->hasPostedValue($field)) {
+            return true;
+        }
+
+        $table = $this->modelObject->dbTableName;
+        $column = $field;
+        $ignoreCurrentId = true;
+        $message = 'Pole: ' . $fieldName . ' ma już przypisaną taką wartość';
+
+        if (is_array($config)) {
+            $table = $config['table'] ?? $table;
+            $column = $config['column'] ?? $column;
+            $ignoreCurrentId = $config['ignoreCurrentId'] ?? $ignoreCurrentId;
+            $message = $config['message'] ?? $message;
+        }
+
+        $value = trim((string)$this->postData[$field]['value']);
+
+        $query = DB::connection('mysql-esklep')
+            ->table($table)
+            ->where($column, $value);
+
+        if ($ignoreCurrentId && !empty($this->editElemId)) {
+            $query->where('id', '!=', $this->editElemId);
+        }
+
+        if (!$query->exists()) {
+            return true;
+        }
+
+        $this->status = false;
+
+        if ($showErrors) {
+            $this->errors[] = $message;
+            $this->errorsAreas[] = $field;
+        }
+
+        return false;
+    }
+
+    private function inValidation($field, $fieldName, $allowedValues = [], $showErrors = true)
+    {
+        if (!$this->hasPostedValue($field)) {
+            return true;
+        }
+
+        $value = (string)$this->postData[$field]['value'];
+        $allowedValues = array_map('strval', (array)$allowedValues);
+
+        if (in_array($value, $allowedValues, true)) {
+            return true;
+        }
+
+        $this->status = false;
+
+        if ($showErrors) {
+            $this->errors[] = 'Pole: ' . $fieldName . ' ma nieprawidłową wartość';
+            $this->errorsAreas[] = $field;
+        }
+
+        return false;
+    }
+
+    private function applyAutomaticTimestamps(array &$updateTable): void
+    {
+        if (!($this->modelObject->useAutomaticTimestamps ?? false)) {
+            return;
+        }
+
+        $now = now()->format('Y-m-d H:i:s');
+
+        $updatedField = $this->modelObject->timestampUpdatedField ?? null;
+        $createdField = $this->modelObject->timestampCreatedField ?? null;
+
+        if (!empty($updatedField)) {
+            $updateTable[$updatedField] = $now;
+        }
+
+        if (($this->editElemId == null || $this->editElemId == '') && !empty($createdField)) {
+            $updateTable[$createdField] = $now;
+        }
+    }
+
     public function universalDeleteOnList($itemId, $objectName)
     {
         $status = false;
 
         if (in_array($objectName, $this->modelsEnabledToSave)) {
-            $fullObjectUrl = "\App\Models" . "\\" . $objectName;
+            $fullObjectUrl = "\\App\\Models\\" . $objectName;
             $modelObject = new $fullObjectUrl();
 
             $item = DB::connection('mysql-esklep')
@@ -295,7 +430,11 @@ class SaveData extends Controller
 
             if ($item) {
                 if (method_exists($modelObject, 'ownDeleteAction')) {
-                    $modelObject->ownDeleteAction($itemId);
+                    $deleteResult = $modelObject->ownDeleteAction($itemId);
+
+                    if (is_array($deleteResult) && isset($deleteResult['status']) && !$deleteResult['status']) {
+                        return response()->json($deleteResult);
+                    }
                 }
 
                 foreach ($modelObject->areas as $area) {

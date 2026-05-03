@@ -17,6 +17,24 @@
             <span>Artykuły - kategorie</span>
         </a>
     </li>
+    <li><a href="/panel/newsletter/">
+            <span>Newsletter</span>
+        </a>
+    </li>
+    <li><a href="/panel/settings/">
+            <span>Wartości konfiguracyjne</span>
+        </a>
+    </li>
+    <li>
+        <a href="/panel/users/">
+            <span>Użytkownicy</span>
+        </a>
+    </li>
+    <li>
+        <a href="/panel/admins/">
+            <span>Administratorzy</span>
+        </a>
+    </li>
     <li>
         <a href="/users-and-rules">
             <img class="menu-icon" width="41" height="40" src="/images/users-icon1.png">
