@@ -16,6 +16,7 @@ use App\Http\Controllers\Product\FavoritesListController;
 use App\Http\Controllers\Product\IntegrationsController;
 use App\Http\Controllers\Wiedza\WiedzaController;
 use App\Http\Controllers\Admin\AdminDashboard;
+use App\Http\Controllers\Cms\ExportData;
 
 /*
 |--------------------------------------------------------------------------
@@ -96,11 +97,27 @@ Route::middleware(["auth:usercustom-admin"])->group(function () {
         Route::get('/panel/slides/', "slidersList")->name('sliders-list');
         Route::get('/panel/slides/slide-{id}','editSlide')->name('edit-slide');
 
-        /*zakładka wiedza dla edycji artykułów*/
+        /*artykuły*/
         Route::get('/panel/articles/', "articlesList")->name('articles-list');
         Route::get('/panel/articles/article-{id}','editArticle')->name('edit-article');
         Route::get('/panel/articlesCategory/', "articlesCategoryList")->name('articlesCategory-list');
         Route::get('/panel/articlesCategory/article-{id}','editArticlesCategory')->name('edit-articlesCategory');
+
+        /*newsletter*/
+        Route::get('/panel/newsletter/', 'newsletterList')->name('newsletter-list');
+        Route::get('/panel/newsletter/subscriber-{id}', 'editNewsletter')->name('edit-newsletter');
+
+        /*settings*/
+        Route::get('/panel/settings/', 'settingsList')->name('settings-list');
+        Route::get('/panel/settings/setting-{id}', 'editSetting')->name('edit-setting');
+
+        /* użytkownicy */
+        Route::get('/panel/users/', 'usersList')->name('users-list');
+        Route::get('/panel/users/user-{id}', 'editUser')->name('edit-user');
+
+        /* administratorzy */
+        Route::get('/panel/admins/', 'adminsList')->name('admins-list');
+        Route::get('/panel/admins/admin-{id}', 'editAdmin')->name('edit-admin');
     });
 
     Route::controller(SaveData::class)->group(function () {
@@ -108,8 +125,11 @@ Route::middleware(["auth:usercustom-admin"])->group(function () {
         Route::post('/cms-universal-delete-list/{itemId}/{objectName}', 'universalDeleteOnList')->name('cms-universal-delete-list');
     });
 
-});
+    Route::controller(ExportData::class)->group(function () {
+        Route::get('/cms-universal-export/{objectName}/{format}', 'universalExport')->name('cms-universal-export');
+    });
 
+});
 
 Route::controller(LoginRegisterController::class)->group(function () {
     Route::get('/logowanie', "login")->name('logowanie');
