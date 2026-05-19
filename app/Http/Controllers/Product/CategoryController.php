@@ -69,7 +69,8 @@ class CategoryController extends Controller
             $offset = ($pageNumber - 1) * $productsPerPage;
             $viewData['category'] = $category[0];
             
-            $products = DB::connection('mysql-esklep')->select('SELECT DISTINCT ecommerce_products.*, image.image_name as image_name FROM ecommerce_products '
+            
+            $sqlProducts = 'SELECT DISTINCT ecommerce_products.*, image.image_name as image_name FROM ecommerce_products '
                 . ' LEFT JOIN (
                     SELECT 
                       ecommerce_product_images.product_id, 
@@ -83,16 +84,22 @@ class CategoryController extends Controller
                     ) AS image ON ecommerce_products.id = image.product_id
                     LEFT JOIN ecommerce_products_categories 
                       ON ecommerce_products_categories.product_id = ecommerce_products.id '
-                . ' WHERE ecommerce_products_categories.category_id = ? '
+                . ' WHERE ecommerce_products_categories.category_id = ? ';
+            
+            $products = DB::connection('mysql-esklep')->select(  
+                    $sqlProducts
 
                 . $searchSortBy     
                 . ' LIMIT '.$productsPerPage.' OFFSET '.$offset.' '  , [$category[0]->id]);
             
-            $allProductsInCategoryCount = DB::connection('mysql-esklep')->select('SELECT DISTINCT COUNT(*) AS total_products_in_category
-                FROM ecommerce_products_categories
-                WHERE category_id = ?',[$category[0]->id]);
             
-            $viewData['allProductsInCategoryCount'] = intval($allProductsInCategoryCount[0]->total_products_in_category);
+            
+            //var_dump(count($products));die();
+            
+            $allProductsInCategoryCount = count(DB::connection('mysql-esklep')->select(
+                $sqlProducts ,[$category[0]->id]));
+            
+            $viewData['allProductsInCategoryCount'] = $allProductsInCategoryCount;
             $viewData['productsStartFor'] = ($pageNumber - 1) * $productsPerPage + 1;
             $viewData['productsEndFor'] = ($pageNumber) * $productsPerPage;
             if ($viewData['productsEndFor'] > $viewData['allProductsInCategoryCount']){

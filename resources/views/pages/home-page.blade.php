@@ -488,7 +488,7 @@
   <section class="overflow-hidden flex flex-col justify-start items-center self-stretch flex-grow-0 flex-shrink-0 gap-5 py-[60px] px-5 bg-[#F1FFE4]">
     <div class="flex w-full pb-6 2xl:hidden">
         <div class="items-center justify-between w-full flex flex-col lg:flex-row gap-3">
-            <h2 class="text-2xl font-bold text-gray-900">Oferta Specjalna</h2>
+            <h2 class="text-2xl font-bold text-gray-900">Polecane dla Ciebie</h2>
             <div class="flex-grow mx-5">
                 <div class="h-px bg-gray-300 w-full"></div>
             </div>
@@ -543,7 +543,7 @@
   <section class="overflow-hidden flex flex-col justify-start items-center self-stretch flex-grow-0 flex-shrink-0 gap-5 py-[60px] px-5 bg-[#FFF2EC]">
     <div class="flex w-full pb-6 2xl:hidden">
         <div class="items-center justify-between w-full flex flex-col lg:flex-row gap-3">
-            <h2 class="text-2xl font-bold text-gray-900">Oferta Specjalna</h2>
+            <h2 class="text-2xl font-bold text-gray-900">Produkty z krótką datą</h2>
             <div class="flex-grow mx-5">
                 <div class="h-px bg-gray-300 w-full"></div>
             </div>

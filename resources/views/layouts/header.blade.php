@@ -301,7 +301,17 @@
   }
 
 function normalizeProducts(json) {
-  const products = Array.isArray(json?.products) ? json.products : [];
+    let products = [];
+    if (json?.products != 'undefined'){
+        products = json.products;
+        if (!Array.isArray(json?.products)){
+            products =  Object.values(json.products);
+        }
+        
+    }
+        
+  //const products = Array.isArray(json?.products) ? json.products : [];
+  //console.log(products);
 
   const total =
     Number(json?.allProductsInCategoryCount) ||
@@ -415,7 +425,8 @@ function attachAutocomplete(inputEl, dropdownEl) {
 
       const json = await res.json();
       const data = normalizeProducts(json);
-
+      //console.log(data);
+      //console.log(inputEl.value.trim());
       if (inputEl.value.trim() !== query) return;
 
       renderDropdown(dropdownEl, query, data.products, data.total);
