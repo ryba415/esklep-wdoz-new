@@ -9,6 +9,7 @@ class AdminSliders extends CmsObject
     public $listName = 'Lista slajdów na stronie głównej';
     public $editItemUrl = 'panel/slides/slide';
     public $addNewItemButtonName = 'Stwórz slajd';
+    public $itemTitle = 'Slajd';
     public $breadCrub1 = [
         'url' => '/panel/slides/',
         'name' => 'sjalder na stronie głównej'

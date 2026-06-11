@@ -181,11 +181,15 @@ span.red-star {
   font-weight: 700;
 }
 
+.footer-container .container {
+  max-width: 100%;
+}
+
 .page-footer {
   background: #F0ECE5;
   padding: 20px 10px;
   padding-bottom: 90px;
-  background: repeating-linear-gradient(45deg, #FFFFFD, rgba(217, 217, 217, 0.5) 1px, #F0ECE5 1px, #F0ECE5 5px);
+  background: repeating-linear-gradient(45deg, #38900d, #52a927 1px, #38900d 1px, #38900d 5px);
   font-size: 16px;
   line-height: 30px;
   border-top: 1px solid #E8DDBB;
@@ -490,6 +494,39 @@ span.red-star {
   padding-left: 20px;
 }
 
+.cms-filters-container {
+  border: 1px dotted gray;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+.cms-filters-container .filter-row {
+  margin-bottom: 10px;
+}
+.cms-filters-container .standard-button {
+  display: inline-block;
+  margin-top: 5px;
+  margin-top: 10px;
+}
+
+.admin-dashboard-container h2 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.admin-dashboard-container .admin-dashboard-link {
+  display: inline-block;
+  padding: 10px;
+  font-size: 18px;
+  border: 2px solid #38900d;
+  margin-right: 20px;
+  border-radius: 5px;
+}
+.admin-dashboard-container .admin-dashboard-link span {
+  font-size: 12px;
+  color: gray;
+}
+
 /*# sourceMappingURL=admin.css.map */ /*
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
@@ -509,8 +546,8 @@ and open the template in the editor.
     Author     : ryba4
 */
 .admin-top-navbar {
-  background-color: #F4EFDF;
-  border-bottom: 1px solid #E8DDBB;
+  background-color: #38900d;
+  border-bottom: 1px solid #b2ec96;
   z-index: 9;
 }
 @media only screen and (min-width: 1024px) {
@@ -526,6 +563,7 @@ and open the template in the editor.
   padding: 5px 10px;
   justify-content: space-between;
   align-items: center;
+  max-width: 100%;
 }
 .admin-top-navbar .container .navbar-settings {
   border: none;
@@ -542,13 +580,15 @@ and open the template in the editor.
 }
 .admin-top-navbar .container .navbar-brand {
   display: flex;
+  /*@media only screen and (min-width: $desktopDim) {
+      padding-left: 13px;
+      padding-top: 9px;
+      padding-bottom: 9px;
+
+  }*/
 }
-@media only screen and (min-width: 1024px) {
-  .admin-top-navbar .container .navbar-brand {
-    padding-left: 13px;
-    padding-top: 9px;
-    padding-bottom: 9px;
-  }
+.admin-top-navbar .container .navbar-brand #top-header-main-logo {
+  width: 215px;
 }
 .admin-top-navbar .container .show-admin-main-menu {
   display: flex;
@@ -564,7 +604,7 @@ and open the template in the editor.
 
 .main-menu-container {
   display: none;
-  background-color: #F4EFDF;
+  background-color: #38900d;
   position: absolute;
   width: 100%;
 }
@@ -578,16 +618,16 @@ and open the template in the editor.
 }
 .main-menu-container .user-left-menu {
   width: 100%;
-  background-color: #f4efdf;
+  background-color: #38900d;
   z-index: 8;
 }
 @media only screen and (min-width: 1024px) {
   .main-menu-container .user-left-menu {
     position: fixed;
     left: 0px;
-    top: 55px;
-    width: 100px;
-    background-color: #f4efdf;
+    top: 54px;
+    width: 130px;
+    background-color: #38900d;
     max-height: 100%;
     height: 100%;
   }
@@ -599,7 +639,7 @@ and open the template in the editor.
 }
 .main-menu-container .user-left-menu .main-menu-list li {
   width: 100%;
-  border-bottom: 1px solid #E8DDBB;
+  border-bottom: 1px solid #b2ec96;
   text-align: right;
   margin-top: 10px;
   padding-bottom: 5px;
@@ -607,12 +647,12 @@ and open the template in the editor.
 .main-menu-container .user-left-menu .main-menu-list li a {
   padding: 10px;
   padding-right: 20px;
-  color: black;
+  color: white;
 }
 @media only screen and (min-width: 1024px) {
   .main-menu-container .user-left-menu .main-menu-list li a {
     padding: 0px;
-    min-height: 60px;
+    min-height: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -642,6 +682,8 @@ and open the template in the editor.
     font-size: 14px;
     padding-top: 6px;
     padding-bottom: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
 
@@ -649,6 +691,11 @@ and open the template in the editor.
   min-height: calc(100vh - 455px);
   padding-left: 10px;
   padding-right: 10px;
+  overflow-x: auto;
+}
+.user-content-container td {
+  max-width: 400px;
+  overflow-x: auto;
 }
 @media only screen and (min-width: 1024px) {
   .user-content-container {
@@ -682,26 +729,27 @@ and open the template in the editor.
 
 #settings-menu {
   position: absolute;
-  top: 46px;
-  background-color: #F4EFDF;
+  top: 55px;
+  background-color: #38900d;
   left: 0px;
   padding: 0px;
   width: 100%;
+  color: white;
 }
 @media only screen and (min-width: 1024px) {
   #settings-menu {
     right: 0px;
     left: auto;
     width: 164px;
-    border-left: 1px solid #E8DDBB;
-    top: 56px;
+    border-left: 1px solid #b2ec96;
+    top: 55px;
   }
 }
 #settings-menu a, #settings-menu p {
   width: 100%;
   display: inline-block;
   font-size: 14px;
-  border-bottom: 1px solid #E8DDBB;
+  border-bottom: 1px solid #b2ec96;
   padding: 10px;
   margin: 0px;
 }
@@ -729,8 +777,8 @@ and open the template in the editor.
   bottom: 0px;
   display: flex;
   width: 100%;
-  background-color: #F4EFDF;
-  border-top: 1px solid #E8DDBB;
+  background-color: #38900d;
+  border-top: 1px solid #b2ec96;
   justify-content: space-around;
   position: fixed;
   bottom: 0px;
@@ -750,7 +798,7 @@ and open the template in the editor.
   align-content: space-around;
   padding-bottom: 8px;
   padding-top: 8px;
-  border-top: 3px solid #F4EFDF;
+  border-top: 3px solid #38900d;
 }
 .bottom-bar .bottom-bar-item.bottom-bar-item-selected {
   border-top: 3px solid #B7AD8E;

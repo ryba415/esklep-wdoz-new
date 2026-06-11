@@ -16,11 +16,8 @@
                             <a href="{{$slide->url}}">
                             @endif
                             <picture>
-                                @if ($slide->imageMobile != null && !empty($slide->imageMobile))
-                                    <source type="image/jpeg" srcset="/uploads/media/default/0001/01/{{$slide->imageMobile}}" >
-                                @endif
-                                    <source type="image/jpeg" srcset="/uploads/media/default/0001/01/{{$slide->imageMobile}}" >
-                                <img @if ($i>0) loading="lazy" @endif src="/uploads/media/default/0001/01/{{$slide->imageMobile}}" alt="{{$slide->title}}" class="w-[100%] aspect-[2.09] object-contain w-full">
+                                <source type="image/webp" srcset="{{str_replace('.png','.webp',str_replace('.jpg','.webp',$slide->img_name))}}" >
+                                <img @if ($i>0) loading="lazy" @endif src="{{$slide->img_name}}" alt="{{$slide->title}}" class="w-[100%] aspect-[2.09] object-contain w-full">
                             </picture>
                             @if ($slide->url != null && !empty($slide->url))
                             </a>

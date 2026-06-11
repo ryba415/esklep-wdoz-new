@@ -19,14 +19,17 @@
         </header>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
       
-      @foreach ($articles as $article)
+      @foreach ($articles as $i => $article)
 
       <div class="justify-between flex-[1 1 0] produkt flex flex-col justify-start items-center self-stretch flex-grow relative gap-3 p-5 rounded-[20px] bg-white border border-[#ddd]">
-            <a href="/wiedza-farmaceutyczna/{{$article->slug}}" class="w-full flex justify-center flex-grow-0 flex-shrink-0">
-                <img src="/uploads/media/default/0001/01/{{$article->image_name}}" class="flex-grow-0 flex-shrink-0 w-[200px] h-[200px] " />
+            <a href="/wiedza-farmaceutyczna/{{$article->seo_url}}" class="w-full flex justify-center flex-grow-0 flex-shrink-0">
+                <picture>
+                    <source type="image/webp" srcset="{{str_replace('.png','.webp',str_replace('.jpg','.webp',$article->img_name))}}" >
+                    <img @if ($i>4) loading="lazy" @endif src="{{$article->img_name}}" alt="{{$article->title}}" class="flex-grow-0 flex-shrink-0 w-[200px] h-[200px] ">
+                </picture>
             </a>
             
-            <a href="/wiedza-farmaceutyczna/{{$article->slug}}" class="self-stretch flex-grow-0 flex-shrink-0 text-lg font-semibold text-left capitalize text-[#3d3d3d]">{{$article->title}}</a> 
+            <a href="/wiedza-farmaceutyczna/{{$article->seo_url}}" class="self-stretch flex-grow-0 flex-shrink-0 text-lg font-semibold text-left capitalize text-[#3d3d3d]">{{$article->title}}</a> 
             @if ($article->category != null && $article->category != '')
             <div class="px-3 py-1 bg-[rgba(254,215,0,1)] transition-colors text-base text-black text-sm rounded-lg">
                 {{$article->category}}
@@ -38,7 +41,7 @@
             </div>
             <div></div>
             <div class="w-[100%]">
-                <a href="/{{$article->slug}}">
+                <a href="/wiedza-farmaceutyczna/{{$article->seo_url}}">
                 <button class="flex justify-center items-center w-full h-12 gap-2 px-2.5 rounded-xl bg-[#eb442d] hover:bg-[#d03e26] transition-colors">
                     <p class="flex-grow-0 flex-shrink-0 text-lg font-bold text-left text-white">czytaj więcej</p>
                 </button>

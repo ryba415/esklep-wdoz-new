@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('seo_description')->after('seo_title')->nullable();
         });
 
-        Schema::table(' article_category', function (Blueprint $table) {
+        Schema::table('article_category', function (Blueprint $table) {
             $table->text('seo_url')->after('title')->nullable();
         });
     }

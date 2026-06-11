@@ -61,6 +61,9 @@ class WiedzaController extends Controller
                 . ' LEFT JOIN article_category ON article_category.id = article.article_category_id '
                 . ' ORDER BY id DESC LIMIT ' . $articlesOnPage . ' OFFSET ' . $offset . ' ', []);
         $viewData['articles'] = $articles;
+        
+        $viewData['seoTitle'] = 'Wiedza farmaceutyczna';
+        $viewData['seoDescription'] = 'Wiedza medyczna, farmaceutyczna, ciekawostki zdrowotne i wiele więcej';
         return view('pages.wiedza-list',$viewData);
     }
     
@@ -70,26 +73,23 @@ class WiedzaController extends Controller
                 . ' FROM article '
                 . ' LEFT JOIN media__media ON media__media.id = article.media_id'
                 . ' LEFT JOIN article_category ON article_category.id = article.article_category_id '
-                . ' WHERE article.slug = ?', [$slug]);
+                . ' WHERE article.seo_url = ?', [$slug]);
         if (count($article) > 0){
             $viewData['article'] = $article[0];
 
             $viewData['breadCrumbsCategories'] = [];
-            /*if ($article->category != null &&  $article->category !=''){
-                $cat = new \stdClass();
-                $cat->slug = $article->categorySlug;
-                $cat->name = $article->category;
-                $viewData['breadCrumbsCategories'][] = $cat;
-            }*/
             $bread = new \stdClass();
             $bread->slug = '/wiedza-farmaceutyczna/';
             $bread->name = 'Wiedza Farmaceutyczna';
             $viewData['breadCrumbsCategories'][] = $bread;
             
             $bread = new \stdClass();
-            $bread->slug = '/wiedza-farmaceutyczna/' . $article[0]->slug;
+            $bread->slug = '/wiedza-farmaceutyczna/' . $article[0]->seo_url;
             $bread->name = $article[0]->title;
             $viewData['breadCrumbsCategories'][] = $bread;
+            
+            $viewData['seoTitle'] = $article[0]->seo_title;
+            $viewData['seoDescription'] = $article[0]->seo_description;
             return view('pages.wiedza-article',$viewData);
         } else {
             abort(404);

@@ -118,6 +118,10 @@ Route::middleware(["auth:usercustom-admin"])->group(function () {
         /* administratorzy */
         Route::get('/panel/admins/', 'adminsList')->name('admins-list');
         Route::get('/panel/admins/admin-{id}', 'editAdmin')->name('edit-admin');
+        
+        /* statystyki */
+        Route::get('/panel/statistics/', 'showStatistics')->name('show-statistics');
+        
     });
 
     Route::controller(SaveData::class)->group(function () {
