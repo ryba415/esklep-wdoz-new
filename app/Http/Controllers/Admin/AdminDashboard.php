@@ -125,7 +125,6 @@ class AdminDashboard extends Controller
     }
     
     public function showStatistics(Request $request){
-        
         $requestData = $request->all();
         
         $viewData = [];
