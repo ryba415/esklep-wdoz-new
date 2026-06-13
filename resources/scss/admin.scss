@@ -166,11 +166,19 @@ span.red-star{
     font-weight: 700;
 }
 
+
+.footer-container{
+    .container{
+        max-width: 100%;
+    }
+    
+}
+
 .page-footer{
     background: #F0ECE5;
     padding: 20px 10px;
     padding-bottom: 90px;
-    background: repeating-linear-gradient(45deg, #FFFFFD, rgba(217, 217, 217, 0.5) 1px, #F0ECE5 1px, #F0ECE5 5px);
+    background: repeating-linear-gradient(45deg,#38900d,#52a927 1px,#38900d 1px,#38900d 5px);
     font-size: 16px;
     line-height: 30px;
     border-top: 1px solid #E8DDBB;
@@ -488,5 +496,46 @@ span.red-star{
             margin: 0px;
             padding-left: 20px;
         }
+    }
+}
+
+
+.cms-filters-container{
+    border: 1px dotted gray;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    
+    .filter-row{
+        margin-bottom: 10px;
+    }
+    
+    .standard-button{
+        display: inline-block;
+        margin-top: 5px;
+        margin-top: 10px;
+    }
+}
+.admin-dashboard-container{
+    
+    h2{
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+    .admin-dashboard-link{
+        display: inline-block;
+        padding: 10px;
+        font-size: 18px;
+        border: 2px solid #38900d;
+        margin-right: 20px;
+        border-radius: 5px;
+
+
+        span{
+            font-size: 12px;
+            color: gray;
+        }
+
     }
 }

@@ -117,7 +117,7 @@
                         @endforeach
 
                         @if($hasActions)
-                            <td class="cms-list-actions" data-item-id="{{$item->id}}">
+                            <td class="cms-list-actions" data-item-id="{{$item->id}}" style="min-width: 160px;">
                                 @if(!empty($allowEditOnList))
                                     <a class="standard-button standard-big-button-green" href="/{{$editItemUrl}}-{{$item->id}}">Edytuj</a>
                                 @endif

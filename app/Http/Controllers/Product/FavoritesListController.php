@@ -84,9 +84,9 @@ class FavoritesListController extends Controller
         
         $allPagesCount = ceil($viewData['allProductsInCategoryCount'] / $productsPerPage);
         $viewData['allPagesCount'] = $allPagesCount;
-        $viewData['currentPage'] = $pageNumber;   
-            
-        
+        $viewData['currentPage'] = $pageNumber; 
+        $viewData['sortyByGetParam'] = '';
+
         
         $breadCrumb = new \stdClass();
         $breadCrumb->slug = '/favorites-list';

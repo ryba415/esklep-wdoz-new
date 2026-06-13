@@ -123,6 +123,10 @@ Route::middleware(["auth:usercustom-admin"])->group(function () {
         /* administratorzy */
         Route::get('/panel/admins/', 'adminsList')->name('admins-list');
         Route::get('/panel/admins/admin-{id}', 'editAdmin')->name('edit-admin');
+        
+        /* statystyki */
+        Route::get('/panel/statistics/', 'showStatistics')->name('show-statistics');
+        
     });
 
     Route::controller(SaveData::class)->group(function () {
@@ -193,6 +197,7 @@ Route::controller(FavoritesListController::class)->group(function () {
 });
 
 Route::controller(ProductController::class)->group(function () {
+    Route::get('/get-ceneo-products-feed', "getCeneoFeed")->name('get-ceneo-products-feed');
     Route::get('/{slug}{a}bloz{b}{bloz}', "showProductPage")->where('b', '-')->where('a', '-')->name('show-product-page'); //{a}(bloz){b}
 });
 

@@ -1002,8 +1002,9 @@ class BasketApiController extends Controller
                 'parameters' => new \stdClass(),
                 'body' => $postString
             ];
-
-            $signature = base64_encode(hash_hmac('sha256', json_encode($signatureBody, JSON_UNESCAPED_SLASHES), Config::get('constants.paynow_signature_key'), true));
+            
+            $signature = hash_hmac('SHA256', $postString, Config::get('constants.paynow_signature_key'), true);
+            $signature = base64_encode($signature);
 
             curl_setopt($ch, CURLOPT_HTTPHEADER, array(
                 'Api-Key: ' . Config::get('constants.paynow_api_key'),

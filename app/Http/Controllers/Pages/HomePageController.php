@@ -33,13 +33,12 @@ class HomePageController extends Controller
         
         $cacheKey = 'home_page_products';
         
-        if (Cache::has($cacheKey)) {
+        if (false && Cache::has($cacheKey)) {
             $viewData = Cache::get($cacheKey);
         } else {
 
-            $topSlider = DB::connection('mysql-esklep')->select('SELECT slider.*, media.provider_reference as image, mediaMobile.provider_reference as imageMobile FROM slider '
-                    . ' LEFT JOIN media__media as media ON slider.media_id = media.id '
-                    . ' LEFT JOIN media__media as mediaMobile ON slider.media_mobile_id = mediaMobile.id ORDER BY id DESC', []);
+            $topSlider = DB::connection('mysql-esklep')->select('SELECT slider.* FROM slider '
+                    . '  ORDER BY id DESC', []);
             $viewData['topSlider'] = $topSlider;
 
             $specialProducts = new Products();

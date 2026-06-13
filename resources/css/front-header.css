@@ -17,8 +17,8 @@ and open the template in the editor.
     Author     : ryba4
 */
 .admin-top-navbar {
-  background-color: #F4EFDF;
-  border-bottom: 1px solid #E8DDBB;
+  background-color: #38900d;
+  border-bottom: 1px solid #b2ec96;
   position: fixed;
   width: 100%;
   top: 0px;
@@ -67,7 +67,7 @@ and open the template in the editor.
 
 .main-menu-container {
   display: none;
-  background-color: #F4EFDF;
+  background-color: #38900d;
   position: absolute;
   width: 100%;
   position: fixed;
@@ -105,7 +105,7 @@ and open the template in the editor.
 }
 .main-menu-container .user-left-menu .main-menu-list li {
   width: 100%;
-  border-bottom: 1px solid #E8DDBB;
+  border-bottom: 1px solid #b2ec96;
   text-align: right;
   margin-top: 10px;
   padding-bottom: 5px;

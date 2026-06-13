@@ -30,10 +30,12 @@ class SearchController extends Controller
         
         $sortBy = 'best-sort';
         $sortOrder = '';
+        $sortyByGetParam = '';
 
         $searchSortBy = null;
         if (isset($requestData['sort-by'])){
             $sortBy = preg_replace("/[^a-zA-Z0-9\-]+/", "", $requestData['sort-by']);
+            $sortyByGetParam = '&sort-by=' . $sortBy;
             switch ($sortBy) {
                 case 'best-sort':
                     $searchSortBy = null;
@@ -54,11 +56,15 @@ class SearchController extends Controller
             
         }
         $viewData['sortBy'] = $sortBy;
+        $viewData['sortyByGetParam'] = $sortyByGetParam;
         
         
         
         
         $pageNumber = 1;
+        if (isset($requestData['page'])){
+            $pageNumber = intval( $requestData['page']);
+        }
         $productsPerPage = 40;
         
         $offset = ($pageNumber - 1) * $productsPerPage;
@@ -205,7 +211,7 @@ class SearchController extends Controller
     
     private function getSearchConditions($condition,$areasArray){
         $conditionString = '';
-        $conditionString = $conditionString . " WHERE p.is_active = 1 AND (";
+        $conditionString = $conditionString . " WHERE p.is_active = 1 AND p.price > 0 AND (";
         
         $specjalSearch = false;
         if ($condition == 'all-special-products1'){
@@ -246,9 +252,10 @@ class SearchController extends Controller
         }
         $conditionString = $conditionString . " ) ";
         
+       // var_dump($conditionString);
+        
         return $conditionString;
     }
-    
     private function searchProducts($ordString,$conditionString,$productsPerPage,$offset,$order){
         
         if ($order == '' || $order == null){
@@ -258,10 +265,17 @@ class SearchController extends Controller
                 . $ordString 
                 . ' LEFT JOIN ecommerce_product_images ON ecommerce_product_images.product_id = p.id'
                 . ' LEFT JOIN ecommerce_product_image as image ON ecommerce_product_images.product_image_id = image.id'
-                . $conditionString
+                . $conditionString 
                 . $order .' LIMIT '.$productsPerPage.' OFFSET '.$offset.' ');
         
-        return $products;
+        $productsArray = [];
+        foreach ($products as $product){
+            if (!isset($productsArray[$product->bloz7])){
+                $productsArray[$product->bloz7] = $product;
+            }
+        }
+        
+        return $productsArray;
     }
     
    

@@ -16,11 +16,8 @@
                             <a href="{{$slide->url}}">
                             @endif
                             <picture>
-                                @if ($slide->imageMobile != null && !empty($slide->imageMobile))
-                                    <source type="image/jpeg" srcset="/uploads/media/default/0001/01/{{$slide->imageMobile}}" >
-                                @endif
-                                    <source type="image/jpeg" srcset="/uploads/media/default/0001/01/{{$slide->imageMobile}}" >
-                                <img @if ($i>0) loading="lazy" @endif src="/uploads/media/default/0001/01/{{$slide->imageMobile}}" alt="{{$slide->title}}" class="w-[100%] aspect-[2.09] object-contain w-full">
+                                <source type="image/webp" srcset="{{str_replace('.png','.webp',str_replace('.jpg','.webp',$slide->img_name))}}" >
+                                <img @if ($i>0) loading="lazy" @endif src="{{$slide->img_name}}" alt="{{$slide->title}}" class="w-[100%] aspect-[2.09] object-contain w-full">
                             </picture>
                             @if ($slide->url != null && !empty($slide->url))
                             </a>
@@ -488,7 +485,7 @@
   <section class="overflow-hidden flex flex-col justify-start items-center self-stretch flex-grow-0 flex-shrink-0 gap-5 py-[60px] px-5 bg-[#F1FFE4]">
     <div class="flex w-full pb-6 2xl:hidden">
         <div class="items-center justify-between w-full flex flex-col lg:flex-row gap-3">
-            <h2 class="text-2xl font-bold text-gray-900">Oferta Specjalna</h2>
+            <h2 class="text-2xl font-bold text-gray-900">Polecane dla Ciebie</h2>
             <div class="flex-grow mx-5">
                 <div class="h-px bg-gray-300 w-full"></div>
             </div>
@@ -543,7 +540,7 @@
   <section class="overflow-hidden flex flex-col justify-start items-center self-stretch flex-grow-0 flex-shrink-0 gap-5 py-[60px] px-5 bg-[#FFF2EC]">
     <div class="flex w-full pb-6 2xl:hidden">
         <div class="items-center justify-between w-full flex flex-col lg:flex-row gap-3">
-            <h2 class="text-2xl font-bold text-gray-900">Oferta Specjalna</h2>
+            <h2 class="text-2xl font-bold text-gray-900">Produkty z krótką datą</h2>
             <div class="flex-grow mx-5">
                 <div class="h-px bg-gray-300 w-full"></div>
             </div>

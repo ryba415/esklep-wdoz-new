@@ -14,7 +14,10 @@
             <h1 class="flex w-full pt-0 pl-0 pr-0 text-xl sm:text-2xl font-bold text-[#008641]">{{$article->title}}</h1>
             
             <div class="w-[100%] md:w-[50%] inline-block float-left md:pr-7 ">
-                <img class="w-[100%] mt-5 mb-5" src="https://esklep.wdoz.pl/uploads/media/default/0001/01/{{$article->image_name}}" alt="{{$article->title}}">
+                <picture>
+                    <source type="image/webp" srcset="{{str_replace('.png','.webp',str_replace('.jpg','.webp',$article->img_name))}}" >
+                    <img src="{{$article->img_name}}" alt="{{$article->title}}" class="w-[100%] mt-5 mb-5">
+                </picture>
                 <div class="text-sm text-gray-500 mb-5 md:mb-2">Data publikacji: {{$article->publish_date}}</div>
             </div>
             <div>

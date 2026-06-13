@@ -136,6 +136,30 @@ class ProductController extends Controller
         return null;
     }
     
+    public function getCeneoFeed(){
+        $products = DB::connection('mysql-esklep')->select('SELECT ecommerce_products.*, image.image_name as image_name FROM ecommerce_products '
+                . ' LEFT JOIN ecommerce_product_images ON ecommerce_product_images.product_id = ecommerce_products.id '
+                . ' LEFT JOIN ecommerce_product_image as image ON ecommerce_product_images.product_image_id = image.id',[]);
+        
+        $productsArray = [];
+        foreach ($products as $product){
+            $productsArray[$product->bloz7] = [
+                "url" => 'https://wracamdozdrowia.pl/' . $product->slug,
+                "img" => 'https://wracamdozdrowia.pl/uploads/images/product/' . $product->image_name,
+                "status" => true,
+                "bloz" => $product->bloz7,
+                "ean" => $product->ean,
+                "availability" => $product->availability,
+                "price_gross" => $product->price_gross,
+            ];
+            
+        }
+        
+        return response()->json($productsArray);
+            
+        
+    }
+    
     
     
 }

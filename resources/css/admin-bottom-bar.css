@@ -21,8 +21,8 @@ and open the template in the editor.
   bottom: 0px;
   display: flex;
   width: 100%;
-  background-color: #F4EFDF;
-  border-top: 1px solid #E8DDBB;
+  background-color: #38900d;
+  border-top: 1px solid #b2ec96;
   justify-content: space-around;
   position: fixed;
   bottom: 0px;
@@ -42,7 +42,7 @@ and open the template in the editor.
   align-content: space-around;
   padding-bottom: 8px;
   padding-top: 8px;
-  border-top: 3px solid #F4EFDF;
+  border-top: 3px solid #38900d;
 }
 .bottom-bar .bottom-bar-item.bottom-bar-item-selected {
   border-top: 3px solid #B7AD8E;

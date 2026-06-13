@@ -26,6 +26,7 @@ and open the template in the editor.
         padding: 5px 10px;
         justify-content: space-between;
         align-items: center;
+        max-width: 100%;
 
         .navbar-settings{
             border: none;
@@ -41,12 +42,16 @@ and open the template in the editor.
 
         .navbar-brand{
             display: flex;
-            @media only screen and (min-width: $desktopDim) {
+            /*@media only screen and (min-width: $desktopDim) {
                 padding-left: 13px;
                 padding-top: 9px;
                 padding-bottom: 9px;
 
+            }*/
+            #top-header-main-logo{
+                width: 215px;
             }
+            
         }
 
         .show-admin-main-menu{
@@ -77,15 +82,15 @@ and open the template in the editor.
     
     .user-left-menu{
         width: 100%;
-        background-color: #f4efdf;
+        background-color: #38900d;
         z-index: 8;
         
         @media only screen and (min-width: $desktopDim) {
             position: fixed;
             left: 0px;
-            top: 55px;
-            width: 100px;
-            background-color: #f4efdf;
+            top: 54px;
+            width: 130px;
+            background-color: #38900d;
             max-height: 100%;
             height: 100%;
         }
@@ -94,6 +99,7 @@ and open the template in the editor.
             list-style-type: none;
             padding: 0px;
             margin: 0px;
+            
 
             li{
                 width: 100%;
@@ -105,14 +111,14 @@ and open the template in the editor.
                 a{
                     padding: 10px;
                     padding-right: 20px;
-                    color: $font-color;
+                    color: white;
                     @media only screen and (min-width: $desktopDim) {
                         
                     }
                     
                     @media only screen and (min-width: $desktopDim) {
                         padding: 0px;
-                        min-height: 60px;
+                        min-height: 40px;
                         display: flex;
                         flex-direction: column;
                         justify-content: center;
@@ -141,6 +147,8 @@ and open the template in the editor.
                             font-size: 14px;
                             padding-top: 6px;
                             padding-bottom: 6px;
+                            padding-left: 10px;
+                            padding-right: 10px;
                         }
                     }
                 }
@@ -153,6 +161,12 @@ and open the template in the editor.
     min-height: calc( 100vh - 455px );
     padding-left: 10px;
     padding-right: 10px;
+    overflow-x: auto;
+    
+    td{
+        max-width: 400px;
+        overflow-x: auto;
+    }
     @media only screen and (min-width: $desktopDim) {
         background-color: #FFFEF9;
         border-radius: 20px; 
@@ -181,25 +195,26 @@ and open the template in the editor.
 
 #settings-menu{
     position: absolute;
-    top: 46px;
+    top: 55px;
     background-color: $background2;
     left: 0px;
     padding: 0px;
     width: 100%;
+    color: white;
     
     @media only screen and (min-width: $desktopDim) {
         right: 0px;
         left: auto;
         width: 164px;
-        border-left: 1px solid #E8DDBB;
-        top: 56px;
+        border-left: 1px solid #b2ec96;
+        top: 55px;
     }
     
     a, p{
         width: 100%;
         display: inline-block;
         font-size: 14px;
-        border-bottom: 1px solid #E8DDBB;
+        border-bottom: 1px solid #b2ec96;
         padding: 10px;
         margin: 0px;
     }

@@ -14,6 +14,7 @@ class CmsObject implements CmsObjectInterface
     protected $addNewItemButtonName = 'Dodaj nowy element';
     protected $editItemUrl = '';
     protected $listItems;
+    public $itemTitle = '';
 
     public $sucessSaveInfoText = 'Dane zapisane pomyślnie';
     public $breadCrub1 = null;
@@ -114,8 +115,11 @@ class CmsObject implements CmsObjectInterface
         $viewData = [
             'id' => $id,
             'areas' => $this->areas,
+            'breadCrub1' => $this->breadCrub1,
+            'breadCrub2' => $this->breadCrub2,
             'objectName' => $this->objectName,
-            'editItem' => $editItem
+            'editItem' => $editItem,
+            'itemTitle' => $this->itemTitle
         ];
 
         if (isset($this->addHtmlToEdit)) {

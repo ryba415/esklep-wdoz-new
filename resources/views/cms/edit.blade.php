@@ -3,7 +3,9 @@
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/tailwind.css') }}">
     <div class="all-content-big">
-        <h1>nazwa</h1>
+        @if (isset($itemTitle))
+        <h1>{{$itemTitle}}</h1>
+        @endif
         <div id="sucess-info-area"></div>
         <div id="fail-info-area">
             <ul></ul>
