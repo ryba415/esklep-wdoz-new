@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\returnDataDB\SearchEngineSuggestions;
+use App\Http\Controllers\Api\RefundOrderController;
 use App\Http\Controllers\Basket\BasketApiController;
 use App\Http\Controllers\Auth\AuthController;
 
@@ -25,15 +26,16 @@ Route::controller(SearchEngineSuggestions::class)->group(function () {
     Route::get('/get-search-engine-suggestions/{search}', "returnSuggestions")->name('returnSuggestions');
 });
 
-
+Route::get('/refunds/orders/{identity}', [RefundOrderController::class, 'show'])
+    ->name('api.refunds.orders.show');
 
 /*Route::controller(AuthController::class)->group(function () {
-    Route::post('/checkout-login/', "login")->name('login'); 
-    Route::get('/logout/', "logout")->name('logout'); 
+    Route::post('/checkout-login/', "login")->name('login');
+    Route::get('/logout/', "logout")->name('logout');
 });
 
 Route::middleware(["auth:usercustom"])->group(function () {
     Route::controller(AuthController::class)->group(function () {
-        Route::post('/get-user-data/', "getUserData")->name('get-user-data'); 
+        Route::post('/get-user-data/', "getUserData")->name('get-user-data');
     });
 });*/

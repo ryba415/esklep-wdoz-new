@@ -4,6 +4,7 @@ module.exports = {
     "resources/**/*.blade.php",
     //"./resources/**/*.js",
     "resources/views/**/*.php",
+    './resources/views/**/*.blade.php',
     './resources/**/*.vue'
   ],
   /*output: {
@@ -24,7 +25,6 @@ module.exports = {
         "wdoz-input-border": "#B2BCCA",
 
       },
-      textColor: ['group-hover'],
     },
   },
   plugins: [],

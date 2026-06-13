@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Pages\RefundFormController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Cms\SaveData;
 use App\Http\Controllers\Auth\AuthController;
@@ -32,6 +33,10 @@ use App\Http\Controllers\Cms\ExportData;
 //Route::get('/', function () {
 //    return view('welcome');
 //});
+
+Route::get('/zwroty', [RefundFormController::class, 'index'])
+    ->name('refunds.form');
+
 Route::controller(BasketApiController::class)->group(function () {
     Route::post('/add-to-basket/', "addToBasket")->name('addToBasket');
     Route::post('/remove-from-basket/', "removeFromBasket")->name('removeFromBasket');
