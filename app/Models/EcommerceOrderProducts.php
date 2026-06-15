@@ -29,9 +29,15 @@ class EcommerceOrderProducts extends Model
         return $this->belongsTo(EcommerceOrders::class, 'order_id', 'id');
     }
 
+    public function product(): BelongsTo
+    {
+        return $this->belongsTo(EcommerceProducts::class, 'product_id', 'id');
+    }
+
     public function getDisplayNameAttribute(): string
     {
-        return $this->name
+        return $this->product?->name
+            ?? $this->name
             ?? $this->product_name
             ?? 'Produkt #' . $this->product_id;
     }

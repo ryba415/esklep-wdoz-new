@@ -16,7 +16,7 @@ class RefundOrderController extends Controller
     ): JsonResponse {
         $order = EcommerceOrders::query()
             ->where('identity', $identity)
-            ->with('products')
+            ->with('products.product')
             ->first();
 
         if (!$order) {
@@ -29,6 +29,7 @@ class RefundOrderController extends Controller
             'order' => [
                 'id' => $order->id,
                 'identity' => $order->identity,
+                'name' => $order->name,
                 'order_date' => optional($order->order_date)->format('Y-m-d H:i'),
                 'status' => $order->status,
                 'value_gross' => (float) $order->value_gross,
@@ -44,8 +45,10 @@ class RefundOrderController extends Controller
                     'price_gross' => (float) $product->price_gross,
                     'quantity' => (int) $product->quantity,
                     'value_gross' => (float) $product->value_gross,
+                    'type_of_preparation' => $product->product?->type_of_preparation,
                     'can_return' => $eligibility['can_return'],
                     'return_exclusion_reasons' => $eligibility['reasons'],
+//                    'debug' => $eligibility['debug'],
                 ];
             })->values(),
         ]);

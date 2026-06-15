@@ -10,12 +10,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const orderInput = document.getElementById('order_identity');
     const findButton = document.getElementById('find_order_btn');
     const messageBox = document.getElementById('refund_message');
+
     const orderSummary = document.getElementById('order_summary');
     const productsContainer = document.getElementById('products_container');
 
     const summaryIdentity = document.getElementById('summary_identity');
     const summaryDate = document.getElementById('summary_date');
     const summaryValue = document.getElementById('summary_value');
+
+    const orderIdInput = document.getElementById('order_id');
+    const orderIdentityHidden = document.getElementById('order_identity_hidden');
+
+    const customerFields = document.getElementById('customer_fields');
+    const submitContainer = document.getElementById('submit_container');
 
     const moneyFormatter = new Intl.NumberFormat('pl-PL', {
         style: 'currency',
@@ -33,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const showMessage = (text, type = 'error') => {
         messageBox.classList.remove('hidden');
-
         messageBox.textContent = text;
 
         if (type === 'error') {
@@ -56,24 +62,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const resetResult = () => {
         orderSummary.classList.add('hidden');
         productsContainer.classList.add('hidden');
+        customerFields.classList.add('hidden');
+        submitContainer.classList.add('hidden');
+
         productsContainer.innerHTML = '';
+
+        orderIdInput.value = '';
+        orderIdentityHidden.value = '';
+
+        summaryIdentity.textContent = '';
+        summaryDate.textContent = '';
+        summaryValue.textContent = '';
     };
 
-    const clampQuantityInputs = () => {
+    const clampQuantityValue = (input) => {
+        const max = Number(input.dataset.maxQuantity);
+        let value = Number(input.value);
+
+        if (!Number.isFinite(value) || value < 1) {
+            value = 1;
+        }
+
+        if (value > max) {
+            value = max;
+        }
+
+        input.value = value;
+    };
+
+    const bindQuantityValidation = () => {
         document.querySelectorAll('[data-refund-quantity]').forEach((input) => {
             input.addEventListener('change', () => {
-                const max = Number(input.dataset.maxQuantity);
-                let value = Number(input.value);
-
-                if (!Number.isFinite(value) || value < 1) {
-                    value = 1;
-                }
-
-                if (value > max) {
-                    value = max;
-                }
-
-                input.value = value;
+                clampQuantityValue(input);
             });
 
             input.addEventListener('input', () => {
@@ -87,28 +107,76 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    const bindCheckboxQuantityState = () => {
+        document.querySelectorAll('[data-refund-checkbox]').forEach((checkbox) => {
+            const orderProductId = checkbox.dataset.orderProductId;
+            const quantityInput = document.querySelector(`[data-refund-quantity="${orderProductId}"]`);
+
+            if (!quantityInput) {
+                return;
+            }
+
+            const syncState = () => {
+                if (checkbox.disabled) {
+                    quantityInput.disabled = true;
+                    return;
+                }
+
+                quantityInput.disabled = !checkbox.checked;
+            };
+
+            checkbox.addEventListener('change', syncState);
+
+            syncState();
+        });
+    };
+
     const renderProducts = (products) => {
         productsContainer.innerHTML = '';
 
         products.forEach((product) => {
-            const disabledClass = product.can_return
+            const productQuantity = Number(product.quantity) || 0;
+            const productPriceGross = Number(product.price_gross) || 0;
+            const productValueGross = Number(product.value_gross) || 0;
+
+            const isReturnable = Boolean(product.can_return);
+
+            const disabledClass = isReturnable
                 ? ''
                 : 'opacity-60 grayscale';
 
-            const disabledAttributes = product.can_return
+            const disabledAttributes = isReturnable
                 ? ''
                 : 'disabled';
 
-            const exclusionHtml = !product.can_return
+            const checkedAttribute = isReturnable
+                ? 'checked'
+                : '';
+
+            const reasons = Array.isArray(product.return_exclusion_reasons)
+                ? product.return_exclusion_reasons
+                : [];
+
+            const exclusionText = reasons.length > 0
+                ? reasons.join(' ')
+                : 'Ten produkt nie podlega zwrotowi.';
+
+            const exclusionHtml = !isReturnable
                 ? `
                     <div class="mt-3 rounded-lg bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
-                        ${escapeHtml(product.return_exclusion_reasons.join(' '))}
+                        ${escapeHtml(exclusionText)}
                     </div>
                 `
                 : '';
 
             const imageHtml = product.image_url
-                ? `<img src="${escapeHtml(product.image_url)}" alt="${escapeHtml(product.name)}" class="h-24 w-24 rounded-xl object-contain">`
+                ? `
+                    <img
+                        src="${escapeHtml(product.image_url)}"
+                        alt="${escapeHtml(product.name)}"
+                        class="h-24 w-24 rounded-xl object-contain"
+                    >
+                `
                 : `
                     <div class="flex h-24 w-24 items-center justify-center rounded-xl bg-wdoz-primary-10 text-xs font-semibold text-wdoz-primary">
                         Brak zdjęcia
@@ -130,17 +198,17 @@ document.addEventListener('DOMContentLoaded', () => {
                             <div class="mt-3 grid gap-2 text-sm text-wdoz-text-gray sm:grid-cols-3">
                                 <div>
                                     <span class="block text-xs text-gray-400">Cena za sztukę</span>
-                                    <strong>${moneyFormatter.format(product.price_gross)}</strong>
+                                    <strong>${moneyFormatter.format(productPriceGross)}</strong>
                                 </div>
 
                                 <div>
                                     <span class="block text-xs text-gray-400">Kupiona ilość</span>
-                                    <strong>${product.quantity}</strong>
+                                    <strong>${productQuantity}</strong>
                                 </div>
 
                                 <div>
                                     <span class="block text-xs text-gray-400">Wartość pozycji</span>
-                                    <strong>${moneyFormatter.format(product.value_gross)}</strong>
+                                    <strong>${moneyFormatter.format(productValueGross)}</strong>
                                 </div>
                             </div>
 
@@ -153,7 +221,10 @@ document.addEventListener('DOMContentLoaded', () => {
                                     type="checkbox"
                                     name="products[${product.id}][selected]"
                                     value="1"
+                                    data-refund-checkbox
+                                    data-order-product-id="${product.id}"
                                     class="h-5 w-5 rounded border-wdoz-input-border text-wdoz-primary focus:ring-wdoz-primary"
+                                    ${checkedAttribute}
                                     ${disabledAttributes}
                                 >
                                 Zwrócić produkt
@@ -166,12 +237,12 @@ document.addEventListener('DOMContentLoaded', () => {
                             <input
                                 type="number"
                                 min="1"
-                                max="${product.quantity}"
+                                max="${productQuantity}"
                                 value="1"
-                                data-refund-quantity
-                                data-max-quantity="${product.quantity}"
+                                data-refund-quantity="${product.id}"
+                                data-max-quantity="${productQuantity}"
                                 name="products[${product.id}][quantity]"
-                                class="mt-2 h-11 w-full rounded-lg border border-wdoz-input-border px-3 text-sm text-wdoz-text-gray outline-none focus:border-wdoz-primary focus:ring-2 focus:ring-wdoz-primary-10"
+                                class="mt-2 h-11 w-full rounded-lg border border-wdoz-input-border px-3 text-sm text-wdoz-text-gray outline-none focus:border-wdoz-primary focus:ring-2 focus:ring-wdoz-primary-10 disabled:bg-gray-100 disabled:text-gray-400"
                                 ${disabledAttributes}
                             >
                         </div>
@@ -184,18 +255,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
         productsContainer.classList.remove('hidden');
 
-        clampQuantityInputs();
+        bindQuantityValidation();
+        bindCheckboxQuantityState();
     };
 
     const renderOrder = (data) => {
+        orderIdInput.value = data.order.id;
+        orderIdentityHidden.value = data.order.identity;
+
         summaryIdentity.textContent = data.order.identity;
+
         summaryDate.textContent = data.order.order_date
             ? `Data zamówienia: ${data.order.order_date}`
             : '';
 
-        summaryValue.textContent = moneyFormatter.format(data.order.value_gross);
+        summaryValue.textContent = moneyFormatter.format(Number(data.order.value_gross) || 0);
 
         orderSummary.classList.remove('hidden');
+        customerFields.classList.remove('hidden');
+        submitContainer.classList.remove('hidden');
 
         renderProducts(data.products);
     };
@@ -235,6 +313,33 @@ document.addEventListener('DOMContentLoaded', () => {
             setLoading(false);
         }
     };
+
+    const hasSelectedRefundProducts = () => {
+        return Array.from(document.querySelectorAll('[data-refund-checkbox]'))
+            .some((checkbox) => checkbox.checked && !checkbox.disabled);
+    };
+
+    root.addEventListener('submit', (event) => {
+        hideMessage();
+
+        if (!orderIdInput.value || !orderIdentityHidden.value) {
+            event.preventDefault();
+            showMessage('Najpierw wyszukaj zamówienie.');
+            return;
+        }
+
+        if (!hasSelectedRefundProducts()) {
+            event.preventDefault();
+            showMessage('Wybierz przynajmniej jeden produkt do zwrotu.');
+            return;
+        }
+
+        document.querySelectorAll('[data-refund-quantity]').forEach((input) => {
+            if (!input.disabled) {
+                clampQuantityValue(input);
+            }
+        });
+    });
 
     findButton.addEventListener('click', findOrder);
 

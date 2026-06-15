@@ -5,7 +5,8 @@ module.exports = {
     //"./resources/**/*.js",
     "resources/views/**/*.php",
     './resources/views/**/*.blade.php',
-    './resources/**/*.vue'
+    './resources/**/*.vue',
+    './resources/js/refunds/order-lookup.js'
   ],
   /*output: {
     path: path.resolve(__dirname, '/public/css/tailwind/')
