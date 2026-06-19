@@ -4,7 +4,9 @@ module.exports = {
     "resources/**/*.blade.php",
     //"./resources/**/*.js",
     "resources/views/**/*.php",
-    './resources/**/*.vue'
+    './resources/views/**/*.blade.php',
+    './resources/**/*.vue',
+    './resources/js/refunds/order-lookup.js'
   ],
   /*output: {
     path: path.resolve(__dirname, '/public/css/tailwind/')
@@ -24,7 +26,6 @@ module.exports = {
         "wdoz-input-border": "#B2BCCA",
 
       },
-      textColor: ['group-hover'],
     },
   },
   plugins: [],

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Pages\RefundFormController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Cms\SaveData;
 use App\Http\Controllers\Auth\AuthController;
@@ -33,6 +34,16 @@ use App\Http\Controllers\Admin\AdminOrders;
 //Route::get('/', function () {
 //    return view('welcome');
 //});
+
+Route::get('/zwroty', [RefundFormController::class, 'index'])
+    ->name('refunds.form');
+
+Route::post('/zwroty', [RefundFormController::class, 'store'])
+    ->name('refunds.store');
+
+Route::get('/zwroty/dziekujemy/{refund}', [RefundFormController::class, 'thankYou'])
+    ->name('refunds.thank-you');
+
 Route::controller(BasketApiController::class)->group(function () {
     Route::post('/add-to-basket/', "addToBasket")->name('addToBasket');
     Route::post('/remove-from-basket/', "removeFromBasket")->name('removeFromBasket');
@@ -119,10 +130,10 @@ Route::middleware(["auth:usercustom-admin"])->group(function () {
         /* administratorzy */
         Route::get('/panel/admins/', 'adminsList')->name('admins-list');
         Route::get('/panel/admins/admin-{id}', 'editAdmin')->name('edit-admin');
-        
+
         /* statystyki */
         Route::get('/panel/statistics/', 'showStatistics')->name('show-statistics');
-        
+
     });
     
     Route::controller(AdminOrders::class)->group(function () {
