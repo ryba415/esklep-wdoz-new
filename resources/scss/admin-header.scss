@@ -171,25 +171,18 @@ and open the template in the editor.
         background-color: #FFFEF9;
         border-radius: 20px; 
         box-shadow: 0px 0px 25px 2px #F2EFE3;;
-        width: calc( 100% - 100px);
+        width: calc( 100% - 80px);
         margin: 0 auto;
         position: relative;
         left: -15px;
         margin-bottom: 70px;
         padding: 20px;
-        max-width: 1100px;
+        //max-width: 1100px;
     }
-    
-    @media only screen and (min-width: 1200px) {
-        width: calc( 100% - 150px);
-    }
-    
-    @media only screen and (min-width: 1300px) {
-        width: calc( 100% - 200px);
-    }
+
     
     @media only screen and (min-width: 1500px) {
-        max-width: 1200px;
+        max-width: 1500px;
     }
 }
 

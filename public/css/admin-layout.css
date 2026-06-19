@@ -527,6 +527,39 @@ span.red-star {
   color: gray;
 }
 
+.cms-list-table-orders tr td {
+  font-size: 11px;
+  padding-right: 3px !important;
+  padding-left: 3px !important;
+}
+@media only screen and (min-width: 1400px) {
+  .cms-list-table-orders tr td {
+    font-size: 12px;
+  }
+}
+
+.orders-top-actions {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.orders-top-actions .cms-filters-container-orders {
+  width: 100%;
+  flex-wrap: wrap;
+}
+@media only screen and (min-width: 1000px) {
+  .orders-top-actions .cms-filters-container-orders {
+    width: calc(50% - 10px);
+    display: flex;
+  }
+}
+.orders-top-actions .cms-filters-container-orders .filters-name {
+  width: 100%;
+}
+.orders-top-actions .cms-filters-container-orders .filter-row {
+  width: 100%;
+}
+
 /*# sourceMappingURL=admin.css.map */ /*
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
@@ -702,28 +735,17 @@ and open the template in the editor.
     background-color: #FFFEF9;
     border-radius: 20px;
     box-shadow: 0px 0px 25px 2px #F2EFE3;
-    width: calc(100% - 100px);
+    width: calc(100% - 80px);
     margin: 0 auto;
     position: relative;
     left: -15px;
     margin-bottom: 70px;
     padding: 20px;
-    max-width: 1100px;
-  }
-}
-@media only screen and (min-width: 1200px) {
-  .user-content-container {
-    width: calc(100% - 150px);
-  }
-}
-@media only screen and (min-width: 1300px) {
-  .user-content-container {
-    width: calc(100% - 200px);
   }
 }
 @media only screen and (min-width: 1500px) {
   .user-content-container {
-    max-width: 1200px;
+    max-width: 1500px;
   }
 }
 

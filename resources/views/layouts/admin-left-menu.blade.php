@@ -4,6 +4,10 @@
             <span>Start</span>
         </a>
     </li>
+    <li><a href="/panel/orders-list">
+            <span>Zamówienia</span>
+        </a>
+    </li>
     <li><a href="/panel/slides/">
             <span>Slider</span>
         </a>

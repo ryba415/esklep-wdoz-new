@@ -17,6 +17,7 @@ use App\Http\Controllers\Product\IntegrationsController;
 use App\Http\Controllers\Wiedza\WiedzaController;
 use App\Http\Controllers\Admin\AdminDashboard;
 use App\Http\Controllers\Cms\ExportData;
+use App\Http\Controllers\Admin\AdminOrders;
 
 /*
 |--------------------------------------------------------------------------
@@ -123,6 +124,11 @@ Route::middleware(["auth:usercustom-admin"])->group(function () {
         Route::get('/panel/statistics/', 'showStatistics')->name('show-statistics');
         
     });
+    
+    Route::controller(AdminOrders::class)->group(function () {
+        Route::get('/panel/orders-list', 'showOrdersList')->name('orders-list');
+    });
+    
 
     Route::controller(SaveData::class)->group(function () {
         Route::post('/cms-universal-save/{objectName}', 'universalSave')->name('cms-universal-save');

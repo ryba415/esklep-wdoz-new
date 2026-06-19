@@ -7,6 +7,9 @@
     <p>Witaj  <strong>{{Auth::user()->email}}</strong> !<br>
         w panelu administracyjnym</p>
     
+    <h2>Zmówienia</h2>
+    <a href="/panel/orders-list" class="admin-dashboard-link">Lista zamówień<br><span>zamówienia użytkowników</span></a>
+    
     <h2>Strona główna</h2>
     <a href="/panel/slides/" class="admin-dashboard-link"> Slider<br><span>Sliderem na stronie głównej</span></a>
     

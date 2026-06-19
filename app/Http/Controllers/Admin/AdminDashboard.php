@@ -128,6 +128,12 @@ class AdminDashboard extends Controller
         $requestData = $request->all();
         
         $viewData = [];
+        
+        $viewData['breadCrub1'] = [
+            'url' => '/panel/statistics',
+            'name' => 'Statystyki'
+        ];
+        
         if (isset($requestData['date-from'])){
             $data_start = $requestData['date-from'];
         } else {
@@ -147,8 +153,6 @@ class AdminDashboard extends Controller
             $letCondition = ' LEFT(order_date, 7) AS dzien, ';
             $gropByCondition = ' GROUP BY LEFT(order_date, 7) ';
         }
-        //$data_start = '2026-03-01';
-        //$data_koniec = '2026-03-31';
         
         $viewData['data_start'] = $data_start;
         $viewData['data_koniec'] = $data_koniec;
@@ -158,8 +162,6 @@ class AdminDashboard extends Controller
         $payyedOrders = 0;
         $payOrdersSumm = 0;
 
-        // 1. Szybkie zapytanie w czystym SQL
-        // Używamy "od - do" bezpośrednio na order_date, aby MySQL użył indeksu.
         $wyniki = DB::connection('mysql-esklep')->select("
             SELECT 
                 ".$letCondition."
@@ -220,7 +222,6 @@ class AdminDashboard extends Controller
         
         $viewData['deliveriesData'] = $wyniki4;
 
-        // 2. Przekształcamy wyniki na tablicę asocjacyjną [data => ilosc]
         $wyniki_z_bazy = [];
         foreach ($wyniki as $row) {
             $wyniki_z_bazy[$row->dzien] = [];

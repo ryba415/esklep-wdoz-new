@@ -527,4 +527,37 @@ span.red-star {
   color: gray;
 }
 
+.cms-list-table-orders tr td {
+  font-size: 11px;
+  padding-right: 3px !important;
+  padding-left: 3px !important;
+}
+@media only screen and (min-width: 1400px) {
+  .cms-list-table-orders tr td {
+    font-size: 12px;
+  }
+}
+
+.orders-top-actions {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.orders-top-actions .cms-filters-container-orders {
+  width: 100%;
+  flex-wrap: wrap;
+}
+@media only screen and (min-width: 1000px) {
+  .orders-top-actions .cms-filters-container-orders {
+    width: calc(50% - 10px);
+    display: flex;
+  }
+}
+.orders-top-actions .cms-filters-container-orders .filters-name {
+  width: 100%;
+}
+.orders-top-actions .cms-filters-container-orders .filter-row {
+  width: 100%;
+}
+
 /*# sourceMappingURL=admin.css.map */
