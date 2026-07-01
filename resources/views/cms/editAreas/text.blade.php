@@ -7,6 +7,7 @@
     </label>
 
     <input
+        @if(!empty($area['readonly']))style="filter: grayscale(60%); opacity: 0.60; cursor: not-allowed;"@endif
         class="cms-edit-area"
         type="text"
         value="@if ($editItem != null){{ $editItem[0]->{$area['field']} }}@endif"

@@ -30,7 +30,7 @@
                 <label for="user-data-form-email" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-[515151]  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/4 peer-placeholder-shown:top-1/4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Adres e-mail</label>
             </div>
             <div class="relative w-full sm:w-[48%]" >
-                <input type="text" id="user-data-form-phone" value="{{$userdata['deliveryAdress']->phoneNumber}}" autocomplete="off" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-wdoz-text-gray bg-transparent rounded border-1 border border-wdoz-input-border appearance-none focus:outline-none focus:ring-0 peer" placeholder=" " />
+                <input type="text" id="user-data-form-phone" value="{{$userdata['deliveryAdress']?->phoneNumber ?? ''}}" autocomplete="off" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-wdoz-text-gray bg-transparent rounded border-1 border border-wdoz-input-border appearance-none focus:outline-none focus:ring-0 peer" placeholder=" " />
                 <span class="text-red-700 block text-xs pt-1 hidden field-error-info">Błąd</span>
                 <label for="user-data-form-phone" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-[515151]  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/4 peer-placeholder-shown:top-1/4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Telefon</label>
             </div>
@@ -43,24 +43,24 @@
 
             <div id="delivery-data-container" class="max-w-[714px] p-0 mb-5 bg-white flex flex-wrap flex-row gap-5 ">
                 <div class="relative w-full sm:w-[48%]" >
-                  <input type="text" id="user-data-form-street" value="{{$userdata['deliveryAdress']->street}}" autocomplete="off" class="vat block px-2.5 pb-2.5 pt-4 w-full text-sm text-wdoz-text-gray bg-transparent rounded border-1 border border-wdoz-input-border appearance-none focus:outline-none focus:ring-0 peer" placeholder=" " />
+                  <input type="text" id="user-data-form-street" value="{{$userdata['deliveryAdress']?->street ?? ''}}" autocomplete="off" class="vat block px-2.5 pb-2.5 pt-4 w-full text-sm text-wdoz-text-gray bg-transparent rounded border-1 border border-wdoz-input-border appearance-none focus:outline-none focus:ring-0 peer" placeholder=" " />
                   <span class="text-red-700 block text-xs pt-1 hidden field-error-info">Błąd</span>
                   <label for="user-data-form-street" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-[515151]  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/4 peer-placeholder-shown:top-1/4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Ulica</label>
                 </div>
                 <div class="relative w-full sm:w-[48%]" >
-                  <input type="text" id="user-data-form-house-number" value="{{$userdata['deliveryAdress']->house_number}}" autocomplete="off" class="vat block px-2.5 pb-2.5 pt-4 w-full text-sm text-wdoz-text-gray bg-transparent rounded border-1 border border-wdoz-input-border appearance-none focus:outline-none focus:ring-0 peer" placeholder=" " />
+                  <input type="text" id="user-data-form-house-number" value="{{$userdata['deliveryAdress']?->house_number ?? ''}}" autocomplete="off" class="vat block px-2.5 pb-2.5 pt-4 w-full text-sm text-wdoz-text-gray bg-transparent rounded border-1 border border-wdoz-input-border appearance-none focus:outline-none focus:ring-0 peer" placeholder=" " />
                   <span class="text-red-700 block text-xs pt-1 hidden field-error-info">Błąd</span>
                   <label for="user-data-form-house-number" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-[515151]  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/4 peer-placeholder-shown:top-1/4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Nr domu / mieszkania</label>
                 </div>
                 <div class="relative w-full sm:w-[48%]" >
-                  <input type="text" id="user-data-form-city"  value="{{$userdata['deliveryAdress']->city}}" autocomplete="off" class="vat block px-2.5 pb-2.5 pt-4 w-full text-sm text-wdoz-text-gray bg-transparent rounded border-1 border border-wdoz-input-border appearance-none focus:outline-none focus:ring-0 peer" placeholder=" " />
+                  <input type="text" id="user-data-form-city"  value="{{$userdata['deliveryAdress']?->city ?? ''}}" autocomplete="off" class="vat block px-2.5 pb-2.5 pt-4 w-full text-sm text-wdoz-text-gray bg-transparent rounded border-1 border border-wdoz-input-border appearance-none focus:outline-none focus:ring-0 peer" placeholder=" " />
                   <span class="text-red-700 block text-xs pt-1 hidden field-error-info">Błąd</span>
-                  <label for="user-data-form-city" value="{{$userdata['deliveryAdress']->city}}" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-[515151]  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/4 peer-placeholder-shown:top-1/4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Miejscowość</label>
+                  <label for="user-data-form-city" value="{{$userdata['deliveryAdress']?->city ?? ''}}" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-[515151]  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/4 peer-placeholder-shown:top-1/4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Miejscowość</label>
                 </div>
                 <div class="relative w-full sm:w-[48%]" >
-                  <input type="text" id="user-data-form-zipcode"  value="{{$userdata['deliveryAdress']->zipCode}}" autocomplete="off" class="vat block px-2.5 pb-2.5 pt-4 w-full text-sm text-wdoz-text-gray bg-transparent rounded border-1 border border-wdoz-input-border appearance-none focus:outline-none focus:ring-0 peer" placeholder=" " />
+                  <input type="text" id="user-data-form-zipcode"  value="{{$userdata['deliveryAdress']->zipCode ?? ''}}" autocomplete="off" class="vat block px-2.5 pb-2.5 pt-4 w-full text-sm text-wdoz-text-gray bg-transparent rounded border-1 border border-wdoz-input-border appearance-none focus:outline-none focus:ring-0 peer" placeholder=" " />
                   <span class="text-red-700 block text-xs pt-1 hidden field-error-info">Błąd</span>
-                  <label for="user-data-form-zipcode"  value="{{$userdata['deliveryAdress']->zipCode}}" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-[515151]  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/4 peer-placeholder-shown:top-1/4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Kod pocztowy</label>
+                  <label for="user-data-form-zipcode"  value="{{$userdata['deliveryAdress']?->zipCode ?? ''}}" class="absolute text-sm text-gray-500  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-[515151]  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/4 peer-placeholder-shown:top-1/4 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Kod pocztowy</label>
                 </div>
             </div>
         </div>
@@ -129,8 +129,14 @@
                 <td class="p-2 border-b"></td>
             </tr>
             
-            
-        <tr><td colspan="6" class="p-6 drop-shadow-lg"></td></tr>  
+            @if($order->paynow_payment_status == 'CONFIRMED')
+            <tr>
+                <td colspan="6" class="">
+                    <a href="/zwroty?set-id={{$order->name}}" class="xl:min-w-[170px] cursor-pointer inline-block m-auto bg-wdoz-primary-10 rounded-lg mb-5 border-solid border-wdoz-primary border-2 text-center max-w-[350px] p-1">Zwróć zamówienie</a>
+                </td>
+            </tr>
+            @endif
+            <tr><td colspan="6" class="p-6 drop-shadow-lg"></td></tr>
         @endforeach
         </table>
     </div>

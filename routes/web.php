@@ -19,6 +19,7 @@ use App\Http\Controllers\Wiedza\WiedzaController;
 use App\Http\Controllers\Admin\AdminDashboard;
 use App\Http\Controllers\Cms\ExportData;
 use App\Http\Controllers\Admin\AdminOrders;
+use App\Http\Controllers\Api\RefundOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,15 +35,18 @@ use App\Http\Controllers\Admin\AdminOrders;
 //Route::get('/', function () {
 //    return view('welcome');
 //});
+Route::controller(RefundFormController::class)->group(function () {
+    Route::get('/zwroty', 'index')->name('refunds.form');
+    Route::post('/zwroty', 'store')->name('refunds.store');
+    Route::get('/zwroty/dziekujemy/{refund}', 'thankYou')->name('refunds.thank-you');
+   
+});
 
-Route::get('/zwroty', [RefundFormController::class, 'index'])
-    ->name('refunds.form');
-
-Route::post('/zwroty', [RefundFormController::class, 'store'])
-    ->name('refunds.store');
-
-Route::get('/zwroty/dziekujemy/{refund}', [RefundFormController::class, 'thankYou'])
-    ->name('refunds.thank-you');
+Route::controller(RefundOrderController::class)->group(function () {
+     Route::get('/refunds/orders/{identity}', 'show')
+          ->where('identity', '.+') // Dodany slash \/ do wzorca
+          ->name('refunds.orders.show');
+});
 
 Route::controller(BasketApiController::class)->group(function () {
     Route::post('/add-to-basket/', "addToBasket")->name('addToBasket');
@@ -138,6 +142,17 @@ Route::middleware(["auth:usercustom-admin"])->group(function () {
     
     Route::controller(AdminOrders::class)->group(function () {
         Route::get('/panel/orders-list', 'showOrdersList')->name('orders-list');
+        Route::get('/panel/orders-export-print', 'printOrders')->name('orders-export-print');
+        Route::get('/panel/orders-export-orlen', 'printOrdersOrlen')->name('orders-export-orlen');
+        Route::get('/panel/orders-export-dpd', 'prepareDpdFile')->name('orders-export-dpd');
+        Route::get('/panel/orders-export-inpost', 'prepareInpostFile')->name('orders-export-inpost');
+        Route::get('/panel/orders-export-pharmalink', 'preparePharmalinkFile')->name('orders-export-pharmalink');
+        
+        Route::post('/panel/change-orders-statuses', 'changeOrdresStatuses')->name('change-orders-statuses');
+        
+        Route::get('/panel/order/{id}', 'editOrder')->name('edit-order');
+        
+        
     });
     
 
@@ -160,6 +175,8 @@ Route::controller(BasketApiController::class)->group(function () {
     //Route::get('/get-basket-dataa', "getBasketData")->name('get-basket-dataa');
     Route::match(['get', 'post'], '/get-basket-dataa/', "getBasketData")->name('getBasketDataa');
     Route::post('/sign-to-newsletter', "signToNewsletter")->name('sign-to-newsletter');
+    
+    Route::post('/paynow-payment-status/', "handleNotification")->name('handle-notification');
 });
 
 Route::controller(HomePageController::class)->group(function () {

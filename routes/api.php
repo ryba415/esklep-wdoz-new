@@ -26,9 +26,6 @@ Route::controller(SearchEngineSuggestions::class)->group(function () {
     Route::get('/get-search-engine-suggestions/{search}', "returnSuggestions")->name('returnSuggestions');
 });
 
-Route::get('/refunds/orders/{identity}', [RefundOrderController::class, 'show'])
-    ->name('api.refunds.orders.show');
-
 /*Route::controller(AuthController::class)->group(function () {
     Route::post('/checkout-login/', "login")->name('login');
     Route::get('/logout/', "logout")->name('logout');

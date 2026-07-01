@@ -6,7 +6,11 @@
         @endif
     </label>
 
-    <select class="cms-edit-area" name="{{ $area['field'] }}" autocomplete="off">
+    <select class="cms-edit-area" 
+            name="{{ $area['field'] }}" 
+            @if(!empty($area['readonly']))style="filter: grayscale(60%); opacity: 0.60; cursor: not-allowed;"@endif
+            @if(!empty($area['readonly'])) readonly @endif
+            autocomplete="off">
         @foreach ($area['options'] as $key => $option)
         <option value="{{$key}}" @if ($editItem != null && $editItem[0]->{$area['field']} == $key ) selected @endif >{{$option}}</option>
         @endforeach

@@ -23,6 +23,8 @@
 
 <p class="mb-3"><span style="color:#FF0000;"><strong>Produkty lecznicze, środki spożywcze specjalnego przeznaczenia żywieniowego i wyroby medyczne wydane z wracamdozdrowia.pl nie podlegają zwrotowi, &nbsp;za wyjątkiem&nbsp; produktu leczniczego lub wyrobu medycznego zwracanego z powodu wady jakościowej, niewłaściwego ich wydania lub sfałszowania produktu leczniczego.</strong></span></p>
 
+<p class="mb-3"><a class="text-[#008641] font-bold" href="/zwroty">formularz zgłoszenia zwrotu towarów z zamowienia</a></p>
+
 <p class="mb-3">Pliki do pobrania:</p>
 
 <p class="mb-3"><a class="text-[#008641] font-bold" href="/downloads/pouczenie_o_prawie_odstapienia_od_umowy.docx">Pouczenie o odstąpieniu od umowy (.docx)</a></p>

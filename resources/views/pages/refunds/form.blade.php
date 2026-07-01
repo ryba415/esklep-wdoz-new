@@ -10,7 +10,7 @@
             id="refund-form-root"
             method="POST"
             action="{{ route('refunds.store') }}"
-            data-order-api-base="{{ url('/api/refunds/orders') }}"
+            data-order-api-base="{{ url('/refunds/orders') }}"
             class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8"
         >
             @csrf
@@ -49,7 +49,8 @@
                         type="text"
                         autocomplete="off"
                         placeholder="np. 123456"
-                        value="{{ old('order_identity') }}"
+                        autocomplete="off"
+                        value="{{ $setId }}"
                         class="h-12 w-full rounded-lg border border-wdoz-input-border bg-white px-4 text-base text-wdoz-text-gray outline-none transition focus:border-wdoz-primary focus:ring-2 focus:ring-wdoz-primary-10"
                     >
 
@@ -155,4 +156,12 @@
             </div>
         </form>
     </div>
+
+@if ($setId != null && $setId != '')
+<script>
+setTimeout(function () {
+  document.getElementById("find_order_btn").click();
+}, 1000);
+</script>
+@endif
 @endsection

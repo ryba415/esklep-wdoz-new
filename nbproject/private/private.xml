@@ -2,6 +2,36 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/nginx/html/esklep-checkout/routes/web.php</file>
+            <file>file:/C:/nginx/html/esklep-checkout/resources/views/layouts/admin.blade.php</file>
+            <file>file:/C:/nginx/html/esklep-checkout/app/Http-backup/Controllers/Cms/TableList.php</file>
+            <file>file:/C:/nginx/html/esklep-checkout/app/Models/AdminArticles.php</file>
+            <file>file:/C:/nginx/html/esklep-checkout/app/Http/Controllers/Wiedza/WiedzaController.php</file>
+            <file>file:/C:/nginx/html/esklep-checkout/resources/scss/admin.scss</file>
+            <file>file:/C:/nginx/html/esklep-checkout/app/Http/Controllers/Auth/AuthController.php</file>
+            <file>file:/C:/nginx/html/esklep-checkout/resources/views/pages/home-page.blade.php</file>
+            <file>file:/C:/nginx/html/esklep-checkout/resources/views/pages/wiedza-article.blade.php</file>
+            <file>file:/C:/nginx/html/esklep-checkout/resources/scss/admin-header.scss</file>
+            <file>file:/C:/nginx/html/esklep-checkout/resources/views/admin/dashboard.blade.php</file>
+            <file>file:/C:/nginx/html/esklep-checkout/resources/views/pages/wiedza-list.blade.php</file>
+            <file>file:/C:/nginx/html/esklep-checkout/resources/views/admin/orders-list.blade.php</file>
+            <file>file:/C:/nginx/html/esklep-checkout/resources/views/layouts/front.blade.php</file>
+            <file>file:/C:/nginx/html/esklep-checkout/resources/views/admin/print-orders.blade.php</file>
+            <file>file:/C:/nginx/html/esklep-checkout/resources/scss/variables.scss</file>
+            <file>file:/C:/nginx/html/esklep-checkout/.gitignore</file>
+            <file>file:/C:/nginx/html/esklep-checkout/app/Services/Cms/AdminArticlesSaveService.php</file>
+            <file>file:/C:/nginx/html/esklep-checkout/public/build/manifest.json</file>
+            <file>file:/C:/nginx/html/esklep-checkout/app/Http/Controllers/Admin/AdminDashboard.php</file>
+            <file>file:/C:/nginx/html/esklep-checkout/app/Services/Cms/AdminArticlesCategorySaveService.php</file>
+            <file>file:/C:/nginx/html/esklep-checkout/resources/views/admin/statistics.blade.php</file>
+            <file>file:/C:/nginx/html/esklep-checkout/database/migrations/2026_04_19_143141_articles.php</file>
+            <file>file:/C:/nginx/html/esklep-checkout/resources/views/cms/list.blade.php</file>
+            <file>file:/C:/nginx/html/esklep-checkout/app/Http/Controllers/Admin/AdminOrders.php</file>
+            <file>file:/C:/nginx/html/esklep-checkout/routes/api.php</file>
+            <file>file:/C:/nginx/html/esklep-checkout/app/Models/AdminAdmins.php</file>
+            <file>file:/C:/nginx/html/esklep-checkout/app/Models/CmsObject.php</file>
+            <file>file:/C:/nginx/html/esklep-checkout/resources/views/layouts/admin-left-menu.blade.php</file>
+        </group>
     </open-files>
 </project-private>

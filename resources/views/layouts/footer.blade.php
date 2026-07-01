@@ -68,6 +68,7 @@
                 <h2 class="text-[25px] font-semibold">Dla kupującego</h2>
                 <div class="flex max-w-full w-[275px] flex-col items-stretch text-sm font-normal leading-[30px] justify-center mt-4">
                     <div class=" "><a href="/reklamacje-i-zwroty">Reklamacje i zwroty</a></div>
+                    <div class=" "><a href="/zwroty">Formularz zwrotów</a></div>
                     <div class="mt-1 "><a href="/platnosci">Płatności</a></div>
                     <div class="mt-1 "><a href="koszty-dostawy">Koszty dostawy</a></div>
                         

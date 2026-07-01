@@ -1,18 +1,16 @@
 <div style="max-width: 600px; margin: 0 auto; margin-top: 30px; border: 2px solid #38900D">
     <div style="background-color: #38900D; color: white; font-size: 23px; padding: 12px; text-align: center;">
-        Apteka Wracam do zdrowia
+        Wracam do zdrowia
     </div>
 
     <div style="padding: 10px; font-size: 15px; padding-top: 20px;">
         Dzień dobry,
         <br><br>
-
-        {{-- MIEJSCE NA TEKST PRAWNY / TEKST OD PRAWNIKA --}}
+		
         <div style="padding: 10px; background-color: #f6f6f6; border-left: 4px solid #38900D; margin-bottom: 15px;">
-            Treść informacyjna, do uzupełnienia później
+            Potwierdzamy otrzymanie zgłoszenia zwrotu towaru. Zgłoszenie zostało przyjęte do rozpatrzenia. O wyniku weryfikacji poinformujemy Państwa w osobnej wiadomości. Poniżej znajdują się szczegóły zgłoszenia.
         </div>
 
-        Dziękujemy za przesłanie zgłoszenia zwrotu.
         <br>
         Poniżej znajdują się szczegóły zgłoszenia.
         <br><br>
@@ -143,7 +141,7 @@
     <div style="padding: 10px; font-size: 15px;">
         <p>
             Pozdrawiamy<br>
-            Zespół Apteki Wracam do zdrowia
+            Zespół Wracam do zdrowia
         </p>
 
         <br>

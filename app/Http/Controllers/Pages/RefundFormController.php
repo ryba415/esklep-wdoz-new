@@ -17,9 +17,16 @@ use Illuminate\View\View;
 
 class RefundFormController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-        return view('pages.refunds.form');
+        $requestData = $request->all();
+        
+        $setId = '';
+        
+        if (isset($requestData['set-id']) && $requestData['set-id'] != null){
+            $setId = $requestData['set-id'];
+        }
+        return view('pages.refunds.form',['setId' => $setId]);
     }
 
     public function store(
@@ -45,7 +52,7 @@ class RefundFormController extends Controller
             'products.required' => 'Wybierz przynajmniej jeden produkt do zwrotu.',
         ]);
 
-        $order = EcommerceOrders::query()
+        $order = EcommerceOrders::on('mysql-esklep')
             ->where('id', $validated['order_id'])
             ->where('identity', $validated['order_identity'])
             ->with('products.product')
@@ -117,8 +124,8 @@ class RefundFormController extends Controller
             ];
         }
 
-        $refund = DB::transaction(function () use ($validated, $order, $productsToRefund, $totalValueGross) {
-            $refund = EcommerceRefund::query()->create([
+        $refund = DB::connection('mysql-esklep')->transaction(function () use ($validated, $order, $productsToRefund, $totalValueGross) {
+            $refund = EcommerceRefund::on('mysql-esklep')->create([
                 'order_id' => $order->id,
                 'order_identity' => $order->identity,
 
@@ -139,7 +146,7 @@ class RefundFormController extends Controller
             foreach ($productsToRefund as $productToRefund) {
                 $orderProduct = $productToRefund['order_product'];
 
-                EcommerceRefundProduct::query()->create([
+                EcommerceRefundProduct::on('mysql-esklep')->create([
                     'ecommerce_refund_id' => $refund->id,
                     'ecommerce_order_product_id' => $orderProduct->id,
                     'product_id' => $orderProduct->product_id,
@@ -160,15 +167,19 @@ class RefundFormController extends Controller
 
         $refund->load('products');
 
-        foreach (array_unique([$refund->email, 'apteka@wracamdozdrowia.pl']) as $recipient) {
+        foreach (array_unique([$refund->email, 'darek@datum.pl', 'ryba415@gmail.com']) as $recipient) {
             Mail::to($recipient)->send(new EcommerceRefundSubmitted($refund));
         }
 
         return redirect()->route('refunds.thank-you', $refund);
     }
 
-    public function thankYou(EcommerceRefund $refund): View
+    public function thankYou($refund): View
     {
+        $refund = EcommerceRefund::on('mysql-esklep')
+            ->where('order_id', $refund)
+            ->first();
+                
         return view('pages.refunds.thank-you', [
             'refund' => $refund,
         ]);

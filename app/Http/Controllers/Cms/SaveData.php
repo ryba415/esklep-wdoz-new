@@ -21,7 +21,8 @@ class SaveData extends Controller
         'AdminNewsletter',
         'AdminSettings',
         'AdminUsers',
-        'AdminAdmins'
+        'AdminAdmins',
+        'AdminOrders'
     ];
 
     protected $modelObject = null;

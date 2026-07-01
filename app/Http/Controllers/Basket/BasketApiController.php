@@ -10,6 +10,7 @@ use Config;
 use App\Models\Basket;
 use App\Models\Email;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class BasketApiController extends Controller
 {
@@ -1003,8 +1004,12 @@ class BasketApiController extends Controller
                 'body' => $postString
             ];
             
-            $signature = hash_hmac('SHA256', $postString, Config::get('constants.paynow_signature_key'), true);
-            $signature = base64_encode($signature);
+            if (str_contains(Config::get('constants.paynow_host'), '.sandbox.')){
+                $signature = base64_encode(hash_hmac('sha256', json_encode($signatureBody, JSON_UNESCAPED_SLASHES), Config::get('constants.paynow_signature_key'), true));
+            } else {
+                $signature = hash_hmac('SHA256', $postString, Config::get('constants.paynow_signature_key'), true);
+                $signature = base64_encode($signature);
+            }
 
             curl_setopt($ch, CURLOPT_HTTPHEADER, array(
                 'Api-Key: ' . Config::get('constants.paynow_api_key'),
@@ -1035,7 +1040,7 @@ class BasketApiController extends Controller
                         $response['status'] = true;
                         $response['url'] = $details["redirectUrl"];
                         $updateOrder = DB::connection('mysql-esklep')->update('UPDATE ecommerce_orders SET paynow_id=?, paynow_error=?, paynow_payment_status=? WHERE id=?', 
-                                [$details["paymentId"], '', $details["status"],  $orderId]);
+                                [$details["paymentId"], 'PENDING', $details["status"],  $orderId]);
                     }
                 }
             } else {
@@ -1055,7 +1060,7 @@ class BasketApiController extends Controller
                     }
                 }
 
-                $response['error'] = 'Wystąpił nieoczekiwany błąd podczas próby komunikacji z pośrednikiem płatności. Spróbuj ponownie lub skontaktuj się z obsługą klienta w celu rozwiązania problemu. ' . $httpcode;
+                $response['error'] = 'Wystąpił nieoczekiwany błąd podczas próby komunikacji z pośrednikiem płatności. Spróbuj ponownie lub skontaktuj się z obsługą klienta w celu rozwiązania problemu. ' . $httpcode . ' ' . $errorDetails;
             }
 
             if (!$response['status']){
@@ -1123,6 +1128,93 @@ class BasketApiController extends Controller
         }
         
         return \Response::json($returnData, 200);
+    }
+    
+    public function handleNotification(Request $request)
+    {
+        $signatureKey = Config::get('constants.paynow_signature_key'); // Pobierane z config/services.php
+        
+        $payload = $request->getContent();
+        $signature = $request->header('Signature');
+
+        if (!$signature) {
+            Log::warning('Paynow Webhook: Brak nagłówka Signature.');
+            return response()->json(['error' => 'Missing Signature'], 400);
+        }
+
+        // 1. Weryfikacja podpisu wiadomości
+        if (!$this->verifySignature($payload, $signature, $signatureKey)) {
+            Log::error('Paynow Webhook: Niepoprawny podpis transakcji!', [
+                'payload' => $payload,
+                'signature' => $signature
+            ]);
+            return response()->json(['error' => 'Invalid Signature'], 400);
+        }
+
+        // 2. Przetwarzanie danych
+        $data = json_decode($payload, true);
+        
+        $paymentId = $data['paymentId'] ?? null;
+        $externalId = $data['externalId'] ?? null; // Zazwyczaj ID zamówienia w Twoim sklepie
+        $status = $data['status'] ?? null;
+
+        Log::info("Paynow Webhook: Odebrano status {$status} dla zamówienia {$externalId}");
+
+        // 3. Aktualizacja statusu w bazie danych
+        //$order = Order::find($externalId);
+        $order = DB::connection('mysql-esklep')->select('SELECT * FROM ecommerce_orders WHERE name = ?', [$externalId]);
+        
+        if (!$order) {
+            Log::error("Paynow Webhook: Nie znaleziono zamówienia o ID: {$externalId}");
+            return response()->json(['error' => 'Order not found'], 404);
+        }
+        
+        switch ($status) {
+            case 'CONFIRMED':
+                // Płatność zakończona sukcesem
+                $updateOrder = DB::connection('mysql-esklep')->update('UPDATE ecommerce_orders SET paynow_payment_status=?, status=? WHERE name = ?', 
+                                ['CONFIRMED','payed_accept', $externalId]);
+                break;
+
+            case 'REJECTED':
+                // Płatność odrzucona/anulowana
+                $updateOrder = DB::connection('mysql-esklep')->update('UPDATE ecommerce_orders SET paynow_payment_status=?, status=? WHERE name = ?', 
+                                ['REJECTED','payed_failed', $externalId]);
+                break;
+
+            case 'PENDING':
+                // Płatność w toku (np. przelew tradycyjny)
+                $updateOrder = DB::connection('mysql-esklep')->update('UPDATE ecommerce_orders SET paynow_payment_status=? WHERE name = ?', 
+                                ['PENDING', $externalId]);
+                break;
+
+            case 'ERROR':
+                // Wystąpił błąd podczas płatności
+                $updateOrder = DB::connection('mysql-esklep')->update('UPDATE ecommerce_orders SET paynow_payment_status=?, status=? WHERE name = ?', 
+                                ['ERROR','payed_failed', $externalId]);
+                break;
+        }
+
+        // Paynow oczekuje odpowiedzi HTTP 202 (Accepted) lub 200 w przypadku sukcesu
+        return response()->json(['status' => 'success'], 202);
+    }
+
+    /**
+     * Metoda weryfikująca podpis HMAC-SHA256
+     */
+    private function verifySignature(string $payload, string $signature, string $signatureKey): bool
+    {
+        //$calculatedSignature = base64_encode(hash_hmac('sha256', $payload, $signatureKey, true));
+        
+        
+        if (str_contains(Config::get('constants.paynow_host'), '.sandbox.')){
+            $calculatedSignature = base64_encode(hash_hmac('sha256', $payload, $signatureKey, true));
+        } else {
+            $calculatedSignature = hash_hmac('SHA256', $payload, $signatureKey, true);
+            $calculatedSignature = base64_encode($signature);
+        }
+        
+        return hash_equals($calculatedSignature, $signature);
     }
     
 }

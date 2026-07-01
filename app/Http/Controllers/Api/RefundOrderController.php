@@ -14,11 +14,10 @@ class RefundOrderController extends Controller
         string $identity,
         RefundProductEligibilityService $eligibilityService
     ): JsonResponse {
-        $order = EcommerceOrders::query()
-            ->where('identity', $identity)
+        $order = EcommerceOrders::on('mysql-esklep')
+            ->where('name', $identity)
             ->with('products.product')
             ->first();
-
         if (!$order) {
             return response()->json([
                 'message' => 'Nie znaleziono zamówienia o podanym numerze.',

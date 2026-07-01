@@ -49,6 +49,10 @@
                 Eksportuj zaznaczone do: <select name="mass-export" id="mass-export" autocomplete="off">
                     <option value="" ></option>
                     <option value="print">Wydruk</option>
+                    <option value="orlen">Orlen Paczka</option>
+                    <option value="dpd">Dpd</option>
+                    <option value="inpost">Inpost</option>
+                    <option value="pharmalink">Pharmalink</option>
                 </select>
             </div>
             <div class="filter-row">
@@ -130,11 +134,51 @@
 <script type="text/javascript">
     
     document.getElementById('mass-change-status').addEventListener("change", function(){
-        if (confirm('Czy na pewno chcesz zmienić status wszytskich zaznaczonych pozycji?')) {
-            
-        } else {
+        
+            if (document.getElementById('mass-change-status').value != ''){
+                
+                
+                
+                let orders = document.querySelectorAll('.mass-select-orders:checked');
+                let ordersIds = [];
+                for (let i=0;i<orders.length;i++){
+                    ordersIds.push(orders[i].getAttribute('data-id'));
+                }
+                if (ordersIds.length > 0){
+                    if (confirm('Czy na pewno chcesz zmienić status wszytskich zaznaczonych pozycji?')) {
+                        showGlobalLoader();
+                        fetch('/panel/change-orders-statuses', {
+                            method: 'POST',
+                            body: JSON.stringify({
+                                ids: ordersIds,
+                                status: document.getElementById('mass-change-status').value
+                            }), 
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Accept": "application/json",
+                                "X-Requested-With": "XMLHttpRequest",
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                            }
+                        })
+                        .then(r => r.json())
+                        .then(r => {
+                            hideGlobalLoader();
+                            setTimeout(() => {
+                                document.getElementById('mass-change-status').value = '';
+                                //window.location.reload();
+                            }, "250");
+                        }).catch(error => console.error('Error', error));
+                    } else {
+                        document.getElementById('mass-change-status').value = '';
+                    }    
+                } else {
+                    alert("Nie zaznaczono żadnego zamówienia do zmiany statusu");
+                    document.getElementById('mass-change-status').value = '';
+                } 
+                
+            }
 
-        }
+        
     });
     
     
@@ -153,18 +197,32 @@
         }, 30);
     });
     document.getElementById('mass-export').addEventListener("change", function(e){
-        console.log(e.target.value);
-        if (e.target.value == 'print'){
+        if (e.target.value == 'print' || e.target.value == 'orlen' || e.target.value == 'dpd' || e.target.value == 'inpost' || e.target.value == 'pharmalink'){
             
             let orders = document.querySelectorAll('.mass-select-orders:checked');
             let ordersIds = [];
             for (let i=0;i<orders.length;i++){
                 ordersIds.push(orders[i].getAttribute('data-id'));
             }
-            console.log(ordersIds);
             if (ordersIds.length > 0){
-                console.log(ordersIds.join(';'));
-                window.open('/panel/orders-export-print?ids='+ordersIds.join(';'), '_blank').focus();
+                if (e.target.value == 'print'){
+                    window.open('/panel/orders-export-print?ids='+ordersIds.join(','), '_blank').focus();
+                }
+                if (e.target.value == 'orlen'){
+                    window.open('/panel/orders-export-orlen?ids='+ordersIds.join(','), '_blank').focus();
+                }
+                if (e.target.value == 'dpd'){
+                    window.open('/panel/orders-export-dpd?ids='+ordersIds.join(','), '_blank').focus();
+                }
+                if (e.target.value == 'inpost'){
+                    window.open('/panel/orders-export-inpost?ids='+ordersIds.join(','), '_blank').focus();
+                }
+                if (e.target.value == 'pharmalink'){
+                    window.open('/panel/orders-export-pharmalink?ids='+ordersIds.join(','), '_blank').focus();
+                }
+                
+                
+                
             } else {
                 alert("Nie zaznaczono żadnego zamówienia do eksportu");
             }
